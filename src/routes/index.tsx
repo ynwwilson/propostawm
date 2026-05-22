@@ -96,6 +96,11 @@ function Proposta() {
         {/* 1. HERO CINEMATOGRÁFICO — fullscreen com vídeo + GSAP */}
         <HeroCinematic />
 
+        {/* 1.5 PIN SCROLL — A essência da entrega */}
+        <EssencePinSection />
+
+
+
 
         {/* 2. A ESSÊNCIA DA ENTREGA */}
         <section className="px-6 lg:px-20 py-32 lg:py-44 bg-background">
