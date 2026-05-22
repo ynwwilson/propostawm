@@ -383,73 +383,50 @@ function Proposta() {
               </p>
             </motion.div>
 
-            <motion.div
-              variants={staggerParent}
-              initial="hidden"
-              whileInView="show"
-              viewport={VIEWPORT}
-              className="mt-20 grid md:grid-cols-3 gap-6 lg:gap-7 items-stretch"
-            >
-              {planos.map((p) => (
-                <motion.article
-                  key={p.nome}
-                  variants={childFade}
+            {(() => {
+              const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => (
+                <div
                   className={[
-                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-700 ease-out",
-                    "hover:-translate-y-1",
+                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-700 ease-out h-full w-full",
+                    opts?.inCarousel ? "" : "hover:-translate-y-1",
                     p.sugerida
-                      ? "bg-warm-white border border-accent/40 shadow-elegant md:-translate-y-4 ring-1 ring-accent/15"
+                      ? `bg-warm-white border border-accent/40 shadow-elegant ring-1 ring-accent/15 ${opts?.inCarousel ? "" : "md:-translate-y-4"}`
                       : "bg-warm-white/70 border border-cocoa/15 hover:bg-warm-white hover:shadow-elegant",
                   ].join(" ")}
                 >
-                  {/* Recommended glow */}
                   {p.sugerida && (
                     <div className="pointer-events-none absolute -inset-px bg-gradient-to-b from-accent/15 via-transparent to-transparent" />
                   )}
-
                   {p.sugerida && (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-espresso text-warm-white text-[10px] tracking-luxe uppercase px-5 py-2 shadow-sm">
                       Mais indicada
                     </span>
                   )}
-
                   <div className="relative">
                     <div className="flex items-baseline justify-between">
                       <p className="font-display text-2xl md:text-3xl text-espresso tracking-tight">
                         {p.nome}
                       </p>
-                      <span className="font-display-italic text-accent text-sm">
-                        ◆
-                      </span>
+                      <span className="font-display-italic text-accent text-sm">◆</span>
                     </div>
-
                     <p className="mt-8 font-display text-5xl md:text-[3.25rem] text-espresso leading-none">
                       {p.valor}
                     </p>
                     <p className="mt-3 text-[10px] tracking-luxe uppercase text-cocoa/55">
                       Projeto completo
                     </p>
-
                     <div className="mt-8 h-px w-full bg-gradient-to-r from-accent/40 via-cocoa/15 to-transparent" />
-
                     <p className="mt-7 text-sm leading-7 text-cocoa/85 min-h-[5.5rem]">
                       {p.descricao}
                     </p>
-
                     <ul className="mt-7 space-y-3">
                       {p.itens.map((i) => (
-                        <li
-                          key={i}
-                          className="flex items-baseline gap-3 text-sm text-cocoa/85"
-                        >
-                          <span className="text-accent text-[9px] translate-y-[-1px]">
-                            ◆
-                          </span>
+                        <li key={i} className="flex items-baseline gap-3 text-sm text-cocoa/85">
+                          <span className="text-accent text-[9px] translate-y-[-1px]">◆</span>
                           <span className="leading-6">{i}</span>
                         </li>
                       ))}
                     </ul>
-
                     <div className="mt-10 pt-8 border-t border-cocoa/10">
                       <button
                         type="button"
@@ -464,9 +441,41 @@ function Proposta() {
                       </button>
                     </div>
                   </div>
-                </motion.article>
-              ))}
-            </motion.div>
+                </div>
+              );
+              return (
+                <>
+                  {/* Desktop / tablet grid */}
+                  <motion.div
+                    variants={staggerParent}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={VIEWPORT}
+                    className="hidden md:grid mt-20 md:grid-cols-3 gap-6 lg:gap-7 items-stretch"
+                  >
+                    {planos.map((p) => (
+                      <motion.article key={p.nome} variants={childFade} className="h-full">
+                        {renderPlano(p)}
+                      </motion.article>
+                    ))}
+                  </motion.div>
+
+                  {/* Mobile carousel */}
+                  <motion.div {...fadeUp} className="md:hidden mt-16 flex justify-center">
+                    <Carousel
+                      baseWidth={330}
+                      itemHeight={640}
+                      loop
+                      items={planos.map((p) => ({
+                        id: p.nome,
+                        content: <div className="h-full w-full pt-3">{renderPlano(p, { inCarousel: true })}</div>,
+                      }))}
+                    />
+                  </motion.div>
+                </>
+              );
+            })()}
+
 
             <motion.p
               {...fadeUp}
