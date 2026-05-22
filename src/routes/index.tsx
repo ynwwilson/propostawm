@@ -234,14 +234,20 @@ function Proposta() {
         {/* 4. O QUE MUDA NA PRÁTICA */}
         <section className="px-6 lg:px-20 py-32 lg:py-44 bg-background">
           <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <motion.div {...fadeUp} className="relative aspect-[4/5] overflow-hidden">
+            <motion.div
+              variants={imgReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              className="relative aspect-[4/5] overflow-hidden"
+            >
               <img
                 src={bouquet}
                 alt="Buquê de rosas em tons nude"
                 loading="lazy"
                 width={1200}
                 height={1500}
-                className="h-full w-full object-cover reveal-img"
+                className="h-full w-full object-cover"
               />
             </motion.div>
             <motion.div {...fadeUp}>
