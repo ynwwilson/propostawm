@@ -150,23 +150,8 @@ export function HeroCinematic() {
         }}
       />
 
-      {/* Corner editorial marks */}
-      <div className="pointer-events-none absolute top-8 right-8 lg:top-12 lg:right-16 text-[10px] tracking-luxe uppercase text-warm-white/55 hidden sm:flex items-center gap-3">
-        <span className="h-px w-10 bg-warm-white/35 block" />
-        MMXXV · ForYouCode
-      </div>
-      <div className="pointer-events-none absolute top-8 left-8 lg:top-12 lg:left-16 text-[10px] tracking-luxe uppercase text-warm-white/55 hidden sm:flex items-center gap-3">
-        <span className="text-[#d8c7a8]/80">N°</span> 01 — Proposta
-        <span className="h-px w-10 bg-warm-white/35 block" />
-      </div>
 
-      {/* Vertical side label */}
-      <div className="pointer-events-none absolute left-6 lg:left-10 top-1/2 -translate-y-1/2 z-10 hidden lg:flex items-center gap-4 -rotate-90 origin-left">
-        <span className="h-px w-12 bg-[#d8c7a8]/60 block" />
-        <span className="text-[10px] tracking-luxe uppercase text-warm-white/55 whitespace-nowrap">
-          Bridal Editorial · 2025
-        </span>
-      </div>
+
 
       {/* Content */}
       <div className="hero-content relative z-10 h-full px-8 lg:px-24 xl:px-32 flex items-center">
