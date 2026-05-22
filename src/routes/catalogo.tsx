@@ -108,7 +108,7 @@ function Catalogo() {
               const fav = favoritos.has(d.id);
               return (
                 <article key={d.id} className="group fade-up">
-                  <Link to="/vestido/$id" params={{ id: d.id }} className="block relative overflow-hidden bg-secondary/40">
+                  <Link to="/vestido/$id" params={{ id: d.id }} className="block relative overflow-hidden bg-white/[0.045]">
                     <div className="aspect-[3/4]">
                       <img
                         src={d.imagem}

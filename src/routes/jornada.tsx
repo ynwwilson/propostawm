@@ -134,7 +134,7 @@ function Jornada() {
                     onClick={() => setUnidade(u)}
                     className={`text-left p-8 border transition-all ${
                       unidade === u
-                        ? "border-foreground bg-secondary/60"
+                        ? "border-foreground bg-white/[0.08]"
                         : "border-border hover:border-foreground"
                     }`}
                   >
@@ -159,7 +159,7 @@ function Jornada() {
                     <button
                       key={d.id}
                       onClick={() => toggleFav(d.id)}
-                      className="group relative aspect-[3/4] overflow-hidden bg-secondary/40"
+                      className="group relative aspect-[3/4] overflow-hidden bg-white/[0.045]"
                     >
                       <img
                         src={d.imagem}
