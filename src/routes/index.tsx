@@ -31,25 +31,34 @@ export const Route = createFileRoute("/")({
   component: Proposta,
 });
 
-const EASE = [0.2, 0.7, 0.2, 1] as [number, number, number, number];
+// Cinematic easing — power3/expo feel
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const EASE_DEEP = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const VIEWPORT = { once: true, margin: "-80px" } as const;
 
 const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 28, filter: "blur(6px)" },
+  whileInView: { opacity: 1, y: 0, filter: "blur(0px)" },
   viewport: VIEWPORT,
-  transition: { duration: 0.9, ease: EASE },
+  transition: { duration: 1.2, ease: EASE },
 } as const;
 
 const staggerParent: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.18, delayChildren: 0.15 } },
 };
 
 const childFade: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+  hidden: { opacity: 0, y: 28, scale: 0.985, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 1.1, ease: EASE },
+  },
 };
+
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
