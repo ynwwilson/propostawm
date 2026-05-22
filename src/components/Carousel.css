@@ -1,0 +1,59 @@
+.wm-carousel-container {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(64, 38, 23, 0.15);
+  border-radius: 4px;
+  padding: 16px;
+  background-color: var(--warm-white, #faf6f0);
+  max-width: 100%;
+}
+
+.wm-carousel-track {
+  display: flex;
+}
+
+.wm-carousel-item {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  background-color: transparent;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.wm-carousel-item:active {
+  cursor: grabbing;
+}
+
+.wm-carousel-indicators-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.wm-carousel-indicators {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+  padding: 0 8px;
+}
+
+.wm-carousel-indicator {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background-color 200ms;
+}
+
+.wm-carousel-indicator.active {
+  background-color: var(--accent, #b89968);
+}
+
+.wm-carousel-indicator.inactive {
+  background-color: rgba(64, 38, 23, 0.2);
+}
