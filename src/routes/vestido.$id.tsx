@@ -54,7 +54,7 @@ function VestidoPage() {
             {/* Galeria */}
             <div className="lg:col-span-7 grid grid-cols-[80px_1fr] gap-5">
               <div className="flex flex-col gap-3">
-                {dress.galeria.map((img, i) => (
+                {dress.galeria.map((img: string, i: number) => (
                   <button
                     key={i}
                     onClick={() => setActive(i)}
