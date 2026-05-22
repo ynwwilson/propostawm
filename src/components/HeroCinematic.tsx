@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ShinyText from "./effects/ShinyText";
+import wmLogo from "@/assets/wm-logo.png";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
