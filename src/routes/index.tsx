@@ -410,7 +410,7 @@ function Proposta() {
         </section>
 
         {/* 5. INVESTIMENTO */}
-        <section className="relative px-6 lg:px-20 py-32 lg:py-44 bg-[var(--champagne)] overflow-hidden">
+        <section className="relative px-6 lg:px-20 py-20 md:py-32 lg:py-44 bg-[var(--champagne)] overflow-hidden">
           {/* Decorative top hairline */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           {/* Soft radial wash */}
