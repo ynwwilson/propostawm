@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import wmLogo from "@/assets/wm-logo.png";
+
+
 
 
 const nav = [
@@ -39,15 +40,12 @@ export function SiteHeader() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
-          <img
-            src={wmLogo}
-            alt="WM Noivas"
-            className="h-10 w-auto object-contain"
-          />
+          <span className="font-display text-2xl tracking-tight">Espaço</span>
           <span className="h-5 w-px bg-accent/70" />
           <span className="text-xs tracking-luxe uppercase text-muted-foreground group-hover:text-foreground transition-colors">
-            Proposta
+            WM · Proposta
           </span>
+
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">

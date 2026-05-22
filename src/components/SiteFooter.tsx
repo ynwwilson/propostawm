@@ -1,15 +1,13 @@
-import wmLogo from "@/assets/wm-logo.png";
-
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 mt-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid gap-12 md:grid-cols-4">
-        <div className="md:col-span-2 flex flex-col gap-6">
-          <img src={wmLogo} alt="WM Noivas" className="h-16 w-auto object-contain" />
+        <div className="md:col-span-2">
           <p className="font-display text-3xl leading-tight max-w-sm">
             Cada vestido escolhido aqui acompanha um pedaço da sua história.
           </p>
         </div>
+
 
         <div>
           <p className="text-xs tracking-luxe uppercase text-muted-foreground mb-4">Unidades</p>
