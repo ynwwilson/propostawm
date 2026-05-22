@@ -286,7 +286,6 @@ function Proposta() {
                     initial="hidden"
                     whileInView="show"
                     viewport={VIEWPORT}
-                    transition={{ delayChildren: 0.7 }}
                     className="hidden md:grid mt-20 lg:mt-24 md:grid-cols-3 gap-px bg-cocoa/15 border border-cocoa/15"
                   >
                     {blocos.map((b) => (
