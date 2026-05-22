@@ -36,11 +36,11 @@ function Home() {
         <div className="grid lg:grid-cols-12 min-h-[calc(100vh-5rem)]">
           <div className="lg:col-span-6 flex items-center px-6 lg:px-16 py-20 relative">
             <div className="max-w-xl fade-up">
-              <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs text-secondary">
-                <Sparkles className="h-3.5 w-3.5 text-accent" /> Nova experiência digital · 2026
+              <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-[11px] tracking-luxe uppercase text-foreground">
+                <Sparkles className="h-3 w-3 text-accent" /> Proposta · 2026
               </div>
-              <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
-                A nova experiência <span className="text-accent">digital</span> da Espaço WM
+              <h1 className="mt-8 font-display text-5xl md:text-6xl lg:text-[5.5rem] leading-[1.02] tracking-tight text-balance">
+                A nova experiência <span className="font-display-italic text-cocoa">digital</span> da Espaço WM
               </h1>
               <p className="mt-8 text-base text-muted-foreground max-w-md leading-relaxed">
                 Uma plataforma desenhada para acolher cada noiva desde o primeiro olhar até a prova final.
@@ -70,7 +70,7 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 relative bg-white/[0.045] overflow-hidden">
+          <div className="lg:col-span-6 relative bg-champagne/50 overflow-hidden">
             <img
               src={heroBride}
               alt="Noiva com vestido em tule champagne"
@@ -115,7 +115,7 @@ function Home() {
                 params={{ id: d.id }}
                 className="group block lift"
               >
-                <div className="aspect-[3/4] overflow-hidden bg-white/[0.045]">
+                <div className="aspect-[3/4] overflow-hidden bg-champagne/50">
                   <img
                     src={d.imagem}
                     alt={d.nome}
@@ -139,7 +139,7 @@ function Home() {
       </section>
 
       {/* ESTILOS */}
-      <section className="bg-white/[0.045] px-6 lg:px-16 py-28">
+      <section className="bg-champagne/50 px-6 lg:px-16 py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs tracking-luxe uppercase text-muted-foreground">02 · Estilos</p>
           <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-xl">

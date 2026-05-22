@@ -24,7 +24,7 @@ function NovoVestido() {
   });
 
   return (
-    <div className="min-h-screen bg-white/[0.03]">
+    <div className="min-h-screen bg-champagne/40">
       <SiteHeader />
       <section className="px-6 lg:px-16 pt-12 pb-28">
         <div className="mx-auto max-w-4xl">

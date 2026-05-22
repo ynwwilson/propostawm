@@ -5,13 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Inter", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
 
-  --radius-sm: 0.75rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 1.75rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   --radius-3xl: 2.5rem;
 
@@ -42,37 +42,48 @@
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 0.5rem;
 
-  /* Dark premium palette — referência ForYouCode */
-  --background: oklch(0.155 0.012 310);          /* #100D12 deep ink */
-  --foreground: oklch(0.985 0 0);                /* white */
-  --card: oklch(0.195 0.012 320);                /* #151116 */
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.195 0.012 320);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.04 75);                /* champagne cream */
-  --primary-foreground: oklch(0.18 0.012 320);
-  --secondary: oklch(0.92 0.04 75);              /* cream #F5E4D4 */
-  --secondary-foreground: oklch(0.18 0.012 320); /* dark ink #191116 */
-  --muted: oklch(0.25 0.012 320);
-  --muted-foreground: oklch(0.985 0 0 / 50%);
-  --accent: oklch(0.78 0.07 70);                 /* gold #D9B38C */
-  --accent-foreground: oklch(0.92 0.04 75);
-  --destructive: oklch(0.6 0.18 25);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.78 0.07 70);
+  /* Off-white · champagne · marrom · preto elegante · dourado suave */
+  --background: oklch(0.985 0.008 80);            /* off-white quente */
+  --foreground: oklch(0.18 0.015 40);             /* preto elegante (warm) */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.015 40);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.015 40);
 
-  --champagne: oklch(0.92 0.04 75);
-  --cream: oklch(0.92 0.04 75);
-  --gold: oklch(0.78 0.07 70);
-  --cocoa: oklch(0.45 0.04 50);                  /* #6F4E37 */
-  --ink: oklch(0.18 0.012 320);
+  /* Primary CTA = preto elegante */
+  --primary: oklch(0.18 0.015 40);
+  --primary-foreground: oklch(0.985 0.008 80);
 
-  --shadow-elegant: 0 30px 60px -25px oklch(0.78 0.07 70 / 18%);
-  --shadow-soft: 0 18px 40px -20px oklch(0 0 0 / 50%);
+  /* Secondary = preto elegante (CTAs) */
+  --secondary: oklch(0.18 0.015 40);
+  --secondary-foreground: oklch(0.985 0.008 80);
+
+  --muted: oklch(0.95 0.014 75);
+  --muted-foreground: oklch(0.45 0.022 50);
+
+  --accent: oklch(0.74 0.078 72);                 /* dourado suave */
+  --accent-foreground: oklch(0.18 0.015 40);
+
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.985 0.008 80);
+
+  --border: oklch(0.88 0.018 70);
+  --input: oklch(0.9 0.018 70);
+  --ring: oklch(0.74 0.078 72);
+
+  /* Paleta extendida */
+  --champagne: oklch(0.93 0.028 78);              /* champagne luminoso */
+  --cream: oklch(0.96 0.018 80);
+  --gold: oklch(0.74 0.078 72);                   /* dourado suave */
+  --cocoa: oklch(0.32 0.04 40);                   /* marrom escuro */
+  --ink: oklch(0.16 0.012 40);                    /* preto elegante */
+
+  --shadow-elegant: 0 30px 60px -28px oklch(0.32 0.04 40 / 22%);
+  --shadow-soft: 0 14px 36px -18px oklch(0.32 0.04 40 / 14%);
+  --shadow-card: 0 1px 0 oklch(0.88 0.018 70 / 80%),
+                 0 20px 40px -28px oklch(0.32 0.04 40 / 14%);
 }
 
 @layer base {
@@ -82,48 +93,59 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     position: relative;
     overflow-x: hidden;
   }
-  /* Blurred orbs background */
+  /* Auras muito sutis em champagne + dourado */
   body::before,
   body::after {
     content: "";
     position: fixed;
-    inset: auto;
     pointer-events: none;
     z-index: 0;
     border-radius: 9999px;
-    filter: blur(120px);
-    opacity: 0.35;
+    filter: blur(140px);
+    opacity: 0.55;
   }
   body::before {
-    width: 30rem;
-    height: 30rem;
-    top: -8rem;
-    left: -8rem;
-    background: var(--gold);
+    width: 36rem;
+    height: 36rem;
+    top: -10rem;
+    right: -8rem;
+    background: var(--champagne);
   }
   body::after {
-    width: 38rem;
-    height: 38rem;
-    top: 30%;
-    right: -10rem;
-    background: var(--cocoa);
+    width: 30rem;
+    height: 30rem;
+    bottom: -12rem;
+    left: -10rem;
+    background: var(--gold);
+    opacity: 0.18;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: -0.012em;
+    color: var(--color-foreground);
   }
-  /* Keep app content above orbs */
   body > * { position: relative; z-index: 1; }
+
+  ::selection {
+    background-color: oklch(0.74 0.078 72 / 30%);
+    color: var(--color-foreground);
+  }
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); font-weight: 600; }
+  .font-display { font-family: var(--font-display); font-weight: 400; }
+  .font-display-italic { font-family: var(--font-display); font-style: italic; font-weight: 400; }
   .tracking-luxe { letter-spacing: 0.28em; }
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
   .gold-line {
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
     height: 1px;
@@ -131,28 +153,55 @@
   .hairline { background-color: var(--border); height: 1px; }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-soft { box-shadow: var(--shadow-soft); }
-  .fade-up { animation: fadeUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-  .fade-in { animation: fadeIn 0.6s ease-out both; }
+  .shadow-card { box-shadow: var(--shadow-card); }
+
+  .bg-paper {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(oklch(0.32 0.04 40 / 3%) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+
+  /* Animações sutis */
+  .fade-up { animation: fadeUp 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .fade-in { animation: fadeIn 0.7s ease-out both; }
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .reveal-img { animation: revealImg 1.2s cubic-bezier(0.7, 0, 0.2, 1) both; }
+  .reveal-img { animation: revealImg 1.3s cubic-bezier(0.7, 0, 0.2, 1) both; }
   @keyframes revealImg {
     from { clip-path: inset(0 0 100% 0); }
     to { clip-path: inset(0 0 0 0); }
   }
-  .lift { transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s; }
-  .lift:hover { transform: translateY(-4px); box-shadow: var(--shadow-elegant); }
-  .glass {
-    background-color: oklch(1 0 0 / 5%);
-    border: 1px solid oklch(1 0 0 / 10%);
-    backdrop-filter: blur(12px);
+
+  .lift {
+    transition:
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
-  .glass-strong {
-    background-color: oklch(1 0 0 / 8%);
-    border: 1px solid oklch(1 0 0 / 12%);
-    backdrop-filter: blur(16px);
+  .lift:hover { transform: translateY(-6px); box-shadow: var(--shadow-elegant); }
+
+  .card-soft {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .link-underline:hover { background-size: 100% 1px; }
+
+  /* Transição global de página */
+  .page-enter { animation: pageEnter 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
