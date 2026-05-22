@@ -99,8 +99,8 @@ export function HeroCinematic() {
 
       if (video) {
         gsap.to(video, {
-          yPercent: 12,
-          scale: 1.08,
+          yPercent: 18,
+          scale: 1.12,
           ease: "none",
           scrollTrigger: {
             trigger: root.current,
@@ -110,6 +110,25 @@ export function HeroCinematic() {
           },
         });
       }
+
+      // Parallax de saída — diferentes camadas se movem em velocidades distintas
+      const parallaxTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: root.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.1,
+        },
+      });
+
+      parallaxTL
+        .to(".hero-title-wrap", { yPercent: -55, opacity: 0, filter: "blur(6px)", ease: "none" }, 0)
+        .to(".hero-subtitle", { yPercent: -35, opacity: 0, filter: "blur(4px)", ease: "none" }, 0)
+        .to(".hero-underline", { yPercent: -45, opacity: 0, ease: "none" }, 0)
+        .to(".hero-eyebrow", { yPercent: -70, opacity: 0, ease: "none" }, 0)
+        .to(".hero-corner", { yPercent: -25, opacity: 0, ease: "none" }, 0)
+        .to(".hero-topline", { opacity: 0, ease: "none" }, 0);
+
 
       return () => window.removeEventListener("scroll", onScroll);
     }, root);
@@ -148,7 +167,7 @@ export function HeroCinematic() {
               <span className="h-px w-8 bg-accent" />
             </p>
 
-            <h1 className="mt-10 font-display text-[clamp(4rem,12vw,10rem)] font-light leading-[0.95] tracking-tight text-warm-white">
+            <h1 className="hero-title-wrap mt-10 font-display text-[clamp(4rem,12vw,10rem)] font-light leading-[0.95] tracking-tight text-warm-white">
               <BlurText
                 text="WM Noiva"
                 animateBy="words"
