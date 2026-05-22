@@ -24,7 +24,7 @@ function Portal() {
   const topFavoritos = [...dresses].sort((a, b) => b.favoritos - a.favoritos).slice(0, 5);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white/[0.03]">
+    <div className="min-h-screen flex flex-col bg-champagne/40">
       <SiteHeader />
       <section className="px-6 lg:px-16 pt-12 pb-20">
         <div className="mx-auto max-w-7xl">
@@ -70,8 +70,8 @@ function Portal() {
               </header>
               <div className="divide-y divide-border">
                 {dresses.map((d) => (
-                  <div key={d.id} className="p-5 flex items-center gap-5 hover:bg-white/[0.06] transition-colors">
-                    <div className="h-16 w-12 overflow-hidden bg-white/[0.05] flex-shrink-0">
+                  <div key={d.id} className="p-5 flex items-center gap-5 hover:bg-champagne/60 transition-colors">
+                    <div className="h-16 w-12 overflow-hidden bg-champagne/50 flex-shrink-0">
                       <img src={d.imagem} alt={d.nome} className="h-full w-full object-cover" loading="lazy" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -103,7 +103,7 @@ function Portal() {
                     <span className="text-xs tracking-luxe uppercase text-muted-foreground w-6">
                       0{i + 1}
                     </span>
-                    <div className="h-12 w-10 overflow-hidden bg-white/[0.05] flex-shrink-0">
+                    <div className="h-12 w-10 overflow-hidden bg-champagne/50 flex-shrink-0">
                       <img src={d.imagem} alt="" className="h-full w-full object-cover" loading="lazy" />
                     </div>
                     <div className="flex-1 min-w-0">

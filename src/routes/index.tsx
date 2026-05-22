@@ -70,7 +70,7 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 relative bg-white/[0.045] overflow-hidden">
+          <div className="lg:col-span-6 relative bg-champagne/50 overflow-hidden">
             <img
               src={heroBride}
               alt="Noiva com vestido em tule champagne"
@@ -115,7 +115,7 @@ function Home() {
                 params={{ id: d.id }}
                 className="group block lift"
               >
-                <div className="aspect-[3/4] overflow-hidden bg-white/[0.045]">
+                <div className="aspect-[3/4] overflow-hidden bg-champagne/50">
                   <img
                     src={d.imagem}
                     alt={d.nome}
@@ -139,7 +139,7 @@ function Home() {
       </section>
 
       {/* ESTILOS */}
-      <section className="bg-white/[0.045] px-6 lg:px-16 py-28">
+      <section className="bg-champagne/50 px-6 lg:px-16 py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs tracking-luxe uppercase text-muted-foreground">02 · Estilos</p>
           <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-xl">

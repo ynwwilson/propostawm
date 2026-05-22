@@ -58,7 +58,7 @@ function VestidoPage() {
                   <button
                     key={i}
                     onClick={() => setActive(i)}
-                    className={`aspect-[3/4] overflow-hidden bg-white/[0.045] border transition-all ${
+                    className={`aspect-[3/4] overflow-hidden bg-champagne/50 border transition-all ${
                       active === i ? "border-accent" : "border-transparent opacity-60 hover:opacity-100"
                     }`}
                   >
@@ -66,7 +66,7 @@ function VestidoPage() {
                   </button>
                 ))}
               </div>
-              <div className="aspect-[3/4] overflow-hidden bg-white/[0.045] fade-in">
+              <div className="aspect-[3/4] overflow-hidden bg-champagne/50 fade-in">
                 <img
                   key={active}
                   src={dress.galeria[active]}
@@ -135,7 +135,7 @@ function VestidoPage() {
             <div className="grid sm:grid-cols-3 gap-8">
               {relacionados.map((d) => (
                 <Link key={d.id} to="/vestido/$id" params={{ id: d.id }} className="group lift block">
-                  <div className="aspect-[3/4] overflow-hidden bg-white/[0.045]">
+                  <div className="aspect-[3/4] overflow-hidden bg-champagne/50">
                     <img
                       src={d.imagem}
                       alt={d.nome}
