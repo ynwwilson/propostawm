@@ -1,10 +1,10 @@
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useReducedMotion,
-  type Variants,
+  type MotionValue,
 } from "framer-motion";
 
 export type AnimatedImageVariant =
@@ -12,120 +12,95 @@ export type AnimatedImageVariant =
   | "softSlideLeft"
   | "softSlideRight"
   | "editorialZoom"
-  | "floatParallax";
+  | "floatParallax"
+  | "softFadeLift";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const variantMap: Record<AnimatedImageVariant, Variants> = {
-  // 1. Véu: clip-path desce + blur some + scale 1.06 → 1
+type VariantConfig = {
+  // Progresso: 0 = topo da imagem entrando pelo bottom · 0.5 = centralizada · 1 = saindo pelo top
+  opacity: [number[], number[]];
+  y: [number[], string[]]; // valores em %
+  scale: [number[], number[]];
+  blur: [number[], number[]]; // px
+  clip: [number[], string[]] | null;
+  parallax?: boolean;
+};
+
+// Janelas: entrada 0→0.28 · permanência 0.28→0.72 · saída 0.72→1
+const inOut = (a: number, b: number, c: number) => [0, 0.28, 0.72, 1].map((_, i) => [a, b, b, c][i]);
+
+const variants: Record<AnimatedImageVariant, VariantConfig> = {
   veilReveal: {
-    hidden: {
-      opacity: 0,
-      scale: 1.06,
-      y: 18,
-      filter: "blur(14px)",
-      clipPath: "inset(8% 6% 18% 6%)",
-    },
-    show: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      filter: "blur(0px)",
-      clipPath: "inset(0% 0% 0% 0%)",
-      transition: { duration: 1.4, ease: EASE },
-    },
-    exit: {
-      opacity: 0,
-      scale: 1.03,
-      y: -12,
-      filter: "blur(8px)",
-      clipPath: "inset(4% 4% 4% 4%)",
-      transition: { duration: 0.9, ease: EASE },
-    },
+    opacity: [[0, 0.28, 0.72, 1], [0, 1, 1, 0]],
+    y: [[0, 0.28, 0.72, 1], ["40px", "0px", "0px", "-30px"]],
+    scale: [[0, 0.28, 0.72, 1], [1.06, 1, 1, 0.985]],
+    blur: [[0, 0.28, 0.72, 1], [12, 0, 0, 8]],
+    clip: [
+      [0, 0.28, 0.72, 1],
+      [
+        "inset(8% 6% 18% 6%)",
+        "inset(0% 0% 0% 0%)",
+        "inset(0% 0% 0% 0%)",
+        "inset(6% 4% 10% 4%)",
+      ],
+    ],
   },
-  // 2. Slide leve da esquerda
-  softSlideLeft: {
-    hidden: { opacity: 0, x: -40, scale: 1.04, filter: "blur(10px)" },
-    show: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 1.2, ease: EASE },
-    },
-    exit: {
-      opacity: 0,
-      x: -20,
-      scale: 1.02,
-      filter: "blur(6px)",
-      transition: { duration: 0.8, ease: EASE },
-    },
-  },
-  // 3. Slide leve da direita
-  softSlideRight: {
-    hidden: { opacity: 0, x: 40, scale: 1.04, filter: "blur(10px)" },
-    show: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 1.2, ease: EASE },
-    },
-    exit: {
-      opacity: 0,
-      x: 20,
-      scale: 1.02,
-      filter: "blur(6px)",
-      transition: { duration: 0.8, ease: EASE },
-    },
-  },
-  // 4. Zoom editorial — começa maior, desacelera
   editorialZoom: {
-    hidden: { opacity: 0, scale: 1.12, filter: "blur(12px)" },
-    show: {
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 1.4, ease: EASE },
-    },
-    exit: {
-      opacity: 0,
-      scale: 1.05,
-      filter: "blur(6px)",
-      transition: { duration: 0.9, ease: EASE },
-    },
+    opacity: [[0, 0.28, 0.72, 1], [0, 1, 1, 0.05]],
+    y: [[0, 0.28, 0.72, 1], ["20px", "0px", "0px", "-20px"]],
+    scale: [[0, 0.28, 0.72, 1], [1.12, 1, 1, 1.05]],
+    blur: [[0, 0.28, 0.72, 1], [12, 0, 0, 8]],
+    clip: null,
   },
-  // 5. Float — entrada suave + parallax contínuo no scroll
+  softSlideLeft: {
+    opacity: [[0, 0.28, 0.72, 1], [0, 1, 1, 0]],
+    y: [[0, 1], ["0px", "0px"]],
+    scale: [[0, 0.28, 0.72, 1], [1.04, 1, 1, 1.02]],
+    blur: [[0, 0.28, 0.72, 1], [10, 0, 0, 8]],
+    clip: null,
+  },
+  softSlideRight: {
+    opacity: [[0, 0.28, 0.72, 1], [0, 1, 1, 0]],
+    y: [[0, 1], ["0px", "0px"]],
+    scale: [[0, 0.28, 0.72, 1], [1.04, 1, 1, 1.02]],
+    blur: [[0, 0.28, 0.72, 1], [10, 0, 0, 8]],
+    clip: null,
+  },
   floatParallax: {
-    hidden: { opacity: 0, y: 24, scale: 1.05, filter: "blur(8px)" },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: { duration: 1.2, ease: EASE },
-    },
-    exit: {
-      opacity: 0,
-      y: -16,
-      scale: 1.02,
-      filter: "blur(4px)",
-      transition: { duration: 0.8, ease: EASE },
-    },
+    opacity: [[0, 0.28, 0.72, 1], [0, 1, 1, 0.15]],
+    y: [[0, 0.28, 0.72, 1], ["24px", "0px", "0px", "-24px"]],
+    scale: [[0, 0.28, 0.72, 1], [1.05, 1, 1, 1.02]],
+    blur: [[0, 0.28, 0.72, 1], [8, 0, 0, 6]],
+    clip: null,
+    parallax: true,
+  },
+  softFadeLift: {
+    opacity: inOut(0, 1, 0),
+    y: [[0, 0.28, 0.72, 1], ["28px", "0px", "0px", "-40px"]],
+    scale: [[0, 0.28, 0.72, 1], [1.03, 1, 1, 0.98]],
+    blur: [[0, 0.28, 0.72, 1], [10, 0, 0, 8]],
+    clip: null,
   },
 };
 
-type CommonProps = {
+// Deslocamento horizontal — usado em softSlide* (e reduzido no mobile)
+function useSlide(progress: MotionValue<number>, dir: -1 | 1, mobile: boolean) {
+  const amount = mobile ? 22 : 48;
+  return useTransform(
+    progress,
+    [0, 0.28, 0.72, 1],
+    [`${dir * amount}px`, "0px", "0px", `${dir * (amount * 0.45)}px`],
+  );
+}
+
+type Props = {
   src: string;
   alt: string;
   className?: string;
-  /** Classe aplicada na <img> interna (object-fit, etc). */
   imageClassName?: string;
   variant?: AnimatedImageVariant;
-  delay?: number;
-  /** Re-anima sempre que entra no viewport (default true). */
-  rerun?: boolean;
-  /** Hover premium (default true). */
+  delay?: number; // segundos — pequeno atraso no easing de entrada
   hover?: boolean;
   loading?: "lazy" | "eager";
   width?: number;
@@ -140,30 +115,66 @@ export function AnimatedImage({
   imageClassName = "h-full w-full object-cover",
   variant = "veilReveal",
   delay = 0,
-  rerun = true,
   hover = true,
   loading = "lazy",
   width,
   height,
   style,
-}: CommonProps) {
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
 
-  const isParallax = variant === "floatParallax";
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
+  const cfg = variants[variant];
+
+  // Offset cobre da entrada à saída completa
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
+
+  // Suaviza para evitar piscadas
+  const ease = useTransform(scrollYProgress, (v) => {
+    // delay sutil: empurra o ponto de “show” para frente
+    const d = Math.min(0.12, Math.max(0, delay * 0.18));
+    return Math.min(1, Math.max(0, v - d));
+  });
+
+  const opacity = useTransform(ease, cfg.opacity[0], cfg.opacity[1] as number[], {
+    ease: (t) => t, // a curva já está nos keypoints
+  });
+  const yRaw = useTransform(ease, cfg.y[0], cfg.y[1] as string[]);
+  const scale = useTransform(ease, cfg.scale[0], cfg.scale[1] as number[]);
+  const blurPx = useTransform(ease, cfg.blur[0], cfg.blur[1] as number[]);
+  const filter = useTransform(blurPx, (v) => `blur(${v.toFixed(2)}px)`);
+  const clipPath = useTransform(
+    ease,
+    cfg.clip ? cfg.clip[0] : [0, 1],
+    cfg.clip ? (cfg.clip[1] as string[]) : ["inset(0%)", "inset(0%)"],
+  );
+
+  // Slide horizontal (suave, com redução no mobile)
+  const xLeft = useSlide(ease, -1, isMobile);
+  const xRight = useSlide(ease, 1, isMobile);
+  const x =
+    variant === "softSlideLeft" ? xLeft : variant === "softSlideRight" ? xRight : undefined;
+
+  // Parallax interno na imagem
   const parallaxY = useTransform(
     scrollYProgress,
     [0, 1],
-    isParallax && !prefersReduced ? ["-4%", "4%"] : ["0%", "0%"],
+    cfg.parallax && !prefersReduced ? (isMobile ? ["-2%", "2%"] : ["-5%", "5%"]) : ["0%", "0%"],
   );
 
-  const variants = variantMap[variant];
-
+  // Reduce motion → estático
   if (prefersReduced) {
     return (
       <div ref={ref} className={`relative overflow-hidden ${className}`} style={style}>
@@ -179,25 +190,28 @@ export function AnimatedImage({
     );
   }
 
+  // No mobile reduzimos os deslocamentos verticais
+  const yMobileScale = isMobile ? 0.55 : 1;
+  const y = useTransform(yRaw, (raw) => {
+    const n = parseFloat(raw);
+    if (Number.isNaN(n)) return raw;
+    return `${(n * yMobileScale).toFixed(2)}px`;
+  });
+
   return (
     <motion.div
       ref={ref}
       className={`relative overflow-hidden ${className}`}
-      style={style}
-      initial="hidden"
-      whileInView="show"
-      exit="exit"
-      viewport={{ amount: 0.2, once: !rerun, margin: "-5% 0px -5% 0px" }}
-      variants={{
-        hidden: variants.hidden,
-        show: {
-          ...(variants.show as object),
-          transition: {
-            ...((variants.show as { transition?: object }).transition ?? {}),
-            delay,
-          },
-        },
-        exit: variants.exit,
+      style={{
+        ...style,
+        opacity,
+        y,
+        x,
+        scale,
+        filter,
+        clipPath,
+        WebkitClipPath: clipPath,
+        willChange: "transform, opacity, filter, clip-path",
       }}
       whileHover={
         hover
