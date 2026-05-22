@@ -41,6 +41,7 @@ function VestidoPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
+      <PreviewBanner label="Prévia · Página de vestido" description="Exemplo de detalhe gerado a partir do catálogo." />
       <section className="px-6 lg:px-16 pt-10 pb-20">
         <div className="mx-auto max-w-7xl">
           <Link

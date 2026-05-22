@@ -46,6 +46,7 @@ function Jornada() {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
+      <PreviewBanner label="Prévia · Jornada da Noiva" description="Fluxo guiado em 5 etapas que gera leads para a equipe." />
       <section className="px-6 lg:px-16 pt-16 pb-10">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs tracking-luxe uppercase text-muted-foreground">Jornada da Noiva</p>

@@ -51,6 +51,7 @@ function Catalogo() {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
+      <PreviewBanner label="Prévia · Site público" description="Catálogo gerenciável com filtros e favoritos." />
       <section className="px-6 lg:px-16 pt-16 pb-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs tracking-luxe uppercase text-muted-foreground">Coleções</p>
