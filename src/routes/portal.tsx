@@ -35,7 +35,7 @@ function Portal() {
               <p className="text-xs tracking-luxe uppercase text-muted-foreground">Portal WM</p>
               <h1 className="font-display text-5xl md:text-6xl mt-3">Boa tarde, equipe</h1>
               <p className="text-muted-foreground mt-3">
-                Um panorama do acervo e das noivas em jornada.
+                Um panorama do acervo e dos dados de interesse.
               </p>
             </div>
             <Link
