@@ -538,7 +538,7 @@ function Proposta() {
             <div className="mt-12 flex justify-center">
               <Link
                 to="/escopo"
-                className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors"
+                className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 Ver escopo completo →
               </Link>
