@@ -59,7 +59,7 @@ function Proposta() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.1, ease: [0.2, 0.7, 0.2, 1] }}
+                transition={{ duration: 1.1, ease: EASE }}
                 className="max-w-xl"
               >
                 <Eyebrow>Proposta · ForYouCode</Eyebrow>
@@ -88,7 +88,7 @@ function Proposta() {
                 height={1920}
                 initial={{ scale: 1.08, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.8, ease: [0.2, 0.7, 0.2, 1] }}
+                transition={{ duration: 1.8, ease: EASE }}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-espresso/20 via-transparent to-transparent" />
@@ -180,7 +180,7 @@ function Proposta() {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.8, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
+                  transition={{ duration: 0.8, delay: i * 0.08, ease: EASE }}
                   className="group grid grid-cols-[auto_1fr] md:grid-cols-[120px_1fr_1.4fr] gap-6 md:gap-12 items-baseline py-10 border-t border-cocoa/15 hover:bg-background/60 transition-colors duration-700 px-2"
                 >
                   <span className="font-display-italic text-3xl text-accent">{item.n}</span>
