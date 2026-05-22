@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import heroBride from "@/assets/hero-bride.jpg";
@@ -35,11 +36,11 @@ function Home() {
         <div className="grid lg:grid-cols-12 min-h-[calc(100vh-5rem)]">
           <div className="lg:col-span-6 flex items-center px-6 lg:px-16 py-20 relative">
             <div className="max-w-xl fade-up">
-              <p className="text-xs tracking-luxe uppercase text-muted-foreground">
-                Proposta · 2026
-              </p>
-              <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05]">
-                A nova experiência <em className="italic text-accent-foreground/90">digital</em> da Espaço WM
+              <div className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs text-secondary">
+                <Sparkles className="h-3.5 w-3.5 text-accent" /> Nova experiência digital · 2026
+              </div>
+              <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
+                A nova experiência <span className="text-accent">digital</span> da Espaço WM
               </h1>
               <p className="mt-8 text-base text-muted-foreground max-w-md leading-relaxed">
                 Uma plataforma desenhada para acolher cada noiva desde o primeiro olhar até a prova final.
@@ -48,7 +49,7 @@ function Home() {
               <div className="mt-10 flex flex-wrap items-center gap-6">
                 <Link
                   to="/catalogo"
-                  className="group inline-flex items-center gap-3 bg-foreground text-background px-7 py-4 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors"
+                  className="group inline-flex items-center gap-3 bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors"
                 >
                   Conhecer coleções
                   <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -69,7 +70,7 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 relative bg-secondary/40 overflow-hidden">
+          <div className="lg:col-span-6 relative bg-white/[0.045] overflow-hidden">
             <img
               src={heroBride}
               alt="Noiva com vestido em tule champagne"
@@ -114,7 +115,7 @@ function Home() {
                 params={{ id: d.id }}
                 className="group block lift"
               >
-                <div className="aspect-[3/4] overflow-hidden bg-secondary/50">
+                <div className="aspect-[3/4] overflow-hidden bg-white/[0.045]">
                   <img
                     src={d.imagem}
                     alt={d.nome}
@@ -138,7 +139,7 @@ function Home() {
       </section>
 
       {/* ESTILOS */}
-      <section className="bg-secondary/40 px-6 lg:px-16 py-28">
+      <section className="bg-white/[0.045] px-6 lg:px-16 py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs tracking-luxe uppercase text-muted-foreground">02 · Estilos</p>
           <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-xl">
@@ -191,30 +192,32 @@ function Home() {
       </section>
 
       {/* ATENDIMENTO CONSULTIVO */}
-      <section className="bg-foreground text-background px-6 lg:px-16 py-32">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs tracking-luxe uppercase opacity-70">
+      <section className="px-6 lg:px-16 py-32">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-accent/20 bg-accent/10 p-10 md:p-16 text-center">
+          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
+            <Sparkles className="h-6 w-6" />
+          </div>
+          <p className="text-xs tracking-luxe uppercase text-accent">
             04 · Atendimento consultivo
           </p>
           <h2 className="font-display text-4xl md:text-6xl mt-6 leading-tight">
-            Mais que uma escolha de vestido,
-            <br />
-            <em className="italic text-accent">uma escuta dedicada.</em>
+            Mais que uma escolha de vestido,<br />
+            <span className="text-accent">uma escuta dedicada.</span>
           </h2>
-          <p className="mt-8 text-base opacity-80 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-8 text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Cada noiva é recebida por uma consultora que acompanha desde a inspiração inicial até a última prova.
             Sem pressa, sem pressão — apenas o tempo necessário para que tudo faça sentido.
           </p>
           <div className="mt-12 flex justify-center gap-6 flex-wrap">
             <Link
               to="/jornada"
-              className="bg-background text-foreground px-8 py-4 text-xs tracking-luxe uppercase hover:bg-secondary transition-colors"
+              className="bg-secondary text-secondary-foreground px-8 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
             >
               Começar minha jornada
             </Link>
             <Link
               to="/catalogo"
-              className="text-xs tracking-luxe uppercase border-b border-accent pb-1"
+              className="text-xs tracking-luxe uppercase border-b border-accent pb-1 self-center"
             >
               Explorar coleções
             </Link>

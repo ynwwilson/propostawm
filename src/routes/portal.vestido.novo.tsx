@@ -24,7 +24,7 @@ function NovoVestido() {
   });
 
   return (
-    <div className="min-h-screen bg-secondary/30">
+    <div className="min-h-screen bg-white/[0.03]">
       <SiteHeader />
       <section className="px-6 lg:px-16 pt-12 pb-28">
         <div className="mx-auto max-w-4xl">
@@ -127,7 +127,7 @@ function NovoVestido() {
                 <button
                   type="submit"
                   disabled={saved}
-                  className="bg-foreground text-background px-7 py-4 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors disabled:opacity-70 inline-flex items-center gap-3"
+                  className="bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors disabled:opacity-70 inline-flex items-center gap-3"
                 >
                   {saved ? (
                     <>

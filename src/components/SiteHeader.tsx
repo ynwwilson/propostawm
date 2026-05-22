@@ -26,7 +26,7 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="relative text-sm tracking-wide text-foreground/80 hover:text-foreground transition-colors"
+                className="relative text-sm tracking-wide text-foreground/75 hover:text-foreground transition-colors"
               >
                 {item.label}
                 <span

@@ -108,7 +108,7 @@ function Catalogo() {
               const fav = favoritos.has(d.id);
               return (
                 <article key={d.id} className="group fade-up">
-                  <Link to="/vestido/$id" params={{ id: d.id }} className="block relative overflow-hidden bg-secondary/40">
+                  <Link to="/vestido/$id" params={{ id: d.id }} className="block relative overflow-hidden bg-white/[0.045]">
                     <div className="aspect-[3/4]">
                       <img
                         src={d.imagem}
@@ -191,8 +191,8 @@ function FilterGroup<T extends string>({
               onClick={() => onChange(active ? undefined : (opt as T))}
               className={`text-xs px-3 py-1.5 border transition-all ${
                 active
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border text-foreground/80 hover:border-foreground"
+                  ? "border-foreground bg-secondary text-secondary-foreground"
+                  : "border-border text-foreground/75 hover:border-foreground"
               }`}
             >
               {opt}
