@@ -1,10 +1,9 @@
 import { motion, useScroll, useTransform, useReducedMotion, useSpring } from "framer-motion";
 
 /**
- * Véu de noiva — nasce do topo (onde está a noiva no hero), desce e
- * se expande suavemente conforme o usuário rola, atravessando toda a
- * proposta e se dissolvendo no fim. Camada fixa, translúcida, sem
- * interferir na leitura.
+ * Véu de noiva — nasce no topo (cabeça da noiva no hero) e desce
+ * estreito por toda a proposta. Só se abre amplo, como cauda
+ * espalhada no chão, no final do scroll.
  */
 export function VeilOverlay() {
   const { scrollYProgress } = useScroll();
@@ -12,18 +11,21 @@ export function VeilOverlay() {
 
   const p = useSpring(scrollYProgress, {
     stiffness: 55,
-    damping: 24,
+    damping: 26,
     mass: 0.7,
   });
 
-  // O véu nasce pequeno, cresce até dominar a tela, e se dissolve no fim
-  const scaleY = useTransform(p, [0, 0.5, 1], [0.35, 1.15, 1.35]);
-  const scaleX = useTransform(p, [0, 0.5, 1], [0.55, 1.1, 1.3]);
-  // Opacidade: invisível no início (sobreposta à noiva), cresce no miolo,
-  // se dissipa suavemente no fim
-  const opacity = useTransform(p, [0, 0.08, 0.55, 0.9, 1], [0, 0.35, 0.75, 0.55, 0.15]);
-  // Movimento vertical sutil — como tecido caindo
-  const sway = useTransform(p, [0, 1], [-2, 3]);
+  // Largura: estreita o caminho todo, abre só no fim
+  const scaleX = useTransform(p, [0, 0.6, 0.85, 1], [0.45, 0.6, 1.2, 1.8]);
+  // Altura: cresce gradual para acompanhar o tecido fluindo
+  const scaleY = useTransform(p, [0, 1], [0.7, 1.1]);
+  // Opacidade: aparece logo após o hero, mantém presença, intensifica no fim
+  const opacity = useTransform(
+    p,
+    [0, 0.08, 0.3, 0.85, 1],
+    [0, 0.45, 0.7, 0.85, 0.9],
+  );
+  const sway = useTransform(p, [0, 1], [-1.5, 2]);
 
   if (prefersReduced) return null;
 
@@ -40,69 +42,100 @@ export function VeilOverlay() {
           rotate: sway,
           transformOrigin: "50% 0%",
         }}
-        // Ancora o véu no topo, centro — onde está a noiva no hero
-        className="absolute left-1/2 top-0 h-screen w-[120vw] -translate-x-1/2"
+        className="absolute left-1/2 top-0 h-screen w-[60vw] -translate-x-1/2"
       >
         <svg
-          viewBox="0 0 1200 1000"
+          viewBox="0 0 600 1000"
           preserveAspectRatio="none"
           className="h-full w-full"
-          style={{ filter: "blur(28px)" }}
+          style={{ filter: "blur(6px)" }}
         >
           <defs>
-            {/* Gradiente vertical — denso no topo, dissolvendo embaixo */}
-            <linearGradient id="veil-fade" x1="50%" y1="0%" x2="50%" y2="100%">
-              <stop offset="0%" stopColor="rgba(255,253,247,0.95)" />
-              <stop offset="25%" stopColor="rgba(255,250,238,0.75)" />
-              <stop offset="55%" stopColor="rgba(248,232,208,0.45)" />
-              <stop offset="85%" stopColor="rgba(248,232,208,0.12)" />
-              <stop offset="100%" stopColor="rgba(248,232,208,0)" />
+            {/* Tecido translúcido — denso no topo, suave embaixo */}
+            <linearGradient id="veil-fabric" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" stopColor="rgba(255,253,247,0.85)" />
+              <stop offset="30%" stopColor="rgba(255,250,240,0.6)" />
+              <stop offset="70%" stopColor="rgba(250,240,222,0.45)" />
+              <stop offset="100%" stopColor="rgba(248,232,208,0.35)" />
             </linearGradient>
-            {/* Gradiente radial — concentra brilho no centro/topo (a cabeça) */}
-            <radialGradient id="veil-core" cx="50%" cy="5%" r="65%">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
-              <stop offset="40%" stopColor="rgba(255,250,235,0.35)" />
-              <stop offset="100%" stopColor="rgba(255,250,235,0)" />
+            {/* Borda em renda — mais opaca */}
+            <linearGradient id="veil-lace" x1="50%" y1="0%" x2="50%" y2="100%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="60%" stopColor="rgba(255,253,247,0.4)" />
+              <stop offset="100%" stopColor="rgba(255,253,247,0.85)" />
+            </linearGradient>
+            {/* Brilho na origem (cabeça) */}
+            <radialGradient id="veil-crown" cx="50%" cy="2%" r="35%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.95)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
             </radialGradient>
+
+            {/* Pregas verticais — listras suaves para sugerir tecido */}
+            <linearGradient id="pleat" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="50%" stopColor="rgba(255,255,255,0.15)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </linearGradient>
           </defs>
 
-          {/* Silhueta do véu — afunila no topo, abre para baixo como tecido fluindo */}
+          {/* Silhueta principal do véu — afunila no topo, abre embaixo */}
           <path
-            d="M 600 0
-               C 540 80, 480 200, 420 360
-               C 360 520, 300 700, 240 1000
-               L 960 1000
-               C 900 700, 840 520, 780 360
-               C 720 200, 660 80, 600 0 Z"
-            fill="url(#veil-fade)"
+            d="M 280 0
+               C 260 150, 230 350, 180 600
+               C 140 800, 80 920, 30 1000
+               L 570 1000
+               C 520 920, 460 800, 420 600
+               C 370 350, 340 150, 320 0 Z"
+            fill="url(#veil-fabric)"
           />
 
-          {/* Camada externa mais ampla, suave */}
+          {/* Pregas verticais sutis */}
+          <g opacity="0.5">
+            <rect x="200" y="0" width="2" height="1000" fill="url(#pleat)" />
+            <rect x="260" y="0" width="2" height="1000" fill="url(#pleat)" />
+            <rect x="300" y="0" width="2" height="1000" fill="url(#pleat)" />
+            <rect x="340" y="0" width="2" height="1000" fill="url(#pleat)" />
+            <rect x="400" y="0" width="2" height="1000" fill="url(#pleat)" />
+          </g>
+
+          {/* Faixa de renda — base do véu */}
           <path
-            d="M 600 0
-               C 500 120, 380 280, 260 480
-               C 180 640, 100 820, 40 1000
-               L 1160 1000
-               C 1100 820, 1020 640, 940 480
-               C 820 280, 700 120, 600 0 Z"
-            fill="url(#veil-fade)"
-            opacity="0.55"
+            d="M 30 1000
+               C 80 920, 140 800, 180 600
+               L 200 620
+               C 160 810, 110 930, 70 1000 Z"
+            fill="url(#veil-lace)"
+          />
+          <path
+            d="M 570 1000
+               C 520 920, 460 800, 420 600
+               L 400 620
+               C 440 810, 490 930, 530 1000 Z"
+            fill="url(#veil-lace)"
           />
 
-          {/* Brilho central na origem */}
-          <ellipse cx="600" cy="20" rx="280" ry="180" fill="url(#veil-core)" />
+          {/* Festões de renda na borda inferior */}
+          <g fill="rgba(255,253,247,0.55)">
+            {Array.from({ length: 14 }).map((_, i) => {
+              const cx = 50 + i * 36;
+              return <circle key={i} cx={cx} cy={990} r={10} />;
+            })}
+          </g>
+
+          {/* Coroa de luz no topo */}
+          <ellipse cx="300" cy="10" rx="120" ry="60" fill="url(#veil-crown)" />
         </svg>
       </motion.div>
 
-      {/* Respiração de luz — quase imperceptível */}
+      {/* Brilho ambiente muito sutil */}
       <motion.div
-        initial={{ opacity: 0.1 }}
-        animate={{ opacity: [0.1, 0.22, 0.1] }}
-        transition={{ duration: 14, ease: "easeInOut", repeat: Infinity }}
+        initial={{ opacity: 0.08 }}
+        animate={{ opacity: [0.08, 0.18, 0.08] }}
+        transition={{ duration: 16, ease: "easeInOut", repeat: Infinity }}
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 35% at 50% 15%, rgba(255,248,235,0.25) 0%, rgba(255,248,235,0) 70%)",
+            "radial-gradient(50% 30% at 50% 10%, rgba(255,248,235,0.2) 0%, rgba(255,248,235,0) 70%)",
         }}
       />
     </div>
