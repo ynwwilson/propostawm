@@ -23,7 +23,9 @@ type CarouselProps = {
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
-const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 } as const;
+// Cinematic tween — power3/expo feel
+const SPRING_OPTIONS = { duration: 0.95, ease: [0.22, 1, 0.36, 1] } as const;
+
 
 export default function Carousel({
   items,
@@ -203,7 +205,7 @@ export default function Carousel({
               className={`wm-carousel-indicator ${activeIndex === index ? "active" : "inactive"}`}
               animate={{ scale: activeIndex === index ? 1.25 : 1 }}
               onClick={() => setPosition(loop ? index + 1 : index)}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             />
           ))}
         </div>
