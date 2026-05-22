@@ -51,52 +51,48 @@ function Proposta() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* 1. HERO EDITORIAL */}
-        <section className="relative">
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr] min-h-[88vh]">
-            {/* Texto */}
-            <div className="relative flex items-center px-6 lg:px-20 py-24 lg:py-0 bg-[var(--warm-white)]">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.1, ease: EASE }}
-                className="max-w-xl"
-              >
-                <Eyebrow>Proposta · ForYouCode</Eyebrow>
-                <h1 className="mt-10 font-display text-[clamp(3.5rem,8vw,7rem)] leading-[0.95] tracking-tight text-espresso">
-                  WM <span className="font-display-italic text-cocoa">Noiva</span>
-                </h1>
-                <div className="mt-10 h-px w-24 bg-gradient-to-r from-accent to-transparent" />
-                <p className="mt-8 font-display text-2xl md:text-3xl leading-snug text-cocoa text-pretty">
-                  Uma nova experiência digital para uma marca feita de
-                  <span className="font-display-italic"> presença</span>,
-                  <span className="font-display-italic"> delicadeza</span> e
-                  <span className="font-display-italic"> desejo</span>.
-                </p>
-                <p className="mt-10 text-sm tracking-luxe uppercase text-cocoa/60">
-                  Capítulo único · Apresentação navegável
-                </p>
-              </motion.div>
-            </div>
+        {/* 1. HERO EDITORIAL — fullscreen */}
+        <section className="relative h-screen w-full overflow-hidden">
+          <motion.img
+            src={heroBridal}
+            alt="Noiva em vestido de renda delicado"
+            width={1920}
+            height={1080}
+            initial={{ scale: 1.08, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.8, ease: EASE }}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-espresso/40 via-espresso/20 to-espresso/60" />
 
-            {/* Imagem */}
-            <div className="relative overflow-hidden bg-[var(--cream)] min-h-[60vh] lg:min-h-[88vh]">
-              <motion.img
-                src={heroBridal}
-                alt="Noiva em vestido de renda delicado"
-                width={1080}
-                height={1920}
-                initial={{ scale: 1.08, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.8, ease: EASE }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-espresso/20 via-transparent to-transparent" />
-              <div className="absolute bottom-8 right-8 text-right text-warm-white/90">
-                <p className="text-[10px] tracking-luxe uppercase">Espaço WM</p>
-                <p className="font-display-italic text-lg">est. matrimonial</p>
-              </div>
-            </div>
+          <div className="relative z-10 h-full flex items-center justify-center px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.1, ease: EASE }}
+              className="max-w-3xl text-center text-warm-white"
+            >
+              <p className="text-[11px] tracking-luxe uppercase text-warm-white/80 flex items-center justify-center gap-3">
+                <span className="h-px w-8 bg-accent" />
+                Proposta · ForYouCode
+                <span className="h-px w-8 bg-accent" />
+              </p>
+              <h1 className="mt-10 font-display text-[clamp(4rem,11vw,9rem)] leading-[0.95] tracking-tight text-warm-white">
+                WM <span className="font-display-italic text-accent">Noiva</span>
+              </h1>
+              <div className="mx-auto mt-10 h-px w-24 bg-gradient-to-r from-transparent via-accent to-transparent" />
+              <p className="mt-8 font-display text-2xl md:text-3xl leading-snug text-warm-white/90 text-pretty">
+                Uma nova experiência digital para uma marca feita de
+                <span className="font-display-italic"> presença</span>,
+                <span className="font-display-italic"> delicadeza</span> e
+                <span className="font-display-italic"> desejo</span>.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="absolute bottom-8 right-8 text-right text-warm-white/90 z-10">
+            <p className="text-[10px] tracking-luxe uppercase">Espaço WM</p>
+            <p className="font-display-italic text-lg">est. matrimonial</p>
           </div>
         </section>
 
