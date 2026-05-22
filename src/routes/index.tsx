@@ -296,7 +296,7 @@ function Proposta() {
         </section>
 
         {/* 3. TRÊS ENTREGAS */}
-        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-warm-white/40">
+        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-[var(--warm-white)]">
           <div className="mx-auto max-w-6xl">
             <motion.div {...fadeUp} className="max-w-2xl">
               <Eyebrow>As três entregas</Eyebrow>
@@ -338,7 +338,7 @@ function Proposta() {
         </section>
 
         {/* 4. ESCOPO INCLUSO */}
-        <section className="px-6 lg:px-20 py-28 lg:py-36 ">
+        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-background">
           <div className="mx-auto max-w-5xl grid lg:grid-cols-[0.4fr_0.6fr] gap-12 lg:gap-20">
             <motion.div {...fadeUp}>
               <Eyebrow>Escopo incluso</Eyebrow>
@@ -364,7 +364,7 @@ function Proposta() {
         </section>
 
         {/* 5. INVESTIMENTO */}
-        <section className="relative px-6 lg:px-20 py-32 lg:py-44 bg-champagne/50 overflow-hidden">
+        <section className="relative px-6 lg:px-20 py-32 lg:py-44 bg-[var(--champagne)] overflow-hidden">
           {/* Decorative top hairline */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           {/* Soft radial wash */}
@@ -491,7 +491,7 @@ function Proposta() {
 
 
         {/* 6. PRÓXIMO PASSO LEVE */}
-        <section className="px-6 lg:px-20 py-32 lg:py-40 ">
+        <section className="px-6 lg:px-20 py-32 lg:py-40 bg-background">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <Eyebrow>
               <span className="mx-auto">Próximo passo</span>
