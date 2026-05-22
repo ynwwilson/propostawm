@@ -179,22 +179,86 @@ function Proposta() {
         {/* 1. HERO */}
         <HeroCinematic />
 
-        {/* 2. RESUMO CURTO */}
-        <section className="px-6 lg:px-20 py-28 lg:py-40 bg-background">
-          <motion.div {...fadeUp} className="mx-auto max-w-3xl text-center">
-            <Eyebrow>
-              <span className="mx-auto">A proposta, em poucas linhas</span>
-            </Eyebrow>
-            <h2 className="mt-8 font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-espresso text-balance">
-              Um novo site, um catálogo vivo e uma{" "}
-              <span className="font-display-italic">área para vocês cuidarem do acervo</span>.
-            </h2>
-            <p className="mt-8 text-lg leading-9 text-cocoa/80 max-w-2xl mx-auto">
-              Três peças conectadas, feitas para a Espaço WM ter presença digital à
-              altura da experiência que entrega pessoalmente — e autonomia total
-              para manter tudo atualizado, sem depender de programador.
-            </p>
-          </motion.div>
+        {/* 2. RESUMO CURTO - EDITORIAL */}
+        <section className="relative px-6 lg:px-20 py-28 lg:py-40 bg-background overflow-hidden">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(216,199,168,0.10),transparent_70%)]" />
+
+          <div className="relative mx-auto max-w-6xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <motion.div {...fadeUp}>
+                <Eyebrow>
+                  <span className="mx-auto">A essência da proposta</span>
+                </Eyebrow>
+              </motion.div>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEWPORT}
+                transition={{ duration: 1, ease: EASE, delay: 0.15 }}
+                className="mt-10 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-espresso text-balance"
+              >
+                Um novo site, um <span className="font-display-italic text-accent">catálogo vivo</span>
+                <br className="hidden md:block" />
+                {" "}e um portal para cuidar do acervo.
+              </motion.h2>
+
+              <motion.div
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                viewport={VIEWPORT}
+                transition={{ duration: 0.9, ease: EASE, delay: 0.35 }}
+                className="mt-10 flex items-center justify-center gap-4"
+              >
+                <span className="h-px w-12 bg-cocoa/25" />
+                <span className="text-accent font-display-italic text-lg">◆</span>
+                <span className="h-px w-12 bg-cocoa/25" />
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEWPORT}
+                transition={{ duration: 0.9, ease: EASE, delay: 0.5 }}
+                className="mt-8 text-base md:text-lg leading-8 text-cocoa/80 max-w-xl mx-auto"
+              >
+                Três entregas conectadas para apresentar melhor a Espaço WM
+                e dar autonomia para manter tudo sempre atualizado.
+              </motion.p>
+            </div>
+
+            <motion.div
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              transition={{ delayChildren: 0.7 }}
+              className="mt-20 lg:mt-24 grid md:grid-cols-3 gap-px bg-cocoa/15 border border-cocoa/15"
+            >
+              {[
+                { n: "01", titulo: "Novo site", texto: "Uma presença digital mais refinada para a marca." },
+                { n: "02", titulo: "Catálogo gerenciável", texto: "Vestidos organizados, filtrados e fáceis de atualizar." },
+                { n: "03", titulo: "Portal WM", texto: "Uma área interna para editar o acervo sem depender de programador." },
+              ].map((b) => (
+                <motion.div
+                  key={b.n}
+                  variants={childFade}
+                  className="group relative bg-background p-10 lg:p-12 flex flex-col transition-colors duration-700 hover:bg-[var(--warm-white)]"
+                >
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-display-italic text-accent text-3xl">{b.n}</span>
+                    <span className="text-accent text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">◆</span>
+                  </div>
+                  <div className="mt-6 h-px w-10 bg-accent/60 group-hover:w-16 transition-all duration-700" />
+                  <h3 className="mt-6 font-display text-2xl md:text-[1.65rem] leading-tight text-espresso tracking-tight">
+                    {b.titulo}
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-cocoa/75">{b.texto}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </section>
 
         {/* 3. TRÊS ENTREGAS */}
