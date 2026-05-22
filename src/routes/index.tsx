@@ -334,8 +334,8 @@ function Proposta() {
           </div>
         </section>
 
-        {/* 3. TRÊS ENTREGAS */}
-        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-[var(--warm-white)]">
+        {/* 3. TRÊS ENTREGAS — somente desktop/tablet (mobile já vê o resumo) */}
+        <section className="hidden md:block px-6 lg:px-20 py-28 lg:py-36 bg-[var(--warm-white)]">
           <div className="mx-auto max-w-6xl">
             <motion.div {...fadeUp} className="max-w-2xl">
               <Eyebrow>As três entregas</Eyebrow>
