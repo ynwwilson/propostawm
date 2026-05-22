@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import wmLogo from "@/assets/wm-logo.png";
-
+import ShinyText from "./effects/ShinyText";
 
 gsap.registerPlugin(ScrollTrigger);
+
 
 const chips = ["Novo site premium", "Catálogo gerenciável", "Portal WM"];
 
