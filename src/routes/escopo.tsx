@@ -355,7 +355,7 @@ function Escopo() {
       </section>
 
       {/* FASE 2 */}
-      <section className="bg-champagne/50 px-6 lg:px-16 py-24">
+      <section className="hidden md:block bg-champagne/50 px-6 lg:px-16 py-24">
         <div className="mx-auto max-w-5xl">
           <motion.div {...fadeUp} className="flex items-center gap-3">
             <Sparkles className="h-5 w-5 text-accent" />
