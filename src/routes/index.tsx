@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { VeilOverlay } from "@/components/VeilOverlay";
 import heroBridal from "@/assets/hero-bridal.jpg";
 import detailLace from "@/assets/detail-lace.jpg";
 import boutique from "@/assets/boutique.jpg";
@@ -29,17 +30,54 @@ export const Route = createFileRoute("/")({
 });
 
 const EASE = [0.2, 0.7, 0.2, 1] as [number, number, number, number];
+const VIEWPORT = { once: true, margin: "-80px" } as const;
+
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
+  viewport: VIEWPORT,
   transition: { duration: 0.9, ease: EASE },
 } as const;
+
+const staggerParent: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const childFade: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+};
+
+const imgReveal: Variants = {
+  hidden: { opacity: 0, scale: 1.08 },
+  show: { opacity: 1, scale: 1, transition: { duration: 1.4, ease: EASE } },
+};
+
+function GrowLine({ className = "" }: { className?: string }) {
+  return (
+    <motion.span
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={VIEWPORT}
+      transition={{ duration: 1.1, ease: EASE }}
+      style={{ transformOrigin: "left" }}
+      className={`block h-px bg-accent/70 origin-left ${className}`}
+    />
+  );
+}
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-[11px] tracking-luxe uppercase text-cocoa/70 flex items-center gap-3">
-      <span className="h-px w-8 bg-accent" />
+      <motion.span
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={VIEWPORT}
+        transition={{ duration: 0.9, ease: EASE }}
+        style={{ transformOrigin: "left" }}
+        className="h-px w-8 bg-accent block"
+      />
       {children}
     </p>
   );
@@ -48,6 +86,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function Proposta() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <VeilOverlay />
       <SiteHeader />
 
       <main className="flex-1">
@@ -195,14 +234,20 @@ function Proposta() {
         {/* 4. O QUE MUDA NA PRÁTICA */}
         <section className="px-6 lg:px-20 py-32 lg:py-44 bg-background">
           <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <motion.div {...fadeUp} className="relative aspect-[4/5] overflow-hidden">
+            <motion.div
+              variants={imgReveal}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              className="relative aspect-[4/5] overflow-hidden"
+            >
               <img
                 src={bouquet}
                 alt="Buquê de rosas em tons nude"
                 loading="lazy"
                 width={1200}
                 height={1500}
-                className="h-full w-full object-cover reveal-img"
+                className="h-full w-full object-cover"
               />
             </motion.div>
             <motion.div {...fadeUp}>
@@ -305,14 +350,21 @@ function Proposta() {
               </h2>
             </motion.div>
 
-            <motion.div {...fadeUp} className="mt-20 grid md:grid-cols-3 gap-8">
+            <motion.div
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              className="mt-20 grid md:grid-cols-3 gap-8"
+            >
               {[
                 { img: heroBridal, n: "Aurora", est: "Renda · Princesa", un: "São Paulo" },
                 { img: detailLace, n: "Veneza", est: "Bordado · Sereia", un: "Brasília" },
                 { img: boutique, n: "Atelier", est: "Cetim · Reto", un: "Patos" },
               ].map((v) => (
-                <article
+                <motion.article
                   key={v.n}
+                  variants={childFade}
                   className="group cursor-pointer"
                 >
                   <div className="relative aspect-[3/4] overflow-hidden bg-[var(--nude)]">
@@ -330,7 +382,7 @@ function Proposta() {
                     </div>
                     <p className="font-display-italic text-cocoa/70 text-sm">{v.un}</p>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </motion.div>
 
@@ -431,7 +483,14 @@ function Proposta() {
             </motion.div>
 
             <div className="mt-20 relative">
-              <div className="absolute left-0 right-0 top-[14px] h-px bg-cocoa/15 hidden md:block" />
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={VIEWPORT}
+                transition={{ duration: 1.4, ease: EASE }}
+                style={{ transformOrigin: "left" }}
+                className="absolute left-0 right-0 top-[14px] h-px bg-cocoa/15 hidden md:block"
+              />
               <div className="grid md:grid-cols-5 gap-12 md:gap-6 relative">
                 {[
                   ["01", "Diagnóstico", "Entender o acervo, unidades e o jeito da equipe trabalhar."],
