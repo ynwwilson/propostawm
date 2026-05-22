@@ -463,17 +463,20 @@ function Proposta() {
                       ))}
                     </ul>
                     <div className="mt-10 pt-8 border-t border-cocoa/10">
-                      <button
-                        type="button"
+                      <a
+                        href="https://wa.me/5534992761076?text=Ol%C3%A1%21%20Vi%20a%20proposta%20da%20nova%20plataforma%20digital%20da%20Espa%C3%A7o%20WM%20e%20gostaria%20de%20conversar%20sobre%20o%20projeto."
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={[
-                          "w-full text-[11px] tracking-luxe uppercase py-3.5 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                          "block w-full text-center text-[11px] tracking-luxe uppercase py-3.5 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
                           p.sugerida
                             ? "bg-espresso text-warm-white hover:bg-cocoa"
                             : "border border-cocoa/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-warm-white",
                         ].join(" ")}
                       >
                         {p.cta}
-                      </button>
+                      </a>
+
                     </div>
                   </div>
                 </div>
