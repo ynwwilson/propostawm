@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, type Variants } from "framer-motion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AnimatedImage } from "@/components/AnimatedImage";
 
 import heroBridal from "@/assets/hero-bridal.jpg";
 import detailLace from "@/assets/detail-lace.jpg";
@@ -92,15 +93,17 @@ function Proposta() {
       <main className="flex-1">
         {/* 1. HERO EDITORIAL — fullscreen */}
         <section className="relative h-screen w-full overflow-hidden">
-          <motion.img
+          <AnimatedImage
             src={heroBridal}
             alt="Noiva em vestido de renda delicado"
             width={1920}
             height={1080}
-            initial={{ scale: 1.08, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.8, ease: EASE }}
-            className="absolute inset-0 h-full w-full object-cover"
+            loading="eager"
+            variant="editorialZoom"
+            hover={false}
+            rerun={false}
+            className="absolute inset-0 h-full w-full"
+            imageClassName="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-espresso/40 via-espresso/20 to-espresso/60" />
 
@@ -166,13 +169,15 @@ function Proposta() {
 
         {/* Faixa visual com renda */}
         <section className="relative h-[40vh] lg:h-[55vh] overflow-hidden">
-          <img
+          <AnimatedImage
             src={detailLace}
             alt="Detalhe de renda bridal"
-            loading="lazy"
             width={1200}
             height={1500}
-            className="absolute inset-0 h-full w-full object-cover"
+            variant="floatParallax"
+            hover={false}
+            className="absolute inset-0 h-full w-full"
+            imageClassName="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--warm-white)]/40 via-transparent to-[var(--warm-white)]/40" />
         </section>
@@ -234,22 +239,15 @@ function Proposta() {
         {/* 4. O QUE MUDA NA PRÁTICA */}
         <section className="px-6 lg:px-20 py-32 lg:py-44 bg-background">
           <div className="mx-auto max-w-6xl grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            <motion.div
-              variants={imgReveal}
-              initial="hidden"
-              whileInView="show"
-              viewport={VIEWPORT}
-              className="relative aspect-[4/5] overflow-hidden"
-            >
-              <img
-                src={bouquet}
-                alt="Buquê de rosas em tons nude"
-                loading="lazy"
-                width={1200}
-                height={1500}
-                className="h-full w-full object-cover"
-              />
-            </motion.div>
+            <AnimatedImage
+              src={bouquet}
+              alt="Buquê de rosas em tons nude"
+              width={1200}
+              height={1500}
+              variant="softSlideLeft"
+              className="relative aspect-[4/5]"
+              imageClassName="h-full w-full object-cover"
+            />
             <motion.div {...fadeUp}>
               <Eyebrow>III · O que muda na prática</Eyebrow>
               <h2 className="mt-8 font-display text-5xl md:text-6xl leading-[1.05] tracking-tight text-espresso">
