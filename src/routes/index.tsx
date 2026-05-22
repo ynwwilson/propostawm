@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AnimatedImage } from "@/components/AnimatedImage";
 import { HeroCinematic } from "@/components/HeroCinematic";
+import { EssencePinSection } from "@/components/EssencePinSection";
 
 import heroBridal from "@/assets/hero-bridal.jpg";
 import detailLace from "@/assets/detail-lace.jpg";
@@ -94,6 +95,11 @@ function Proposta() {
       <main className="flex-1">
         {/* 1. HERO CINEMATOGRÁFICO — fullscreen com vídeo + GSAP */}
         <HeroCinematic />
+
+        {/* 1.5 PIN SCROLL — A essência da entrega */}
+        <EssencePinSection />
+
+
 
 
         {/* 2. A ESSÊNCIA DA ENTREGA */}
