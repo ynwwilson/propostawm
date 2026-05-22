@@ -230,24 +230,14 @@ function Proposta() {
               </motion.p>
             </div>
 
-            <motion.div
-              variants={staggerParent}
-              initial="hidden"
-              whileInView="show"
-              viewport={VIEWPORT}
-              transition={{ delayChildren: 0.7 }}
-              className="mt-20 lg:mt-24 grid md:grid-cols-3 gap-px bg-cocoa/15 border border-cocoa/15"
-            >
-              {[
+            {(() => {
+              const blocos = [
                 { n: "01", titulo: "Novo site", texto: "Uma presença digital mais refinada para a marca." },
                 { n: "02", titulo: "Catálogo gerenciável", texto: "Vestidos organizados, filtrados e fáceis de atualizar." },
                 { n: "03", titulo: "Portal WM", texto: "Uma área interna para editar o acervo sem depender de programador." },
-              ].map((b) => (
-                <motion.div
-                  key={b.n}
-                  variants={childFade}
-                  className="group relative bg-background p-10 lg:p-12 flex flex-col transition-colors duration-700 hover:bg-[var(--warm-white)]"
-                >
+              ];
+              const renderBloco = (b: typeof blocos[number]) => (
+                <div className="group relative bg-background p-10 lg:p-12 flex flex-col h-full w-full transition-colors duration-700 hover:bg-[var(--warm-white)]">
                   <div className="flex items-baseline justify-between">
                     <span className="font-display-italic text-accent text-3xl">{b.n}</span>
                     <span className="text-accent text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">◆</span>
@@ -257,9 +247,48 @@ function Proposta() {
                     {b.titulo}
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-cocoa/75">{b.texto}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+                </div>
+              );
+              return (
+                <>
+                  {/* Desktop / tablet grid */}
+                  <motion.div
+                    variants={staggerParent}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={VIEWPORT}
+                    transition={{ delayChildren: 0.7 }}
+                    className="hidden md:grid mt-20 lg:mt-24 md:grid-cols-3 gap-px bg-cocoa/15 border border-cocoa/15"
+                  >
+                    {blocos.map((b) => (
+                      <motion.div key={b.n} variants={childFade}>
+                        {renderBloco(b)}
+                      </motion.div>
+                    ))}
+                  </motion.div>
+
+                  {/* Mobile carousel */}
+                  <motion.div {...fadeUp} className="md:hidden mt-16 flex justify-center">
+                    <Carousel
+                      baseWidth={320}
+                      itemHeight={260}
+                      loop
+                      autoplay
+                      autoplayDelay={5000}
+                      items={blocos.map((b) => ({
+                        id: b.n,
+                        content: (
+                          <div className="border border-cocoa/15 bg-background h-full w-full">
+                            {renderBloco(b)}
+                          </div>
+                        ),
+                      }))}
+                    />
+                  </motion.div>
+                </>
+              );
+            })()}
+
           </div>
         </section>
 
