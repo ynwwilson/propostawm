@@ -476,22 +476,8 @@ function Proposta() {
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-10 pt-8 border-t border-cocoa/10">
-                      <a
-                        href={p.ctaHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={[
-                          "block w-full text-center text-[11px] tracking-luxe uppercase py-3.5 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-                          p.sugerida
-                            ? "bg-espresso text-warm-white hover:bg-cocoa"
-                            : "border border-cocoa/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-warm-white",
-                        ].join(" ")}
-                      >
-                        {p.cta}
-                      </a>
 
-                    </div>
+
                   </div>
                 </div>
               );
