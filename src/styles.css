@@ -39,52 +39,61 @@
   --color-cream: var(--cream);
   --color-cocoa: var(--cocoa);
   --color-ink: var(--ink);
+  --color-rose: var(--rose);
+  --color-nude: var(--nude);
+  --color-espresso: var(--espresso);
+  --color-warm-white: var(--warm-white);
 }
+
 
 :root {
   --radius: 0.5rem;
 
-  /* Off-white · champagne · marrom · preto elegante · dourado suave */
-  --background: oklch(0.985 0.008 80);            /* off-white quente */
-  --foreground: oklch(0.18 0.015 40);             /* preto elegante (warm) */
+  /* Editorial bridal · off-white · rosé · nude · marrom · champagne */
+  --background: oklch(0.985 0.006 70);            /* off-white muito claro */
+  --foreground: oklch(0.22 0.025 35);             /* marrom profundo (texto) */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.015 40);
+  --card-foreground: oklch(0.22 0.025 35);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.015 40);
+  --popover-foreground: oklch(0.22 0.025 35);
 
-  /* Primary CTA = preto elegante */
-  --primary: oklch(0.18 0.015 40);
-  --primary-foreground: oklch(0.985 0.008 80);
+  /* Primary = marrom profundo */
+  --primary: oklch(0.28 0.03 35);
+  --primary-foreground: oklch(0.98 0.006 70);
 
-  /* Secondary = preto elegante (CTAs) */
-  --secondary: oklch(0.18 0.015 40);
-  --secondary-foreground: oklch(0.985 0.008 80);
+  --secondary: oklch(0.28 0.03 35);
+  --secondary-foreground: oklch(0.98 0.006 70);
 
-  --muted: oklch(0.95 0.014 75);
-  --muted-foreground: oklch(0.45 0.022 50);
+  --muted: oklch(0.96 0.012 60);
+  --muted-foreground: oklch(0.48 0.022 35);
 
-  --accent: oklch(0.74 0.078 72);                 /* dourado suave */
-  --accent-foreground: oklch(0.18 0.015 40);
+  --accent: oklch(0.78 0.06 65);                  /* champagne/dourado suave */
+  --accent-foreground: oklch(0.22 0.025 35);
 
   --destructive: oklch(0.55 0.18 25);
-  --destructive-foreground: oklch(0.985 0.008 80);
+  --destructive-foreground: oklch(0.98 0.006 70);
 
-  --border: oklch(0.88 0.018 70);
-  --input: oklch(0.9 0.018 70);
-  --ring: oklch(0.74 0.078 72);
+  --border: oklch(0.9 0.012 55);
+  --input: oklch(0.92 0.012 55);
+  --ring: oklch(0.78 0.06 65);
 
-  /* Paleta extendida */
-  --champagne: oklch(0.93 0.028 78);              /* champagne luminoso */
-  --cream: oklch(0.96 0.018 80);
-  --gold: oklch(0.74 0.078 72);                   /* dourado suave */
-  --cocoa: oklch(0.32 0.04 40);                   /* marrom escuro */
-  --ink: oklch(0.16 0.012 40);                    /* preto elegante */
+  /* Paleta editorial extendida */
+  --warm-white: oklch(0.975 0.008 75);            /* warm white */
+  --champagne: oklch(0.93 0.022 75);              /* champagne luminoso */
+  --cream: oklch(0.96 0.014 78);
+  --gold: oklch(0.74 0.07 70);                    /* dourado suave (detalhes) */
+  --rose: oklch(0.92 0.022 25);                   /* rosé muito suave */
+  --nude: oklch(0.85 0.038 35);                   /* nude rosado */
+  --cocoa: oklch(0.42 0.04 35);                   /* marrom sofisticado */
+  --espresso: oklch(0.24 0.028 35);               /* marrom profundo */
+  --ink: oklch(0.16 0.018 35);
 
-  --shadow-elegant: 0 30px 60px -28px oklch(0.32 0.04 40 / 22%);
-  --shadow-soft: 0 14px 36px -18px oklch(0.32 0.04 40 / 14%);
-  --shadow-card: 0 1px 0 oklch(0.88 0.018 70 / 80%),
-                 0 20px 40px -28px oklch(0.32 0.04 40 / 14%);
+  --shadow-elegant: 0 30px 60px -28px oklch(0.32 0.04 40 / 18%);
+  --shadow-soft: 0 14px 36px -18px oklch(0.32 0.04 40 / 12%);
+  --shadow-card: 0 1px 0 oklch(0.9 0.012 55 / 80%),
+                 0 24px 48px -32px oklch(0.32 0.04 40 / 14%);
 }
+
 
 @layer base {
   * { border-color: var(--color-border); }
