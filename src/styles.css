@@ -129,8 +129,8 @@
     font-family: var(--font-display);
     font-weight: 400;
     letter-spacing: -0.012em;
-    color: var(--color-foreground);
   }
+
   body > * { position: relative; z-index: 1; }
 
   ::selection {
