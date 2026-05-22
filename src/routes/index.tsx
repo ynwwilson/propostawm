@@ -273,70 +273,102 @@ function Proposta() {
         </section>
 
         {/* 5. SEÇÃO VISUAL DO PORTAL WM */}
-        <section className="px-6 lg:px-20 py-32 lg:py-44 bg-espresso text-warm-white">
+        <section className="px-6 lg:px-20 py-32 lg:py-44 bg-[var(--champagne)] text-espresso">
           <div className="mx-auto max-w-6xl">
             <motion.div {...fadeUp} className="max-w-2xl">
-              <p className="text-[11px] tracking-luxe uppercase text-accent flex items-center gap-3">
+              <p className="text-[11px] tracking-luxe uppercase text-cocoa/70 flex items-center gap-3">
                 <span className="h-px w-8 bg-accent" /> IV · Portal WM
               </p>
-              <h2 className="mt-8 font-display text-5xl md:text-6xl leading-[1.05] tracking-tight text-warm-white text-balance">
+              <h2 className="mt-8 font-display text-5xl md:text-6xl leading-[1.05] tracking-tight text-espresso text-balance">
                 A sala dos bastidores, <span className="font-display-italic">desenhada com calma</span>.
               </h2>
-              <p className="mt-8 text-lg leading-9 text-warm-white/75 max-w-xl">
-                Um painel privado onde a equipe edita tudo o que aparece no site,
-                com a mesma elegância que a noiva vê do outro lado.
+              <p className="mt-8 text-lg leading-9 text-cocoa/80 max-w-xl">
+                Uma ferramenta privada e silenciosa, feita só para editar o que aparece
+                no site. Sem painéis cheios de gráficos — apenas o acervo, organizado
+                com o mesmo cuidado da vitrine.
               </p>
             </motion.div>
 
-            {/* Mock do portal */}
+            {/* Mock do portal — superfície clara, editorial */}
             <motion.div
               {...fadeUp}
-              className="mt-20 rounded-sm border border-warm-white/15 bg-[var(--ink)] p-8 md:p-12 shadow-elegant"
+              className="mt-20 rounded-sm border border-accent/25 bg-warm-white shadow-elegant overflow-hidden"
             >
-              <div className="flex flex-wrap items-end justify-between gap-6 border-b border-warm-white/10 pb-8">
+              {/* Cabeçalho */}
+              <div className="flex flex-wrap items-end justify-between gap-6 px-8 md:px-12 py-8 border-b border-accent/15">
                 <div>
-                  <p className="text-[10px] tracking-luxe uppercase text-accent">Portal WM · Acervo</p>
-                  <p className="mt-3 font-display text-3xl text-warm-white">Coleção Atelier 2026</p>
+                  <p className="text-[10px] tracking-luxe uppercase text-cocoa/60">Portal WM · Acervo</p>
+                  <p className="mt-3 font-display text-3xl text-espresso">
+                    Coleção Atelier <span className="font-display-italic text-cocoa/80">2026</span>
+                  </p>
                 </div>
-                <p className="font-display-italic text-warm-white/60">248 peças · 4 unidades</p>
+                <button
+                  type="button"
+                  className="group inline-flex items-center gap-3 border border-espresso/80 text-espresso px-6 py-3 text-[11px] tracking-luxe uppercase hover:bg-espresso hover:text-warm-white transition-colors"
+                >
+                  <span className="h-px w-4 bg-accent group-hover:bg-warm-white transition-colors" />
+                  Cadastrar vestido
+                </button>
               </div>
 
-              <div className="grid md:grid-cols-4 gap-px bg-warm-white/10 mt-8">
+              {/* Indicadores editoriais */}
+              <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-accent/15 border-b border-accent/15">
                 {[
                   ["248", "vestidos cadastrados"],
-                  ["173", "disponíveis no site"],
-                  ["1.284", "favoritos registrados"],
-                  ["32", "destaques na home"],
-                ].map(([v, l]) => (
-                  <div key={l} className="bg-[var(--ink)] p-8">
-                    <p className="font-display text-4xl text-warm-white">{v}</p>
-                    <p className="mt-3 text-xs tracking-luxe uppercase text-warm-white/55">{l}</p>
+                  ["173", "peças publicadas"],
+                  ["Aurora", "mais favoritado", "1.284 favoritos"],
+                  ["Veneza", "mais acessado", "3.902 visitas"],
+                ].map(([v, l, sub]) => (
+                  <div key={l} className="p-8">
+                    <p className="font-display text-3xl md:text-4xl text-espresso leading-none">{v}</p>
+                    <p className="mt-4 text-[10px] tracking-luxe uppercase text-cocoa/60">{l}</p>
+                    {sub && (
+                      <p className="mt-1 font-display-italic text-cocoa/55 text-xs">{sub}</p>
+                    )}
                   </div>
                 ))}
               </div>
 
-              <div className="mt-10">
+              {/* Lista de produtos */}
+              <div className="px-8 md:px-12 py-4">
                 {[
-                  ["Berta Bridal · 20-113", "Renda · Princesa", "São Paulo", "Disponível"],
-                  ["Milla Nova · Aurora", "Sereia · Bordado", "Brasília", "Reservado"],
-                  ["Atelier WM · Veneza", "Reto · Cetim", "Patos de Minas", "Em prova"],
-                  ["Pronovias · Etoile", "Evasê · Tule", "São Paulo", "Disponível"],
-                ].map(([n, est, un, st]) => (
+                  ["Berta Bridal · 20-113", "Renda · Princesa", "São Paulo", "Publicado", true],
+                  ["Milla Nova · Aurora", "Sereia · Bordado", "Brasília", "Em destaque", true],
+                  ["Atelier WM · Veneza", "Reto · Cetim", "Patos de Minas", "Rascunho", false],
+                  ["Pronovias · Etoile", "Evasê · Tule", "São Paulo", "Oculto", false],
+                ].map(([n, est, un, st, on]) => (
                   <div
-                    key={n}
-                    className="grid grid-cols-[1.4fr_1fr_1fr_auto] gap-6 items-center py-5 border-b border-warm-white/10 last:border-b-0 hover:bg-warm-white/[0.02] transition-colors"
+                    key={n as string}
+                    className="grid grid-cols-[1.5fr_1fr_0.9fr_0.9fr_auto] gap-6 items-center py-6 border-b border-accent/10 last:border-b-0 hover:bg-[var(--cream)]/60 transition-colors"
                   >
                     <div>
-                      <p className="font-display text-xl text-warm-white">{n}</p>
-                      <p className="text-xs tracking-luxe uppercase text-warm-white/45 mt-1">{est}</p>
+                      <p className="font-display text-xl text-espresso">{n}</p>
+                      <p className="text-[10px] tracking-luxe uppercase text-cocoa/55 mt-1">{est}</p>
                     </div>
-                    <p className="text-sm text-warm-white/65">{un}</p>
-                    <p className="text-sm font-display-italic text-accent">{st}</p>
-                    <span className="text-[10px] tracking-luxe uppercase text-warm-white/40">editar →</span>
+                    <p className="text-sm text-cocoa/75">{un}</p>
+                    <p className="text-sm font-display-italic text-cocoa/85">{st}</p>
+                    <span
+                      className={[
+                        "inline-block h-1.5 w-1.5 rounded-full",
+                        on ? "bg-accent" : "bg-cocoa/25",
+                      ].join(" ")}
+                    />
+                    <div className="flex items-center gap-5 text-[10px] tracking-luxe uppercase text-cocoa/65">
+                      <button type="button" className="hover:text-espresso transition-colors">editar</button>
+                      <button type="button" className="hover:text-accent transition-colors">destacar</button>
+                      <button type="button" className="hover:text-espresso transition-colors">ocultar</button>
+                    </div>
                   </div>
                 ))}
               </div>
             </motion.div>
+
+            <motion.p
+              {...fadeUp}
+              className="mt-8 text-xs tracking-luxe uppercase text-cocoa/55 text-right"
+            >
+              Pré-visualização · não é o painel final
+            </motion.p>
           </div>
         </section>
 
@@ -350,37 +382,77 @@ function Proposta() {
               </h2>
             </motion.div>
 
+            {/* Filtros editoriais */}
+            <motion.div
+              {...fadeUp}
+              className="mt-16 border-y border-accent/25 py-6 flex flex-wrap items-center gap-x-10 gap-y-4"
+            >
+              <p className="text-[10px] tracking-luxe uppercase text-cocoa/55">Filtrar por</p>
+              {[
+                ["Estilo", "Todos"],
+                ["Marca", "Todas"],
+                ["Unidade", "Todas"],
+                ["Status", "Disponível"],
+              ].map(([label, value]) => (
+                <button
+                  key={label}
+                  type="button"
+                  className="group flex items-baseline gap-2 text-sm text-espresso hover:text-accent transition-colors"
+                >
+                  <span className="text-[10px] tracking-luxe uppercase text-cocoa/55">{label}</span>
+                  <span className="font-display-italic">{value}</span>
+                  <span className="text-cocoa/40 group-hover:text-accent transition-colors">↓</span>
+                </button>
+              ))}
+            </motion.div>
+
             <motion.div
               variants={staggerParent}
               initial="hidden"
               whileInView="show"
               viewport={VIEWPORT}
-              className="mt-20 grid md:grid-cols-3 gap-8"
+              className="mt-16 grid md:grid-cols-3 gap-x-8 gap-y-16"
             >
               {[
-                { img: heroBridal, n: "Aurora", est: "Renda · Princesa", un: "São Paulo" },
-                { img: detailLace, n: "Veneza", est: "Bordado · Sereia", un: "Brasília" },
-                { img: boutique, n: "Atelier", est: "Cetim · Reto", un: "Patos" },
+                { img: heroBridal, n: "Aurora", est: "Renda · Princesa", un: "São Paulo", featured: true },
+                { img: detailLace, n: "Veneza", est: "Bordado · Sereia", un: "Brasília", featured: false },
+                { img: boutique, n: "Atelier", est: "Cetim · Reto", un: "Patos de Minas", featured: false },
               ].map((v) => (
                 <motion.article
                   key={v.n}
                   variants={childFade}
                   className="group cursor-pointer"
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden bg-[var(--nude)]">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-[var(--nude)] border border-accent/20">
                     <img
                       src={v.img}
                       alt={v.n}
                       loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.06]"
                     />
+                    {/* Hover wash dourado */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-espresso/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                    {v.featured && (
+                      <span className="absolute top-4 left-4 inline-flex items-center gap-2 bg-warm-white/90 backdrop-blur-sm px-3 py-1.5 text-[9px] tracking-luxe uppercase text-espresso border border-accent/40">
+                        <span className="h-1 w-1 rounded-full bg-accent" />
+                        Destaque
+                      </span>
+                    )}
+
+                    {/* Botão discreto no hover */}
+                    <div className="absolute inset-x-0 bottom-0 p-4 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                      <span className="inline-block bg-warm-white text-espresso text-[10px] tracking-luxe uppercase px-4 py-2 border border-accent/30">
+                        Ver detalhes →
+                      </span>
+                    </div>
                   </div>
-                  <div className="mt-5 flex items-baseline justify-between">
+                  <div className="mt-5 flex items-baseline justify-between gap-4">
                     <div>
                       <p className="font-display text-2xl text-espresso">{v.n}</p>
                       <p className="text-[11px] tracking-luxe uppercase text-cocoa/60 mt-1">{v.est}</p>
                     </div>
-                    <p className="font-display-italic text-cocoa/70 text-sm">{v.un}</p>
+                    <p className="font-display-italic text-cocoa/70 text-sm whitespace-nowrap">{v.un}</p>
                   </div>
                 </motion.article>
               ))}
@@ -396,6 +468,7 @@ function Proposta() {
             </motion.div>
           </div>
         </section>
+
 
         {/* 7. ESCOPO INCLUSO */}
         <section className="px-6 lg:px-20 py-32 lg:py-44 bg-background">
