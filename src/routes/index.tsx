@@ -483,7 +483,14 @@ function Proposta() {
             </motion.div>
 
             <div className="mt-20 relative">
-              <div className="absolute left-0 right-0 top-[14px] h-px bg-cocoa/15 hidden md:block" />
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={VIEWPORT}
+                transition={{ duration: 1.4, ease: EASE }}
+                style={{ transformOrigin: "left" }}
+                className="absolute left-0 right-0 top-[14px] h-px bg-cocoa/15 hidden md:block"
+              />
               <div className="grid md:grid-cols-5 gap-12 md:gap-6 relative">
                 {[
                   ["01", "Diagnóstico", "Entender o acervo, unidades e o jeito da equipe trabalhar."],
