@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, type Variants } from "framer-motion";
 import {
   CheckCircle2,
   Circle,
   Store,
   LayoutDashboard,
   Heart,
-  
   Sparkles,
   ShieldCheck,
 } from "lucide-react";
@@ -27,6 +27,49 @@ export const Route = createFileRoute("/escopo")({
   }),
   component: Escopo,
 });
+
+// Cinematic easing — power3/expo feel
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const EASE_DEEP = [0.16, 1, 0.3, 1] as [number, number, number, number];
+const VIEWPORT = { once: true, margin: "-80px" } as const;
+
+const fadeUp = {
+  initial: { opacity: 0, y: 28, filter: "blur(6px)" },
+  whileInView: { opacity: 1, y: 0, filter: "blur(0px)" },
+  viewport: VIEWPORT,
+  transition: { duration: 1.2, ease: EASE },
+} as const;
+
+const staggerParent: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.28, delayChildren: 0.35 } },
+};
+
+const childFade: Variants = {
+  hidden: { opacity: 0, y: 32, scale: 0.985, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: { duration: 1.3, ease: EASE_DEEP },
+  },
+};
+
+const listStagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.25 } },
+};
+
+const listItem: Variants = {
+  hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.95, ease: EASE },
+  },
+};
 
 const blocos = [
   {
@@ -59,9 +102,6 @@ const blocos = [
     ],
     naoInclui: ["Reserva online de prova (fase 2)"],
   },
-
-
-
   {
     icon: LayoutDashboard,
     titulo: "Portal Administrativo WM",
@@ -111,26 +151,50 @@ function Escopo() {
       <SiteHeader />
 
       <section className="px-6 lg:px-16 pt-20 pb-12">
-        <div className="mx-auto max-w-5xl fade-up">
-          <p className="text-xs tracking-luxe uppercase text-muted-foreground">Proposta · Escopo</p>
-          <h1 className="mt-6 font-display text-5xl md:text-6xl leading-[1.05] tracking-tight text-balance">
+        <div className="mx-auto max-w-5xl">
+          <motion.p
+            initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.1, ease: EASE, delay: 0.2 }}
+            className="text-xs tracking-luxe uppercase text-muted-foreground"
+          >
+            Proposta · Escopo
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.6, ease: EASE_DEEP, delay: 0.4 }}
+            className="mt-6 font-display text-5xl md:text-6xl leading-[1.05] tracking-tight text-balance"
+          >
             O que está incluso, o que vem depois.
-          </h1>
-          <p className="mt-6 text-base text-muted-foreground max-w-2xl leading-relaxed">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, ease: EASE, delay: 0.85 }}
+            className="mt-6 text-base text-muted-foreground max-w-2xl leading-relaxed"
+          >
             Um detalhamento honesto do que entra na primeira entrega — e do que faz mais sentido
             evoluir numa segunda fase, depois que o site e o portal estiverem no ar.
-          </p>
+          </motion.p>
         </div>
       </section>
 
       <section className="px-6 lg:px-16 py-16">
-        <div className="mx-auto max-w-5xl space-y-10">
+        <motion.div
+          variants={staggerParent}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT}
+          className="mx-auto max-w-5xl space-y-10"
+        >
           {blocos.map((b, i) => {
             const Icon = b.icon;
             return (
-              <article
+              <motion.article
                 key={b.titulo}
-                className="border border-border/70 bg-background p-8 md:p-10 lift"
+                variants={childFade}
+                className="border border-border/70 bg-background p-8 md:p-10 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-elegant"
               >
                 <div className="flex items-start gap-5">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/15 text-accent shrink-0">
@@ -150,102 +214,159 @@ function Escopo() {
                 <div className="mt-8 grid md:grid-cols-2 gap-8">
                   <div>
                     <p className="text-xs tracking-luxe uppercase text-accent mb-4">Incluso</p>
-                    <ul className="space-y-2">
+                    <motion.ul
+                      variants={listStagger}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={VIEWPORT}
+                      className="space-y-2"
+                    >
                       {b.inclui.map((i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm">
+                        <motion.li
+                          key={i}
+                          variants={listItem}
+                          className="flex items-start gap-2 text-sm"
+                        >
                           <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
                           <span>{i}</span>
-                        </li>
+                        </motion.li>
                       ))}
-                    </ul>
+                    </motion.ul>
                   </div>
                   <div>
                     <p className="text-xs tracking-luxe uppercase text-muted-foreground mb-4">
                       Não incluso nesta fase
                     </p>
-                    <ul className="space-y-2">
+                    <motion.ul
+                      variants={listStagger}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={VIEWPORT}
+                      className="space-y-2"
+                    >
                       {b.naoInclui.map((i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <motion.li
+                          key={i}
+                          variants={listItem}
+                          className="flex items-start gap-2 text-sm text-muted-foreground"
+                        >
                           <Circle className="h-3 w-3 mt-1 shrink-0" />
                           <span>{i}</span>
-                        </li>
+                        </motion.li>
                       ))}
-                    </ul>
+                    </motion.ul>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
       </section>
 
       {/* FASE 2 */}
       <section className="bg-champagne/50 px-6 lg:px-16 py-24">
         <div className="mx-auto max-w-5xl">
-          <div className="flex items-center gap-3">
+          <motion.div {...fadeUp} className="flex items-center gap-3">
             <Sparkles className="h-5 w-5 text-accent" />
             <p className="text-xs tracking-luxe uppercase text-accent">Segunda fase</p>
-          </div>
-          <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-2xl text-balance">
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={VIEWPORT}
+            transition={{ duration: 1.6, ease: EASE_DEEP, delay: 0.2 }}
+            className="font-display text-4xl md:text-5xl mt-4 max-w-2xl text-balance"
+          >
             Evoluções para depois do lançamento.
-          </h2>
-          <p className="mt-5 text-sm text-muted-foreground max-w-2xl leading-relaxed">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={VIEWPORT}
+            transition={{ duration: 1.2, ease: EASE, delay: 0.55 }}
+            className="mt-5 text-sm text-muted-foreground max-w-2xl leading-relaxed"
+          >
             Não entra nesta proposta inicial, mas fica desenhado para vocês terem clareza
             do caminho possível.
-          </p>
-          <div className="mt-12 grid md:grid-cols-2 gap-4">
+          </motion.p>
+          <motion.div
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="show"
+            viewport={VIEWPORT}
+            className="mt-12 grid md:grid-cols-2 gap-4"
+          >
             {fase2.map((i) => (
-              <div key={i.t} className="border border-border/60 bg-background p-6 lift">
+              <motion.div
+                key={i.t}
+                variants={childFade}
+                className="border border-border/60 bg-background p-6 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:shadow-elegant"
+              >
                 <p className="font-display text-xl">{i.t}</p>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{i.d}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* PROCESSO */}
       <section className="px-6 lg:px-16 py-24">
         <div className="mx-auto max-w-5xl">
-          <div className="flex items-center gap-3">
+          <motion.div {...fadeUp} className="flex items-center gap-3">
             <ShieldCheck className="h-5 w-5 text-accent" />
             <p className="text-xs tracking-luxe uppercase text-accent">Como seguimos</p>
-          </div>
-          <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-2xl text-balance">
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={VIEWPORT}
+            transition={{ duration: 1.6, ease: EASE_DEEP, delay: 0.2 }}
+            className="font-display text-4xl md:text-5xl mt-4 max-w-2xl text-balance"
+          >
             Um caminho calmo, em quatro tempos.
-          </h2>
-          <div className="mt-12 grid md:grid-cols-4 gap-px bg-border">
+          </motion.h2>
+          <motion.div
+            variants={staggerParent}
+            initial="hidden"
+            whileInView="show"
+            viewport={VIEWPORT}
+            className="mt-12 grid md:grid-cols-4 gap-px bg-border"
+          >
             {[
               { n: "01", t: "Aprovação da proposta", d: "Vocês navegam, comentam, ajustamos o que precisar." },
               { n: "02", t: "Design final", d: "Refinamos a identidade visual aplicada a cada tela." },
               { n: "03", t: "Desenvolvimento", d: "Site e Portal WM construídos e integrados." },
               { n: "04", t: "Treinamento e go-live", d: "Equipe treinada para usar o Portal e publicar vestidos." },
             ].map((s) => (
-              <div key={s.n} className="bg-background p-6">
+              <motion.div
+                key={s.n}
+                variants={childFade}
+                className="group bg-background p-6 transition-colors duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[var(--warm-white)]"
+              >
                 <p className="text-xs tracking-luxe uppercase text-muted-foreground">{s.n}</p>
                 <p className="font-display text-xl mt-4">{s.t}</p>
                 <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{s.d}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="px-6 lg:px-16 py-28">
-        <div className="mx-auto max-w-4xl text-center">
+        <motion.div {...fadeUp} className="mx-auto max-w-4xl text-center">
           <p className="text-xs tracking-luxe uppercase text-accent">Próximo passo</p>
 
           <div className="mt-10 flex justify-center">
             <Link
               to="/"
-              className="bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
+              className="bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] rounded-2xl"
             >
               Voltar para a proposta
             </Link>
           </div>
-
-        </div>
+        </motion.div>
       </section>
 
       <SiteFooter />
