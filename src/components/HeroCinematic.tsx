@@ -133,14 +133,17 @@ export function HeroCinematic() {
       </video>
 
       {/* Layered overlays for depth */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-espresso/70 via-espresso/35 to-espresso/85" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-espresso/55 via-transparent to-transparent" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_60%,transparent_20%,rgba(20,12,8,0.7)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-espresso/80 via-espresso/30 to-espresso/95" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-espresso/75 via-espresso/15 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_25%_55%,transparent_15%,rgba(20,12,8,0.85)_95%)]" />
       {/* Champagne wash */}
-      <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(ellipse_at_70%_30%,rgba(216,199,168,0.35),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 mix-blend-soft-light bg-[radial-gradient(ellipse_at_75%_25%,rgba(216,199,168,0.45),transparent_55%)]" />
+      {/* Top + bottom vignette bands */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-espresso/70 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-espresso to-transparent" />
       {/* Subtle grain */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.14] mix-blend-overlay"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>\")",
@@ -148,27 +151,36 @@ export function HeroCinematic() {
       />
 
       {/* Corner editorial marks */}
-      <div className="pointer-events-none absolute top-6 right-6 lg:top-10 lg:right-12 text-[10px] tracking-luxe uppercase text-warm-white/60 hidden sm:flex items-center gap-3">
-        <span className="h-px w-8 bg-warm-white/40 block" />
+      <div className="pointer-events-none absolute top-8 right-8 lg:top-12 lg:right-16 text-[10px] tracking-luxe uppercase text-warm-white/55 hidden sm:flex items-center gap-3">
+        <span className="h-px w-10 bg-warm-white/35 block" />
         MMXXV · ForYouCode
       </div>
-      <div className="pointer-events-none absolute top-6 left-6 lg:top-10 lg:left-12 text-[10px] tracking-luxe uppercase text-warm-white/60 hidden sm:block">
-        N°01 — Proposta
+      <div className="pointer-events-none absolute top-8 left-8 lg:top-12 lg:left-16 text-[10px] tracking-luxe uppercase text-warm-white/55 hidden sm:flex items-center gap-3">
+        <span className="text-[#d8c7a8]/80">N°</span> 01 — Proposta
+        <span className="h-px w-10 bg-warm-white/35 block" />
+      </div>
+
+      {/* Vertical side label */}
+      <div className="pointer-events-none absolute left-6 lg:left-10 top-1/2 -translate-y-1/2 z-10 hidden lg:flex items-center gap-4 -rotate-90 origin-left">
+        <span className="h-px w-12 bg-[#d8c7a8]/60 block" />
+        <span className="text-[10px] tracking-luxe uppercase text-warm-white/55 whitespace-nowrap">
+          Bridal Editorial · 2025
+        </span>
       </div>
 
       {/* Content */}
-      <div className="hero-content relative z-10 h-full px-6 lg:px-16 flex items-center">
-        <div className="w-full max-w-5xl lg:ml-[6%] xl:ml-[8%]">
+      <div className="hero-content relative z-10 h-full px-8 lg:px-24 xl:px-32 flex items-center">
+        <div className="w-full max-w-[1100px]">
           {/* Eyebrow */}
-          <div className="hero-eyebrow flex items-center gap-4 text-warm-white/75">
-            <span className="hero-rule h-px w-14 bg-[#d8c7a8] block" />
-            <p className="text-[11px] sm:text-xs tracking-luxe uppercase">
+          <div className="hero-eyebrow flex items-center gap-5 text-warm-white/80">
+            <span className="hero-rule h-px w-20 bg-[#d8c7a8] block" />
+            <p className="text-[11px] sm:text-xs tracking-[0.4em] uppercase font-light">
               Espaço WM · Proposta Visual
             </p>
           </div>
 
           {/* Title */}
-          <h1 className="hero-title-wrap mt-6 font-display font-light leading-[0.92] tracking-tight text-[clamp(4rem,13vw,11rem)]">
+          <h1 className="hero-title-wrap mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(5rem,16vw,14rem)]">
             <ShinyText
               text="WM Noivas"
               speed={4}
@@ -180,32 +192,45 @@ export function HeroCinematic() {
           </h1>
 
           {/* Decorative line */}
-          <div className="mt-8 flex items-center gap-4">
-            <span className="hero-rule block h-px w-20 lg:w-28 bg-gradient-to-r from-[#d8c7a8] via-[#d8c7a8]/60 to-transparent" />
-            <span className="hero-eyebrow text-[10px] tracking-luxe uppercase text-warm-white/55">
+          <div className="mt-10 lg:mt-12 flex items-center gap-5">
+            <span className="hero-rule block h-px w-24 lg:w-40 bg-gradient-to-r from-[#d8c7a8] via-[#d8c7a8]/60 to-transparent" />
+            <span className="hero-eyebrow text-xs tracking-luxe text-[#d8c7a8]/80">
               ✦
+            </span>
+            <span className="hero-eyebrow text-[10px] tracking-luxe uppercase text-warm-white/45 hidden md:inline">
+              Uma abertura editorial
             </span>
           </div>
 
           {/* Subtitle */}
-          <p className="hero-sub mt-6 max-w-xl text-base sm:text-lg leading-8 text-warm-white/85 font-light">
-            Uma nova experiência digital para apresentar a marca com mais
-            refinamento — e dar mais autonomia na gestão do acervo.
+          <p className="hero-sub mt-8 lg:mt-10 max-w-[560px] text-lg lg:text-xl leading-[1.7] text-warm-white/85 font-light">
+            Uma nova experiência digital para apresentar a marca com mais{" "}
+            <span className="font-display-italic text-[#e8d5b5]">refinamento</span>
+            {" "}— e dar mais autonomia na gestão do acervo.
           </p>
 
           {/* Chips */}
-          <ul className="mt-10 flex flex-wrap gap-3">
-            {chips.map((c) => (
-              <li
-                key={c}
-                className="hero-chip text-[11px] tracking-luxe uppercase text-warm-white/80 border border-warm-white/25 backdrop-blur-sm bg-warm-white/[0.04] px-4 py-2"
-              >
-                {c}
+          <ul className="mt-12 lg:mt-16 flex flex-wrap gap-x-8 gap-y-3 items-center">
+            {chips.map((c, i) => (
+              <li key={c} className="hero-chip flex items-center gap-8">
+                <span className="flex items-baseline gap-3 text-warm-white/85">
+                  <span className="font-display-italic text-[#d8c7a8] text-sm">
+                    0{i + 1}
+                  </span>
+                  <span className="text-[11px] tracking-[0.28em] uppercase font-light">
+                    {c}
+                  </span>
+                </span>
+                {i < chips.length - 1 && (
+                  <span className="hidden md:block h-px w-8 bg-warm-white/20" />
+                )}
               </li>
             ))}
           </ul>
         </div>
       </div>
+
+
 
       {/* Bottom meta line */}
       <div className="hero-meta absolute bottom-10 lg:bottom-12 left-6 lg:left-16 right-6 lg:right-16 z-10 flex items-end justify-between gap-6 text-warm-white/65">
