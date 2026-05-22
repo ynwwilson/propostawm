@@ -27,7 +27,7 @@ export function EssencePinSection() {
   const cameraRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLDivElement | null>(null);
   const haloRef = useRef<HTMLDivElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<HTMLElement[]>([]);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
