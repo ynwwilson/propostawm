@@ -101,7 +101,7 @@ function Proposta() {
             loading="eager"
             variant="editorialZoom"
             hover={false}
-            rerun={false}
+            
             className="absolute inset-0 h-full w-full"
             imageClassName="absolute inset-0 h-full w-full object-cover"
           />
