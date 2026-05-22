@@ -164,15 +164,18 @@ export function HeroCinematic() {
               Espaço WM · Proposta Visual
             </p>
           </div>
-
-          {/* Logo */}
-          <div className="hero-title-wrap mt-10 lg:mt-14">
-            <img
-              src={wmLogo}
-              alt="WM Noivas"
-              className="w-[clamp(16rem,38vw,32rem)] h-auto object-contain drop-shadow-[0_8px_40px_rgba(0,0,0,0.45)]"
+          {/* Title */}
+          <h1 className="hero-title-wrap mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(5rem,16vw,14rem)]">
+            <ShinyText
+              text="WM Noivas"
+              speed={4}
+              delay={1.2}
+              color="#d8c7a8"
+              shineColor="#fff4d6"
+              spread={110}
             />
-          </div>
+          </h1>
+
 
 
           {/* Decorative line */}
