@@ -240,4 +240,10 @@
     55% { background-position: -50% 0; }
     100% { background-position: -50% 0; }
   }
+  @keyframes heroScroll {
+    0% { transform: translateY(-100%); }
+    60% { transform: translateY(100%); }
+    100% { transform: translateY(100%); }
+  }
 }
+
