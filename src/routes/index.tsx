@@ -510,10 +510,10 @@ function Proposta() {
                   </motion.div>
 
                   {/* Mobile carousel */}
-                  <motion.div {...fadeUp} className="md:hidden mt-16 flex justify-center">
+                  <motion.div {...fadeUp} className="md:hidden mt-12 flex justify-center">
                     <Carousel
                       baseWidth={330}
-                      itemHeight={640}
+                      itemHeight={560}
                       loop
                       items={planos.map((p) => ({
                         id: p.nome,
