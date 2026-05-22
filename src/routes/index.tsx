@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { HeroCinematic } from "@/components/HeroCinematic";
 import Carousel from "@/components/Carousel";
+import { BridalVeilBackground } from "@/components/BridalVeilBackground";
+
 
 
 import heroBridal from "@/assets/hero-bridal.jpg";
@@ -178,10 +180,15 @@ function Proposta() {
       <SiteHeader />
 
       <main className="flex-1">
-        {/* 1. HERO */}
+        {/* 1. HERO — sem veil, mantém apenas o vídeo */}
         <HeroCinematic />
 
+        {/* Wrapper das seções pós-hero com o véu de luz bridal por trás */}
+        <div className="relative isolate">
+          <BridalVeilBackground />
+
         {/* 2. RESUMO CURTO - EDITORIAL */}
+
         <section className="relative px-6 lg:px-20 py-28 lg:py-40 bg-background overflow-hidden">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(216,199,168,0.10),transparent_70%)]" />
@@ -514,7 +521,9 @@ function Proposta() {
             </p>
           </motion.div>
         </section>
+        </div>
       </main>
+
 
       <SiteFooter />
     </div>
