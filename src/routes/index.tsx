@@ -266,12 +266,12 @@ function Proposta() {
                 { n: "03", titulo: "Portal WM", texto: "Uma área interna para editar o acervo sem depender de programador." },
               ];
               const renderBloco = (b: typeof blocos[number]) => (
-                <div className="group relative bg-background p-10 lg:p-12 flex flex-col h-full w-full transition-colors duration-700 hover:bg-[var(--warm-white)]">
+                <div className="group relative bg-background p-10 lg:p-12 flex flex-col h-full w-full transition-colors duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[var(--warm-white)]">
                   <div className="flex items-baseline justify-between">
                     <span className="font-display-italic text-accent text-3xl">{b.n}</span>
-                    <span className="text-accent text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">◆</span>
+                    <span className="text-accent text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]">◆</span>
                   </div>
-                  <div className="mt-6 h-px w-10 bg-accent/60 group-hover:w-16 transition-all duration-700" />
+                  <div className="mt-6 h-px w-10 bg-accent/60 group-hover:w-16 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]" />
                   <h3 className="mt-6 font-display text-2xl md:text-[1.65rem] leading-tight text-espresso tracking-tight">
                     {b.titulo}
                   </h3>
