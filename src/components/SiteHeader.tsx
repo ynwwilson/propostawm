@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 const nav = [
   { to: "/", label: "Proposta" },
   { to: "/escopo", label: "Escopo" },
-  { to: "/catalogo", label: "Prévia · Site" },
-  { to: "/portal", label: "Prévia · Portal WM" },
 ];
+
 
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
