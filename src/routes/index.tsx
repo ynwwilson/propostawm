@@ -192,30 +192,32 @@ function Home() {
       </section>
 
       {/* ATENDIMENTO CONSULTIVO */}
-      <section className="bg-secondary text-secondary-foreground px-6 lg:px-16 py-32">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs tracking-luxe uppercase opacity-70">
+      <section className="px-6 lg:px-16 py-32">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-accent/20 bg-accent/10 p-10 md:p-16 text-center">
+          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
+            <Sparkles className="h-6 w-6" />
+          </div>
+          <p className="text-xs tracking-luxe uppercase text-accent">
             04 · Atendimento consultivo
           </p>
           <h2 className="font-display text-4xl md:text-6xl mt-6 leading-tight">
-            Mais que uma escolha de vestido,
-            <br />
-            <em className="italic text-accent">uma escuta dedicada.</em>
+            Mais que uma escolha de vestido,<br />
+            <span className="text-accent">uma escuta dedicada.</span>
           </h2>
-          <p className="mt-8 text-base opacity-80 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-8 text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Cada noiva é recebida por uma consultora que acompanha desde a inspiração inicial até a última prova.
             Sem pressa, sem pressão — apenas o tempo necessário para que tudo faça sentido.
           </p>
           <div className="mt-12 flex justify-center gap-6 flex-wrap">
             <Link
               to="/jornada"
-              className="bg-background text-foreground px-8 py-4 text-xs tracking-luxe uppercase hover:bg-secondary transition-colors"
+              className="bg-secondary text-secondary-foreground px-8 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
             >
               Começar minha jornada
             </Link>
             <Link
               to="/catalogo"
-              className="text-xs tracking-luxe uppercase border-b border-accent pb-1"
+              className="text-xs tracking-luxe uppercase border-b border-accent pb-1 self-center"
             >
               Explorar coleções
             </Link>
