@@ -532,11 +532,11 @@ function Proposta() {
               <span className="mx-auto">Próximo passo</span>
             </Eyebrow>
             <h2 className="mt-8 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-espresso text-balance">
-              Se fizer sentido, <span className="font-display-italic">seguimos juntos</span>.
+              Pensado para <span className="font-display-italic">durar</span>.
             </h2>
             <p className="mt-8 text-base leading-8 text-cocoa/75">
-              Sem pressa. A proposta fica aqui para vocês revisitarem com calma —
-              quando quiserem conversar, é só responder.
+              A proposta fica registrada aqui para consulta. Qualquer dúvida ou
+              ajuste, é só nos chamar quando preferirem.
             </p>
             <div className="mt-12 flex justify-center">
               <Link
