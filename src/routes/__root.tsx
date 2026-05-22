@@ -61,7 +61,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Protótipo da nova plataforma digital da Espaço WM: coleções, jornada da noiva e atendimento consultivo.",
+          "Protótipo da nova plataforma digital da Espaço WM: coleções, catálogo gerenciável e Portal WM.",
       },
     ],
     links: [

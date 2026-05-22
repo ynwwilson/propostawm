@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PortalRouteImport } from './routes/portal'
-import { Route as JornadaRouteImport } from './routes/jornada'
 import { Route as EscopoRouteImport } from './routes/escopo'
 import { Route as CatalogoRouteImport } from './routes/catalogo'
 import { Route as IndexRouteImport } from './routes/index'
@@ -20,11 +19,6 @@ import { Route as PortalVestidoNovoRouteImport } from './routes/portal.vestido.n
 const PortalRoute = PortalRouteImport.update({
   id: '/portal',
   path: '/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JornadaRoute = JornadaRouteImport.update({
-  id: '/jornada',
-  path: '/jornada',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EscopoRoute = EscopoRouteImport.update({
@@ -57,7 +51,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/catalogo': typeof CatalogoRoute
   '/escopo': typeof EscopoRoute
-  '/jornada': typeof JornadaRoute
   '/portal': typeof PortalRouteWithChildren
   '/vestido/$id': typeof VestidoIdRoute
   '/portal/vestido/novo': typeof PortalVestidoNovoRoute
@@ -66,7 +59,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/catalogo': typeof CatalogoRoute
   '/escopo': typeof EscopoRoute
-  '/jornada': typeof JornadaRoute
   '/portal': typeof PortalRouteWithChildren
   '/vestido/$id': typeof VestidoIdRoute
   '/portal/vestido/novo': typeof PortalVestidoNovoRoute
@@ -76,7 +68,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/catalogo': typeof CatalogoRoute
   '/escopo': typeof EscopoRoute
-  '/jornada': typeof JornadaRoute
   '/portal': typeof PortalRouteWithChildren
   '/vestido/$id': typeof VestidoIdRoute
   '/portal/vestido/novo': typeof PortalVestidoNovoRoute
@@ -87,7 +78,6 @@ export interface FileRouteTypes {
     | '/'
     | '/catalogo'
     | '/escopo'
-    | '/jornada'
     | '/portal'
     | '/vestido/$id'
     | '/portal/vestido/novo'
@@ -96,7 +86,6 @@ export interface FileRouteTypes {
     | '/'
     | '/catalogo'
     | '/escopo'
-    | '/jornada'
     | '/portal'
     | '/vestido/$id'
     | '/portal/vestido/novo'
@@ -105,7 +94,6 @@ export interface FileRouteTypes {
     | '/'
     | '/catalogo'
     | '/escopo'
-    | '/jornada'
     | '/portal'
     | '/vestido/$id'
     | '/portal/vestido/novo'
@@ -115,7 +103,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CatalogoRoute: typeof CatalogoRoute
   EscopoRoute: typeof EscopoRoute
-  JornadaRoute: typeof JornadaRoute
   PortalRoute: typeof PortalRouteWithChildren
   VestidoIdRoute: typeof VestidoIdRoute
 }
@@ -127,13 +114,6 @@ declare module '@tanstack/react-router' {
       path: '/portal'
       fullPath: '/portal'
       preLoaderRoute: typeof PortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/jornada': {
-      id: '/jornada'
-      path: '/jornada'
-      fullPath: '/jornada'
-      preLoaderRoute: typeof JornadaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/escopo': {
@@ -189,20 +169,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CatalogoRoute: CatalogoRoute,
   EscopoRoute: EscopoRoute,
-  JornadaRoute: JornadaRoute,
   PortalRoute: PortalRouteWithChildren,
   VestidoIdRoute: VestidoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

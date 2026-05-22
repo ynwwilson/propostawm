@@ -5,12 +5,13 @@ import {
   Store,
   LayoutDashboard,
   Heart,
-  Wand2,
+  BarChart3,
   Sparkles,
   ShieldCheck,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+
 
 export const Route = createFileRoute("/escopo")({
   head: () => ({
@@ -59,32 +60,35 @@ const blocos = [
     naoInclui: ["Reserva online de prova (fase 2)"],
   },
   {
-    icon: Wand2,
-    titulo: "Jornada da Noiva",
+    icon: BarChart3,
+    titulo: "Gestão de Produtos e Acervo",
     descricao:
-      "Fluxo guiado em 5 etapas que ajuda a noiva a se encontrar e gera um lead qualificado para a equipe.",
+      "Toda a operação do catálogo passa pelo Portal WM: cadastro, edição, status, destaques e dados simples do acervo — sem depender de programador.",
     inclui: [
-      "Etapas: Estilo · Data · Unidade · Favoritos · Consultora",
-      "Barra de progresso e transições suaves",
-      "Mensagem final de confirmação consultiva",
-      "Lead direcionado ao Portal WM",
+      "Cadastro e edição completa de cada vestido",
+      "Upload e organização de imagens",
+      "Controle de status (disponível, reservado, em prova, etc.)",
+      "Definição de destaques na home e no catálogo",
+      "Dados simples: vestidos mais acessados e mais favoritados",
     ],
-    naoInclui: ["Integração automática com WhatsApp (fase 2)"],
+    naoInclui: ["CRM, pipeline ou funil comercial (fora do escopo)"],
   },
+
   {
     icon: LayoutDashboard,
     titulo: "Portal Administrativo WM",
     descricao:
-      "Painel privado para a equipe gerenciar o acervo, acompanhar leads e ver o que está performando.",
+      "Painel privado para a equipe gerenciar o acervo e ver dados simples de interesse do catálogo.",
     inclui: [
-      "KPIs principais (leads, vestidos mais favoritados)",
-      "Listagem de leads recebidos pela jornada",
+      "Login administrativo",
       "Cadastro de vestidos: nome, marca, estilo, unidade, status, descrição, imagens",
-      "Publicação direta no site, sem depender de programador",
+      "Edição e publicação direta no site, sem depender de programador",
+      "Dados simples: vestidos mais favoritados e mais acessados",
     ],
     naoInclui: [
       "Permissões granulares por usuário (fase 2)",
       "Relatórios avançados com gráficos (fase 2)",
+      "CRM ou pipeline comercial",
     ],
   },
 ];
@@ -92,7 +96,7 @@ const blocos = [
 const fase2 = [
   {
     t: "Integração com WhatsApp Business",
-    d: "Leads da jornada enviados automaticamente para o número da unidade escolhida.",
+    d: "Mensagens de contato enviadas automaticamente para o número da unidade escolhida.",
   },
   {
     t: "Agendamento online de provas",
@@ -104,13 +108,14 @@ const fase2 = [
   },
   {
     t: "Relatórios e métricas",
-    d: "Dashboard com performance por unidade, estilos mais buscados e funil da jornada.",
+    d: "Dashboard com performance por unidade e estilos mais buscados.",
   },
   {
     t: "Permissões e múltiplos usuários",
     d: "Cada consultora com seu próprio acesso ao Portal WM.",
   },
 ];
+
 
 function Escopo() {
   return (
