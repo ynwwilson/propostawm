@@ -48,7 +48,7 @@ function Home() {
               <div className="mt-10 flex flex-wrap items-center gap-6">
                 <Link
                   to="/catalogo"
-                  className="group inline-flex items-center gap-3 bg-foreground text-background px-7 py-4 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors"
+                  className="group inline-flex items-center gap-3 bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors"
                 >
                   Conhecer coleções
                   <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -191,7 +191,7 @@ function Home() {
       </section>
 
       {/* ATENDIMENTO CONSULTIVO */}
-      <section className="bg-foreground text-background px-6 lg:px-16 py-32">
+      <section className="bg-secondary text-secondary-foreground px-6 lg:px-16 py-32">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-xs tracking-luxe uppercase opacity-70">
             04 · Atendimento consultivo

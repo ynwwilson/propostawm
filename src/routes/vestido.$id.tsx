@@ -107,7 +107,7 @@ function VestidoPage() {
                 </button>
                 <button
                   onClick={() => setSent(true)}
-                  className="group inline-flex items-center justify-between gap-3 bg-foreground text-background px-6 py-4 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors"
+                  className="group inline-flex items-center justify-between gap-3 bg-secondary text-secondary-foreground px-6 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors"
                 >
                   <span className="flex items-center gap-3">
                     <Send className="h-4 w-4" />

@@ -93,7 +93,7 @@ function Jornada() {
                     onClick={() => setEstilo(e)}
                     className={`aspect-square border transition-all flex items-center justify-center font-display text-xl ${
                       estilo === e
-                        ? "border-foreground bg-foreground text-background"
+                        ? "border-foreground bg-secondary text-secondary-foreground"
                         : "border-border hover:border-foreground"
                     }`}
                   >
@@ -201,7 +201,7 @@ function Jornada() {
               </div>
               <button
                 onClick={() => setEnviado(true)}
-                className="mt-10 bg-foreground text-background px-8 py-4 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors"
+                className="mt-10 bg-secondary text-secondary-foreground px-8 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors"
               >
                 Enviar para consultora
               </button>
@@ -240,7 +240,7 @@ function Jornada() {
                 <button
                   onClick={() => setStep((s) => s + 1)}
                   disabled={!canNext}
-                  className="bg-foreground text-background px-6 py-3 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="bg-secondary text-secondary-foreground px-6 py-3 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   Avançar →
                 </button>

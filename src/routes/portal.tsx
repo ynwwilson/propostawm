@@ -38,7 +38,7 @@ function Portal() {
             </div>
             <Link
               to="/portal/vestido/novo"
-              className="group inline-flex items-center gap-3 bg-foreground text-background px-7 py-4 text-xs tracking-luxe uppercase hover:bg-cocoa transition-colors"
+              className="group inline-flex items-center gap-3 bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors"
             >
               <Plus className="h-4 w-4" /> Cadastrar novo vestido
             </Link>
@@ -131,7 +131,7 @@ function StatusBadge({ status }: { status: string }) {
       ? "bg-accent/20 text-foreground"
       : status === "Em prova"
       ? "bg-secondary text-foreground"
-      : "bg-foreground text-background";
+      : "bg-secondary text-secondary-foreground";
   return (
     <span className={`text-[10px] tracking-luxe uppercase px-3 py-1.5 ${tone}`}>{status}</span>
   );
