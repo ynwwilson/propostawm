@@ -267,8 +267,8 @@ function Proposta() {
                 transition={{ duration: 1.1, ease: EASE, delay: 0.75 }}
                 className="mt-8 text-base md:text-lg leading-8 text-cocoa/80 max-w-xl mx-auto"
               >
-                Três entregas conectadas para apresentar melhor a Espaço WM
-                e dar autonomia para manter tudo sempre atualizado.
+                Três entregas conectadas para apresentar melhor a Espaço WM e
+                manter tudo atualizado com autonomia.
               </motion.p>
 
             </div>
