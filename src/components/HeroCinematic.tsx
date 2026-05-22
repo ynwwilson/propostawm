@@ -140,14 +140,19 @@ export function HeroCinematic() {
       {/* Background video */}
       <video
         ref={videoRef}
+        key={isMobile ? "mobile" : "desktop"}
         className="absolute inset-0 h-full w-full object-cover"
+        style={isMobile ? { objectPosition: "center 30%" } : undefined}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
       >
-        <source src="/wm-hero.mp4" type="video/mp4" />
+        <source
+          src={isMobile ? "/wm-hero-mobile.mp4" : "/wm-hero-desktop.mp4"}
+          type="video/mp4"
+        />
       </video>
 
       {/* Layered overlays for depth */}
