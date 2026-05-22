@@ -223,7 +223,7 @@ function Proposta() {
         <HeroCinematic />
 
         {/* 2. RESUMO CURTO - EDITORIAL */}
-        <section className="relative px-6 lg:px-20 py-28 lg:py-40 bg-background overflow-hidden">
+        <section className="relative px-6 lg:px-20 py-16 md:py-28 lg:py-40 bg-background overflow-hidden">
 
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(216,199,168,0.10),transparent_70%)]" />
@@ -267,8 +267,8 @@ function Proposta() {
                 transition={{ duration: 1.1, ease: EASE, delay: 0.75 }}
                 className="mt-8 text-base md:text-lg leading-8 text-cocoa/80 max-w-xl mx-auto"
               >
-                Três entregas conectadas para apresentar melhor a Espaço WM
-                e dar autonomia para manter tudo sempre atualizado.
+                Três entregas conectadas para apresentar melhor a Espaço WM e
+                manter tudo atualizado com autonomia.
               </motion.p>
 
             </div>
@@ -334,8 +334,8 @@ function Proposta() {
           </div>
         </section>
 
-        {/* 3. TRÊS ENTREGAS */}
-        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-[var(--warm-white)]">
+        {/* 3. TRÊS ENTREGAS — somente desktop/tablet (mobile já vê o resumo) */}
+        <section className="hidden md:block px-6 lg:px-20 py-28 lg:py-36 bg-[var(--warm-white)]">
           <div className="mx-auto max-w-6xl">
             <motion.div {...fadeUp} className="max-w-2xl">
               <Eyebrow>As três entregas</Eyebrow>
@@ -376,8 +376,8 @@ function Proposta() {
           </div>
         </section>
 
-        {/* 4. ESCOPO INCLUSO */}
-        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-background">
+        {/* 4. ESCOPO INCLUSO — oculto no mobile para enxugar a leitura */}
+        <section className="hidden md:block px-6 lg:px-20 py-28 lg:py-36 bg-background">
           <div className="mx-auto max-w-5xl grid lg:grid-cols-[0.4fr_0.6fr] gap-12 lg:gap-20">
             <motion.div {...fadeUp}>
               <Eyebrow>Escopo incluso</Eyebrow>
@@ -410,7 +410,7 @@ function Proposta() {
         </section>
 
         {/* 5. INVESTIMENTO */}
-        <section className="relative px-6 lg:px-20 py-32 lg:py-44 bg-[var(--champagne)] overflow-hidden">
+        <section className="relative px-6 lg:px-20 py-20 md:py-32 lg:py-44 bg-[var(--champagne)] overflow-hidden">
           {/* Decorative top hairline */}
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           {/* Soft radial wash */}
@@ -433,11 +433,13 @@ function Proposta() {
             </motion.div>
 
             {(() => {
-              const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => (
+              const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => {
+                const itensVisiveis = opts?.inCarousel ? p.itens.slice(0, 4) : p.itens;
+                return (
                 <div
                   className={[
-                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full w-full",
-                    opts?.inCarousel ? "" : "hover:-translate-y-1",
+                    "group relative flex flex-col transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full w-full",
+                    opts?.inCarousel ? "p-7" : "p-9 lg:p-11 hover:-translate-y-1",
                     p.sugerida
                       ? `bg-warm-white border border-accent/40 shadow-elegant ring-1 ring-accent/15 ${opts?.inCarousel ? "" : "md:-translate-y-4"}`
                       : "bg-warm-white/70 border border-cocoa/15 hover:bg-warm-white hover:shadow-elegant",
@@ -451,36 +453,45 @@ function Proposta() {
                       Mais indicada
                     </span>
                   )}
-                  <div className="relative">
+                  <div className="relative flex flex-col h-full">
                     <div className="flex items-baseline justify-between">
                       <p className="font-display text-2xl md:text-3xl text-espresso tracking-tight">
                         {p.nome}
                       </p>
                       <span className="font-display-italic text-accent text-sm">◆</span>
                     </div>
-                    <p className="mt-8 font-display text-5xl md:text-[3.25rem] text-espresso leading-none">
+                    <p className={`${opts?.inCarousel ? "mt-5" : "mt-8"} font-display text-4xl md:text-[3.25rem] text-espresso leading-none`}>
                       {p.valor}
                     </p>
                     <p className="mt-3 text-[10px] tracking-luxe uppercase text-cocoa/55">
                       Projeto completo
                     </p>
-                    <div className="mt-8 h-px w-full bg-gradient-to-r from-accent/40 via-cocoa/15 to-transparent" />
-                    <p className="mt-7 text-sm leading-7 text-cocoa/85 min-h-[5.5rem]">
+                    <div className={`${opts?.inCarousel ? "mt-5" : "mt-8"} h-px w-full bg-gradient-to-r from-accent/40 via-cocoa/15 to-transparent`} />
+                    <p className={`${opts?.inCarousel ? "mt-4 text-[13px] leading-6" : "mt-7 text-sm leading-7 min-h-[5.5rem]"} text-cocoa/85`}>
                       {p.descricao}
                     </p>
-                    <ul className="mt-7 space-y-3">
-                      {p.itens.map((i) => (
+                    <ul className={`${opts?.inCarousel ? "mt-5 space-y-2" : "mt-7 space-y-3"}`}>
+                      {itensVisiveis.map((i) => (
                         <li key={i} className="flex items-baseline gap-3 text-sm text-cocoa/85">
                           <span className="text-accent text-[9px] translate-y-[-1px]">◆</span>
                           <span className="leading-6">{i}</span>
                         </li>
                       ))}
                     </ul>
-
-
+                    {opts?.inCarousel && (
+                      <a
+                        href={p.ctaHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 self-start text-[11px] tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors"
+                      >
+                        {p.cta} →
+                      </a>
+                    )}
                   </div>
                 </div>
-              );
+                );
+              };
               return (
                 <>
                   {/* Desktop / tablet grid */}
@@ -499,10 +510,10 @@ function Proposta() {
                   </motion.div>
 
                   {/* Mobile carousel */}
-                  <motion.div {...fadeUp} className="md:hidden mt-16 flex justify-center">
+                  <motion.div {...fadeUp} className="md:hidden mt-12 flex justify-center">
                     <Carousel
                       baseWidth={330}
-                      itemHeight={640}
+                      itemHeight={560}
                       loop
                       items={planos.map((p) => ({
                         id: p.nome,
@@ -526,7 +537,7 @@ function Proposta() {
 
 
         {/* 6. PRÓXIMO PASSO LEVE */}
-        <section className="px-6 lg:px-20 py-32 lg:py-40 bg-background">
+        <section className="px-6 lg:px-20 py-20 md:py-32 lg:py-40 bg-background">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <Eyebrow>
               <span className="mx-auto">Próximo passo</span>
@@ -535,10 +546,20 @@ function Proposta() {
               Pensado para <span className="font-display-italic">durar</span>.
             </h2>
             <p className="mt-8 text-base leading-8 text-cocoa/75">
-              A proposta fica registrada aqui para consulta. Qualquer dúvida ou
-              ajuste, é só nos chamar quando preferirem.
+              Podemos ajustar o escopo conforme fizer mais sentido para a rotina
+              da Espaço WM.
             </p>
-            <div className="mt-12 flex justify-center">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a
+                href={waHref(
+                  "Olá! Vi a proposta da nova plataforma digital da Espaço WM e gostaria de conversar sobre o projeto."
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-luxe uppercase text-warm-white bg-espresso px-7 py-3 hover:bg-cocoa transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              >
+                Conversar no WhatsApp
+              </a>
               <Link
                 to="/escopo"
                 className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -547,7 +568,7 @@ function Proposta() {
               </Link>
             </div>
 
-            <p className="mt-16 font-display-italic text-accent text-lg">
+            <p className="mt-14 md:mt-16 font-display-italic text-accent text-lg">
               ForYouCode · para Espaço WM
             </p>
           </motion.div>

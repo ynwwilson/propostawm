@@ -137,7 +137,7 @@ export function HeroCinematic() {
   return (
     <section
       ref={root}
-      className="relative h-screen min-h-[720px] w-full overflow-hidden bg-espresso"
+      className="relative h-[92vh] min-h-[600px] md:h-screen md:min-h-[720px] w-full overflow-hidden bg-espresso"
     >
       {/* Background video */}
       <video
