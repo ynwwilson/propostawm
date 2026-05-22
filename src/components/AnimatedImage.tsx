@@ -28,7 +28,10 @@ type VariantConfig = {
 };
 
 // Janelas: entrada 0→0.28 · permanência 0.28→0.72 · saída 0.72→1
-const inOut = (a: number, b: number, c: number) => [0, 0.28, 0.72, 1].map((_, i) => [a, b, b, c][i]);
+const inOut = (a: number, b: number, c: number): [number[], number[]] => [
+  [0, 0.28, 0.72, 1],
+  [a, b, b, c],
+];
 
 const variants: Record<AnimatedImageVariant, VariantConfig> = {
   veilReveal: {
