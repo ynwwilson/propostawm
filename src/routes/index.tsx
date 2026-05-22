@@ -374,15 +374,22 @@ function Proposta() {
                 Sem letras miúdas: tudo o que faz parte desta entrega.
               </p>
             </motion.div>
-            <motion.ul {...fadeUp} className="grid sm:grid-cols-2 gap-x-10 gap-y-4">
+            <motion.ul
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              className="grid sm:grid-cols-2 gap-x-10 gap-y-4"
+            >
               {escopo.map((i) => (
-                <li
+                <motion.li
                   key={i}
+                  variants={listItem}
                   className="flex items-baseline gap-3 text-cocoa border-b border-cocoa/10 pb-4"
                 >
                   <span className="text-accent text-xs">◆</span>
                   <span className="text-base leading-7">{i}</span>
-                </li>
+                </motion.li>
               ))}
             </motion.ul>
           </div>
