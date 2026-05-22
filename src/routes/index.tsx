@@ -86,6 +86,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function Proposta() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <VeilOverlay />
       <SiteHeader />
 
       <main className="flex-1">
