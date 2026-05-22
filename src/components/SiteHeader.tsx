@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import BubbleMenu, { type BubbleMenuItem } from "@/components/BubbleMenu";
-import wmLogo from "@/assets/wm-logo.png";
+
 
 export function SiteHeader() {
   const navigate = useNavigate();
@@ -58,7 +58,6 @@ export function SiteHeader() {
       }}
     >
       <BubbleMenu
-        logo={<img src={wmLogo} alt="WM" className="bubble-logo" />}
         items={items}
         menuAriaLabel="Abrir menu"
         menuBg="#f5efe4"
@@ -68,6 +67,7 @@ export function SiteHeader() {
         animationDuration={0.5}
         staggerDelay={0.12}
       />
+
     </div>
   );
 }
