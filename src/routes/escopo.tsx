@@ -235,9 +235,7 @@ function Escopo() {
       <section className="px-6 lg:px-16 py-28">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-xs tracking-luxe uppercase text-accent">Próximo passo</p>
-          <h2 className="font-display text-4xl md:text-5xl mt-5 leading-tight text-balance">
-            Se fizer sentido, seguimos juntos.
-          </h2>
+
           <div className="mt-10 flex justify-center">
             <Link
               to="/"
