@@ -212,14 +212,27 @@
 
 @media (min-width: 900px) {
   .bubble-menu-items .pill-list {
-    max-width: 1100px;
-    padding: 0 48px;
+    max-width: min(760px, calc(100vw - 160px));
+    padding: 0 32px;
+    column-gap: 20px;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .bubble-menu-items .pill-list .pill-col {
+    flex: 0 1 calc((100% - 20px) / 2);
+    min-width: 0;
+  }
+
+  .bubble-menu-items .pill-list .pill-col:nth-child(4):nth-last-child(2),
+  .bubble-menu-items .pill-list .pill-col:nth-child(4):last-child {
+    margin-left: 0;
   }
 
   .bubble-menu-items .pill-link {
-    font-size: clamp(1rem, 1.8vw, 2rem);
-    padding: clamp(1rem, 2vw, 3rem) 0;
-    --pill-min-h: 110px;
+    font-size: clamp(1rem, 1.35vw, 1.6rem);
+    padding: 1.15rem clamp(1.25rem, 2vw, 2rem);
+    --pill-min-h: 88px;
     transform: rotate(var(--item-rot));
   }
 
