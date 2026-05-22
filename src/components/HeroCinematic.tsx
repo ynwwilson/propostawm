@@ -241,8 +241,8 @@ export function HeroCinematic() {
 
 
 
-      {/* Bottom meta line */}
-      <div className="hero-meta absolute bottom-10 lg:bottom-12 left-6 lg:left-16 right-6 lg:right-16 z-10 flex items-end justify-between gap-6 text-warm-white/65">
+      {/* Bottom meta line — oculto no mobile para limpar o hero */}
+      <div className="hero-meta absolute bottom-10 lg:bottom-12 left-6 lg:left-16 right-6 lg:right-16 z-10 hidden sm:flex items-end justify-between gap-6 text-warm-white/65">
         <p className="text-[10px] sm:text-[11px] tracking-luxe uppercase">
           03 entregas principais
           <span className="mx-3 text-[#d8c7a8]/70">·</span>
