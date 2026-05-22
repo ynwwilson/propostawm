@@ -350,14 +350,21 @@ function Proposta() {
               </h2>
             </motion.div>
 
-            <motion.div {...fadeUp} className="mt-20 grid md:grid-cols-3 gap-8">
+            <motion.div
+              variants={staggerParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              className="mt-20 grid md:grid-cols-3 gap-8"
+            >
               {[
                 { img: heroBridal, n: "Aurora", est: "Renda · Princesa", un: "São Paulo" },
                 { img: detailLace, n: "Veneza", est: "Bordado · Sereia", un: "Brasília" },
                 { img: boutique, n: "Atelier", est: "Cetim · Reto", un: "Patos" },
               ].map((v) => (
-                <article
+                <motion.article
                   key={v.n}
+                  variants={childFade}
                   className="group cursor-pointer"
                 >
                   <div className="relative aspect-[3/4] overflow-hidden bg-[var(--nude)]">
@@ -375,7 +382,7 @@ function Proposta() {
                     </div>
                     <p className="font-display-italic text-cocoa/70 text-sm">{v.un}</p>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </motion.div>
 
