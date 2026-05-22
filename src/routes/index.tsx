@@ -45,17 +45,33 @@ const fadeUp = {
 
 const staggerParent: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.18, delayChildren: 0.15 } },
+  show: { transition: { staggerChildren: 0.28, delayChildren: 0.35 } },
 };
 
 const childFade: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.985, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 32, scale: 0.985, filter: "blur(8px)" },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 1.1, ease: EASE },
+    transition: { duration: 1.3, ease: EASE_DEEP },
+  },
+};
+
+// Stagger for list items (escopo, plan items) — slow, cascading reveal
+const listStagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.25 } },
+};
+
+const listItem: Variants = {
+  hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.95, ease: EASE },
   },
 };
 
