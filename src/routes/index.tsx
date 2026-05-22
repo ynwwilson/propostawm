@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AnimatedImage } from "@/components/AnimatedImage";
 import { HeroCinematic } from "@/components/HeroCinematic";
+import { EssencePinSection } from "@/components/EssencePinSection";
 
 import heroBridal from "@/assets/hero-bridal.jpg";
 import detailLace from "@/assets/detail-lace.jpg";
