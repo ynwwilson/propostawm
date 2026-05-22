@@ -422,7 +422,7 @@ function Proposta() {
               const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => (
                 <div
                   className={[
-                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-700 ease-out h-full w-full",
+                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full w-full",
                     opts?.inCarousel ? "" : "hover:-translate-y-1",
                     p.sugerida
                       ? `bg-warm-white border border-accent/40 shadow-elegant ring-1 ring-accent/15 ${opts?.inCarousel ? "" : "md:-translate-y-4"}`
