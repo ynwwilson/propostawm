@@ -3,6 +3,8 @@ import { motion, type Variants } from "framer-motion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { HeroCinematic } from "@/components/HeroCinematic";
+import Carousel from "@/components/Carousel";
+
 
 import heroBridal from "@/assets/hero-bridal.jpg";
 
