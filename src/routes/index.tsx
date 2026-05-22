@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, type Variants } from "framer-motion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { VeilOverlay } from "@/components/VeilOverlay";
+
 import heroBridal from "@/assets/hero-bridal.jpg";
 import detailLace from "@/assets/detail-lace.jpg";
 import boutique from "@/assets/boutique.jpg";
@@ -86,7 +86,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 function Proposta() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <VeilOverlay />
+      
       <SiteHeader />
 
       <main className="flex-1">
