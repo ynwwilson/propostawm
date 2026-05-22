@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ShinyText from "./effects/ShinyText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,8 +83,15 @@ export function HeroCinematic() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(20,12,8,0.55)_100%)]" />
 
       <div className="relative z-10 flex h-full items-center justify-center px-6">
-        <h1 className="hero-title-wrap hero-shine font-display text-[clamp(4rem,12vw,10rem)] font-light leading-[0.95] tracking-tight text-center">
-          WM Noivas
+        <h1 className="hero-title-wrap font-display text-[clamp(4rem,12vw,10rem)] font-light leading-[0.95] tracking-tight text-center">
+          <ShinyText
+            text="WM Noivas"
+            speed={4}
+            delay={1.2}
+            color="#d8c7a8"
+            shineColor="#fff4d6"
+            spread={110}
+          />
         </h1>
       </div>
     </section>
