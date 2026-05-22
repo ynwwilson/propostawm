@@ -5,12 +5,13 @@ import {
   Store,
   LayoutDashboard,
   Heart,
-  Wand2,
+  BarChart3,
   Sparkles,
   ShieldCheck,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+
 
 export const Route = createFileRoute("/escopo")({
   head: () => ({
