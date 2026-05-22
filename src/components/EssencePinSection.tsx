@@ -202,7 +202,7 @@ export function EssencePinSection() {
             {CARDS.map((card, index) => (
               <article
                 key={card.n}
-                ref={(el) => {
+                ref={(el: HTMLDivElement | null) => {
                   if (el) cardsRef.current[index] = el;
                 }}
                 className="rounded-sm border border-espresso/10 bg-background/75 p-7 shadow-[0_24px_70px_rgba(62,46,42,0.08)] backdrop-blur-sm"
