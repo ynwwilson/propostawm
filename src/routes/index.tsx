@@ -1,76 +1,140 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles } from "lucide-react";
+import {
+  Sparkles,
+  LayoutDashboard,
+  Heart,
+  Wand2,
+  Store,
+  ShieldCheck,
+  ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import heroBride from "@/assets/hero-bride.jpg";
-import { dresses } from "@/lib/dresses";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Espaço WM — A nova experiência digital" },
+      { title: "Proposta · Espaço WM — Novo site + Portal WM" },
       {
         name: "description",
         content:
-          "Coleções exclusivas, atendimento consultivo e a jornada completa para a sua escolha. Conheça a proposta digital da Espaço WM.",
+          "Proposta navegável: novo site institucional, catálogo gerenciável, Portal Administrativo WM, gestão de vestidos, leads e escopo de entrega.",
       },
-      { property: "og:title", content: "Espaço WM — A nova experiência digital" },
+      { property: "og:title", content: "Proposta · Espaço WM" },
       {
         property: "og:description",
-        content: "Vestidos de noiva selecionados, consultoria individual e jornada digital fluida.",
+        content: "Uma proposta interativa para a nova presença digital da Espaço WM.",
       },
     ],
   }),
-  component: Home,
+  component: Proposta,
 });
 
-function Home() {
-  const destaques = dresses.slice(0, 3);
+const deliverables = [
+  {
+    n: "01",
+    icon: Store,
+    titulo: "Novo site institucional",
+    resumo:
+      "Site separado, com identidade própria, focado em apresentar coleções, unidades e atendimento consultivo.",
+    bullets: ["Home premium", "Página de coleções", "Detalhe de vestido", "SEO básico e responsivo"],
+    to: "/catalogo" as const,
+    cta: "Abrir prévia do site",
+  },
+  {
+    n: "02",
+    icon: Heart,
+    titulo: "Catálogo gerenciável",
+    resumo:
+      "Vitrine de vestidos com filtros por estilo, marca e unidade. Cada peça é cadastrada e publicada pela equipe WM, sem depender de programador.",
+    bullets: ["Filtros combinados", "Favoritos da noiva", "Páginas de detalhe"],
+    to: "/catalogo" as const,
+    cta: "Ver catálogo navegável",
+  },
+  {
+    n: "03",
+    icon: Wand2,
+    titulo: "Jornada da Noiva",
+    resumo:
+      "Fluxo guiado em etapas que ajuda a noiva a se encontrar — e entrega leads qualificados para a equipe.",
+    bullets: ["5 etapas", "Captação de favoritos", "Lead enviado ao Portal"],
+    to: "/jornada" as const,
+    cta: "Experimentar a jornada",
+  },
+  {
+    n: "04",
+    icon: LayoutDashboard,
+    titulo: "Portal Administrativo WM",
+    resumo:
+      "Painel privado para a equipe: visão dos leads, vestidos mais favoritados e gestão completa do acervo.",
+    bullets: ["KPIs e leads", "Cadastro de vestidos", "Publicação direta no site"],
+    to: "/portal" as const,
+    cta: "Abrir prévia do Portal",
+  },
+];
 
+const fase2 = [
+  "Integração com WhatsApp Business para envio automático de leads",
+  "Agendamento online de provas vinculado a cada unidade",
+  "Área da noiva com favoritos salvos e histórico de visitas",
+  "Relatórios mensais de performance por unidade e por estilo",
+];
+
+function Proposta() {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
 
-      {/* HERO */}
+      {/* HERO — CAPA DA PROPOSTA */}
       <section className="relative">
         <div className="grid lg:grid-cols-12 min-h-[calc(100vh-5rem)]">
-          <div className="lg:col-span-6 flex items-center px-6 lg:px-16 py-20 relative">
-            <div className="max-w-xl fade-up">
+          <div className="lg:col-span-7 flex items-center px-6 lg:px-16 py-20 relative">
+            <div className="max-w-2xl fade-up">
               <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-[11px] tracking-luxe uppercase text-foreground">
-                <Sparkles className="h-3 w-3 text-accent" /> Proposta · 2026
+                <Sparkles className="h-3 w-3 text-accent" /> Proposta interativa · 2026
               </div>
-              <h1 className="mt-8 font-display text-5xl md:text-6xl lg:text-[5.5rem] leading-[1.02] tracking-tight text-balance">
-                A nova experiência <span className="font-display-italic text-cocoa">digital</span> da Espaço WM
+              <h1 className="mt-8 font-display text-5xl md:text-6xl lg:text-[5rem] leading-[1.04] tracking-tight text-balance">
+                Uma nova presença <span className="font-display-italic text-cocoa">digital</span> para a Espaço WM.
               </h1>
-              <p className="mt-8 text-base text-muted-foreground max-w-md leading-relaxed">
-                Uma plataforma desenhada para acolher cada noiva desde o primeiro olhar até a prova final.
-                Coleções selecionadas, jornada guiada e atendimento próximo — agora em um só lugar.
+              <p className="mt-8 text-base text-muted-foreground max-w-xl leading-relaxed">
+                Esta não é a versão final do site — é uma proposta navegável. Aqui você pode percorrer cada
+                entrega: o novo site, o catálogo gerenciável, a jornada da noiva e o Portal Administrativo WM.
+                A ideia é sentir a experiência antes de decidir.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-6">
-                <Link
-                  to="/catalogo"
-                  className="group inline-flex items-center gap-3 bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors"
+                <a
+                  href="#entregas"
+                  className="group inline-flex items-center gap-3 bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
                 >
-                  Conhecer coleções
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
+                  O que será entregue
+                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                </a>
                 <Link
-                  to="/jornada"
+                  to="/escopo"
                   className="text-xs tracking-luxe uppercase border-b border-accent pb-1 hover:border-foreground transition-colors"
                 >
-                  Ver proposta
+                  Ver escopo completo
                 </Link>
               </div>
-              <div className="mt-16 flex items-center gap-8 text-xs tracking-luxe uppercase text-muted-foreground">
-                <span>3 unidades</span>
-                <span className="h-3 w-px bg-border" />
-                <span>+ 240 vestidos</span>
-                <span className="h-3 w-px bg-border" />
-                <span>Atendimento 1:1</span>
+              <div className="mt-16 grid grid-cols-3 gap-6 text-xs tracking-luxe uppercase text-muted-foreground max-w-lg">
+                <div>
+                  <p className="font-display text-3xl text-foreground normal-case tracking-tight">4</p>
+                  <p className="mt-1">Entregas principais</p>
+                </div>
+                <div>
+                  <p className="font-display text-3xl text-foreground normal-case tracking-tight">2</p>
+                  <p className="mt-1">Ambientes (site + portal)</p>
+                </div>
+                <div>
+                  <p className="font-display text-3xl text-foreground normal-case tracking-tight">3</p>
+                  <p className="mt-1">Unidades atendidas</p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="lg:col-span-6 relative bg-champagne/50 overflow-hidden">
+          <div className="lg:col-span-5 relative bg-champagne/50 overflow-hidden hidden lg:block">
             <img
               src={heroBride}
               alt="Noiva com vestido em tule champagne"
@@ -78,148 +142,209 @@ function Home() {
               width={1080}
               height={1920}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
             <div className="absolute bottom-10 left-10 right-10 text-background fade-in">
               <div className="gold-line w-16 mb-4 opacity-80" />
               <p className="font-display text-2xl max-w-sm">
-                "Cada vestido começa com uma conversa."
+                "Uma proposta pensada com calma, para algo que merece tempo."
               </p>
-              <p className="text-xs tracking-luxe uppercase mt-2 opacity-80">Equipe WM</p>
+              <p className="text-xs tracking-luxe uppercase mt-2 opacity-80">Para a equipe WM</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* COLEÇÕES */}
-      <section className="px-6 lg:px-16 py-28">
+      {/* RESUMO EXECUTIVO */}
+      <section className="px-6 lg:px-16 py-24 bg-champagne/40">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-xs tracking-luxe uppercase text-muted-foreground">Resumo da proposta</p>
+          <h2 className="font-display text-3xl md:text-5xl mt-4 leading-tight text-balance">
+            Dois ambientes que conversam entre si: um novo <span className="font-display-italic text-cocoa">site</span> para
+            as noivas e um <span className="font-display-italic text-cocoa">portal</span> para a equipe WM.
+          </h2>
+          <div className="mt-12 grid md:grid-cols-2 gap-6">
+            <div className="border border-border/70 bg-background p-8 lift">
+              <p className="text-xs tracking-luxe uppercase text-accent">Para a noiva</p>
+              <p className="font-display text-2xl mt-3">Site separado e elegante</p>
+              <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                Coleções, estilos, unidades e uma jornada guiada para encontrar o vestido certo —
+                com tom consultivo, sem pressão.
+              </p>
+            </div>
+            <div className="border border-border/70 bg-background p-8 lift">
+              <p className="text-xs tracking-luxe uppercase text-accent">Para a equipe WM</p>
+              <p className="font-display text-2xl mt-3">Portal Administrativo</p>
+              <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+                Painel privado para cadastrar vestidos, acompanhar leads e ver o que está performando —
+                sem precisar acionar o desenvolvedor.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ENTREGAS */}
+      <section id="entregas" className="px-6 lg:px-16 py-28">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-end justify-between mb-14 gap-8 flex-wrap">
             <div>
-              <p className="text-xs tracking-luxe uppercase text-muted-foreground">01 · Coleções</p>
-              <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-xl">
-                Vestidos escolhidos a dedo, em cada estação
+              <p className="text-xs tracking-luxe uppercase text-muted-foreground">O que será entregue</p>
+              <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-2xl text-balance">
+                Quatro entregas, cada uma com prévia navegável.
               </h2>
             </div>
             <Link
-              to="/catalogo"
+              to="/escopo"
               className="text-xs tracking-luxe uppercase border-b border-accent pb-1"
             >
-              Ver catálogo completo
+              Ver escopo completo
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {destaques.map((d) => (
-              <Link
-                key={d.id}
-                to="/vestido/$id"
-                params={{ id: d.id }}
-                className="group block lift"
-              >
-                <div className="aspect-[3/4] overflow-hidden bg-champagne/50">
-                  <img
-                    src={d.imagem}
-                    alt={d.nome}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="pt-5">
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="font-display text-2xl">{d.nome}</h3>
-                    <span className="text-xs tracking-luxe uppercase text-muted-foreground">
-                      {d.estilo}
-                    </span>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {deliverables.map((d) => {
+              const Icon = d.icon;
+              return (
+                <div
+                  key={d.n}
+                  className="group relative border border-border/70 bg-background p-8 lift flex flex-col"
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <div className="flex items-center gap-4">
+                      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/15 text-accent">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <p className="text-xs tracking-luxe uppercase text-muted-foreground">
+                        Entrega {d.n}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">{d.marca}</p>
+                  <h3 className="font-display text-3xl mt-6">{d.titulo}</h3>
+                  <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{d.resumo}</p>
+                  <ul className="mt-6 space-y-2">
+                    {d.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-sm">
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="gold-line w-12 my-8" />
+                  <Link
+                    to={d.to}
+                    className="mt-auto inline-flex items-center gap-2 text-xs tracking-luxe uppercase border-b border-accent pb-1 self-start hover:border-foreground transition-colors"
+                  >
+                    {d.cta}
+                    <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ESTILOS */}
+      {/* COMO FUNCIONA */}
       <section className="bg-champagne/50 px-6 lg:px-16 py-28">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs tracking-luxe uppercase text-muted-foreground">02 · Estilos</p>
-          <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-xl">
-            Encontre o seu, do clássico ao contemporâneo
+          <p className="text-xs tracking-luxe uppercase text-muted-foreground">Como os dois lados conversam</p>
+          <h2 className="font-display text-4xl md:text-5xl mt-4 max-w-2xl text-balance">
+            A equipe cadastra. O site publica. A noiva escolhe. O lead chega.
           </h2>
-          <div className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-px bg-border">
-            {["Princesa", "Sereia", "Evasê", "Reto", "Midi"].map((e, i) => (
-              <Link
-                key={e}
-                to="/catalogo"
-                search={{ estilo: e }}
-                className="bg-background p-8 hover:bg-accent/20 transition-colors group"
-              >
-                <p className="text-xs tracking-luxe uppercase text-muted-foreground">
-                  0{i + 1}
-                </p>
-                <p className="font-display text-2xl mt-8 group-hover:translate-x-1 transition-transform">
-                  {e}
-                </p>
-              </Link>
+          <div className="mt-14 grid md:grid-cols-4 gap-px bg-border">
+            {[
+              { n: "01", t: "Equipe cadastra", d: "Vestidos são adicionados pelo Portal WM, com fotos e detalhes." },
+              { n: "02", t: "Site publica", d: "O catálogo é atualizado automaticamente, com filtros prontos." },
+              { n: "03", t: "Noiva navega", d: "Ela explora, favorita e segue pela jornada guiada." },
+              { n: "04", t: "Lead chega", d: "O Portal recebe os favoritos e dados de contato para o atendimento." },
+            ].map((s) => (
+              <div key={s.n} className="bg-background p-8">
+                <p className="text-xs tracking-luxe uppercase text-muted-foreground">{s.n}</p>
+                <p className="font-display text-2xl mt-6">{s.t}</p>
+                <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{s.d}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* UNIDADES */}
+      {/* ESCOPO INCLUSO + FASE 2 */}
       <section className="px-6 lg:px-16 py-28">
-        <div className="mx-auto max-w-7xl grid lg:grid-cols-3 gap-10">
-          <div>
-            <p className="text-xs tracking-luxe uppercase text-muted-foreground">03 · Unidades</p>
-            <h2 className="font-display text-4xl md:text-5xl mt-4">
-              Três endereços, a mesma escuta atenta
-            </h2>
-          </div>
-          {[
-            { nome: "São Paulo", bairro: "Jardins", desc: "Atelier principal com coleção completa e provadores reservados." },
-            { nome: "Brasília", bairro: "Lago Sul", desc: "Curadoria especial para noivas da capital, com vestidos exclusivos." },
-            { nome: "Patos de Minas", bairro: "Centro", desc: "Atendimento íntimo e personalizado para quem vem do interior." },
-          ].map((u) => (
-            <div key={u.nome} className="border-t border-border pt-6 lift p-6 -m-6">
-              <p className="text-xs tracking-luxe uppercase text-accent-foreground">
-                {u.bairro}
-              </p>
-              <h3 className="font-display text-3xl mt-3">{u.nome}</h3>
-              <p className="text-sm text-muted-foreground mt-4 leading-relaxed">{u.desc}</p>
-              <div className="gold-line w-12 mt-6" />
+        <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-10">
+          <div className="border border-border/70 bg-background p-10">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="h-5 w-5 text-accent" />
+              <p className="text-xs tracking-luxe uppercase text-accent">Escopo incluso</p>
             </div>
-          ))}
+            <h3 className="font-display text-3xl mt-5">Tudo o que está nesta proposta</h3>
+            <ul className="mt-6 space-y-3">
+              {[
+                "Novo site institucional (4 páginas principais)",
+                "Catálogo de vestidos com filtros e detalhe",
+                "Jornada da Noiva em 5 etapas",
+                "Portal Administrativo WM com KPIs e leads",
+                "Cadastro e gestão de vestidos pela equipe",
+                "Identidade visual aplicada em todos os ambientes",
+                "Responsivo (celular, tablet, desktop)",
+              ].map((i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/escopo"
+              className="mt-8 inline-block text-xs tracking-luxe uppercase border-b border-accent pb-1"
+            >
+              Abrir escopo detalhado
+            </Link>
+          </div>
+          <div className="border border-accent/30 bg-accent/10 p-10">
+            <div className="flex items-center gap-3">
+              <Sparkles className="h-5 w-5 text-accent" />
+              <p className="text-xs tracking-luxe uppercase text-accent">Segunda fase</p>
+            </div>
+            <h3 className="font-display text-3xl mt-5">O que pode vir depois</h3>
+            <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+              Temas que fazem sentido evoluir num segundo momento, depois que o site e o portal
+              estiverem rodando e gerando dados.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {fase2.map((i) => (
+                <li key={i} className="flex items-start gap-2 text-sm">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* ATENDIMENTO CONSULTIVO */}
+      {/* FECHAMENTO CONSULTIVO */}
       <section className="px-6 lg:px-16 py-32">
-        <div className="mx-auto max-w-5xl rounded-3xl border border-accent/20 bg-accent/10 p-10 md:p-16 text-center">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary text-secondary-foreground">
-            <Sparkles className="h-6 w-6" />
-          </div>
-          <p className="text-xs tracking-luxe uppercase text-accent">
-            04 · Atendimento consultivo
-          </p>
-          <h2 className="font-display text-4xl md:text-6xl mt-6 leading-tight">
-            Mais que uma escolha de vestido,<br />
-            <span className="text-accent">uma escuta dedicada.</span>
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-xs tracking-luxe uppercase text-accent">Próximo passo</p>
+          <h2 className="font-display text-4xl md:text-6xl mt-6 leading-tight text-balance">
+            Esta proposta foi feita para ser <span className="font-display-italic text-cocoa">conversada</span>.
           </h2>
           <p className="mt-8 text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Cada noiva é recebida por uma consultora que acompanha desde a inspiração inicial até a última prova.
-            Sem pressa, sem pressão — apenas o tempo necessário para que tudo faça sentido.
+            Navegue à vontade pelas prévias, marque o que faz sentido e o que não faz. A partir do retorno
+            de vocês, ajustamos os detalhes e seguimos para o desenvolvimento do site definitivo e do Portal WM.
           </p>
-          <div className="mt-12 flex justify-center gap-6 flex-wrap">
+          <div className="mt-10 flex flex-wrap justify-center gap-6">
             <Link
-              to="/jornada"
-              className="bg-secondary text-secondary-foreground px-8 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
+              to="/escopo"
+              className="bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
             >
-              Começar minha jornada
+              Ver escopo completo
             </Link>
             <Link
               to="/catalogo"
               className="text-xs tracking-luxe uppercase border-b border-accent pb-1 self-center"
             >
-              Explorar coleções
+              Começar pelas prévias →
             </Link>
           </div>
         </div>

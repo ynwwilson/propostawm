@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { ESTILOS, MARCAS, UNIDADES } from "@/lib/dresses";
 import { ArrowLeft, Upload, Check } from "lucide-react";
 
@@ -26,6 +27,7 @@ function NovoVestido() {
   return (
     <div className="min-h-screen bg-champagne/40">
       <SiteHeader />
+      <PreviewBanner label="Prévia · Cadastro de vestido" description="Formulário usado pela equipe para publicar peças no site." />
       <section className="px-6 lg:px-16 pt-12 pb-28">
         <div className="mx-auto max-w-4xl">
           <Link

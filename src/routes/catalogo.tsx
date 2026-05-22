@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { dresses, ESTILOS, MARCAS, UNIDADES } from "@/lib/dresses";
 import { Heart, MessageCircle } from "lucide-react";
@@ -51,6 +52,7 @@ function Catalogo() {
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
+      <PreviewBanner label="Prévia · Site público" description="Catálogo gerenciável com filtros e favoritos." />
       <section className="px-6 lg:px-16 pt-16 pb-10">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs tracking-luxe uppercase text-muted-foreground">Coleções</p>

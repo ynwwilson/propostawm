@@ -1,10 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 
 const nav = [
-  { to: "/", label: "Início" },
-  { to: "/catalogo", label: "Coleções" },
-  { to: "/jornada", label: "Jornada da Noiva" },
-  { to: "/portal", label: "Portal WM" },
+  { to: "/", label: "Proposta" },
+  { to: "/escopo", label: "Escopo" },
+  { to: "/catalogo", label: "Prévia · Site" },
+  { to: "/portal", label: "Prévia · Portal WM" },
 ];
 
 export function SiteHeader() {
@@ -16,10 +16,10 @@ export function SiteHeader() {
           <span className="font-display text-2xl tracking-tight">Espaço</span>
           <span className="h-5 w-px bg-accent/70" />
           <span className="text-xs tracking-luxe uppercase text-muted-foreground group-hover:text-foreground transition-colors">
-            WM
+            WM · Proposta
           </span>
         </Link>
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden md:flex items-center gap-8">
           {nav.map((item) => {
             const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
             return (
@@ -39,10 +39,10 @@ export function SiteHeader() {
           })}
         </nav>
         <Link
-          to="/jornada"
+          to="/escopo"
           className="hidden md:inline-flex items-center gap-2 text-xs tracking-luxe uppercase border-b border-accent pb-1 hover:border-foreground transition-colors"
         >
-          Agendar visita
+          Ver escopo
         </Link>
       </div>
     </header>

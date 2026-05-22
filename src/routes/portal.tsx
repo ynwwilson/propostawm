@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { dresses } from "@/lib/dresses";
 import { Plus, TrendingUp, Users, Calendar, Heart } from "lucide-react";
 
@@ -26,6 +27,7 @@ function Portal() {
   return (
     <div className="min-h-screen flex flex-col bg-champagne/40">
       <SiteHeader />
+      <PreviewBanner label="Prévia · Portal Administrativo WM" description="Painel interno para gestão de vestidos e leads." />
       <section className="px-6 lg:px-16 pt-12 pb-20">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-end justify-between flex-wrap gap-6">
