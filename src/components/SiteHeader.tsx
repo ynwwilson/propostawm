@@ -1,5 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import wmLogo from "@/assets/wm-logo.png";
+
 
 const nav = [
   { to: "/", label: "Proposta" },
