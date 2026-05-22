@@ -19,7 +19,7 @@ export function PreviewBanner({ label, description }: PreviewBannerProps) {
         </div>
         <Link
           to="/"
-          className="tracking-luxe uppercase border-b border-accent pb-0.5 hover:border-foreground transition-colors"
+          className="tracking-luxe uppercase border-b border-accent pb-0.5 hover:border-foreground transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
         >
           ← Voltar para a proposta
         </Link>

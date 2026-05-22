@@ -45,17 +45,33 @@ const fadeUp = {
 
 const staggerParent: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.18, delayChildren: 0.15 } },
+  show: { transition: { staggerChildren: 0.28, delayChildren: 0.35 } },
 };
 
 const childFade: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.985, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 32, scale: 0.985, filter: "blur(8px)" },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
     filter: "blur(0px)",
-    transition: { duration: 1.1, ease: EASE },
+    transition: { duration: 1.3, ease: EASE_DEEP },
+  },
+};
+
+// Stagger for list items (escopo, plan items) — slow, cascading reveal
+const listStagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.25 } },
+};
+
+const listItem: Variants = {
+  hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.95, ease: EASE },
   },
 };
 
@@ -250,12 +266,12 @@ function Proposta() {
                 { n: "03", titulo: "Portal WM", texto: "Uma área interna para editar o acervo sem depender de programador." },
               ];
               const renderBloco = (b: typeof blocos[number]) => (
-                <div className="group relative bg-background p-10 lg:p-12 flex flex-col h-full w-full transition-colors duration-700 hover:bg-[var(--warm-white)]">
+                <div className="group relative bg-background p-10 lg:p-12 flex flex-col h-full w-full transition-colors duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[var(--warm-white)]">
                   <div className="flex items-baseline justify-between">
                     <span className="font-display-italic text-accent text-3xl">{b.n}</span>
-                    <span className="text-accent text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">◆</span>
+                    <span className="text-accent text-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]">◆</span>
                   </div>
-                  <div className="mt-6 h-px w-10 bg-accent/60 group-hover:w-16 transition-all duration-700" />
+                  <div className="mt-6 h-px w-10 bg-accent/60 group-hover:w-16 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)]" />
                   <h3 className="mt-6 font-display text-2xl md:text-[1.65rem] leading-tight text-espresso tracking-tight">
                     {b.titulo}
                   </h3>
@@ -270,7 +286,6 @@ function Proposta() {
                     initial="hidden"
                     whileInView="show"
                     viewport={VIEWPORT}
-                    transition={{ delayChildren: 0.7 }}
                     className="hidden md:grid mt-20 lg:mt-24 md:grid-cols-3 gap-px bg-cocoa/15 border border-cocoa/15"
                   >
                     {blocos.map((b) => (
@@ -359,15 +374,22 @@ function Proposta() {
                 Sem letras miúdas: tudo o que faz parte desta entrega.
               </p>
             </motion.div>
-            <motion.ul {...fadeUp} className="grid sm:grid-cols-2 gap-x-10 gap-y-4">
+            <motion.ul
+              variants={listStagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={VIEWPORT}
+              className="grid sm:grid-cols-2 gap-x-10 gap-y-4"
+            >
               {escopo.map((i) => (
-                <li
+                <motion.li
                   key={i}
+                  variants={listItem}
                   className="flex items-baseline gap-3 text-cocoa border-b border-cocoa/10 pb-4"
                 >
                   <span className="text-accent text-xs">◆</span>
                   <span className="text-base leading-7">{i}</span>
-                </li>
+                </motion.li>
               ))}
             </motion.ul>
           </div>
@@ -400,7 +422,7 @@ function Proposta() {
               const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => (
                 <div
                   className={[
-                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-700 ease-out h-full w-full",
+                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full w-full",
                     opts?.inCarousel ? "" : "hover:-translate-y-1",
                     p.sugerida
                       ? `bg-warm-white border border-accent/40 shadow-elegant ring-1 ring-accent/15 ${opts?.inCarousel ? "" : "md:-translate-y-4"}`
@@ -444,7 +466,7 @@ function Proposta() {
                       <button
                         type="button"
                         className={[
-                          "w-full text-[11px] tracking-luxe uppercase py-3.5 transition-all duration-500",
+                          "w-full text-[11px] tracking-luxe uppercase py-3.5 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
                           p.sugerida
                             ? "bg-espresso text-warm-white hover:bg-cocoa"
                             : "border border-cocoa/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-warm-white",
@@ -516,7 +538,7 @@ function Proposta() {
             <div className="mt-12 flex justify-center">
               <Link
                 to="/escopo"
-                className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors"
+                className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 Ver escopo completo →
               </Link>
