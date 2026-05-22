@@ -266,16 +266,25 @@ function Proposta() {
         </section>
 
         {/* 5. INVESTIMENTO */}
-        <section className="px-6 lg:px-20 py-28 lg:py-40 bg-[var(--champagne)]">
-          <div className="mx-auto max-w-6xl">
-            <motion.div {...fadeUp} className="max-w-2xl">
-              <Eyebrow>Investimento</Eyebrow>
-              <h2 className="mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight text-espresso text-balance">
-                Três caminhos possíveis, <span className="font-display-italic">no seu tempo</span>.
+        <section className="relative px-6 lg:px-20 py-32 lg:py-44 bg-[var(--champagne)] overflow-hidden">
+          {/* Decorative top hairline */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+          {/* Soft radial wash */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(216,199,168,0.35),transparent_60%)]" />
+
+          <div className="relative mx-auto max-w-6xl">
+            <motion.div {...fadeUp} className="max-w-2xl mx-auto text-center">
+              <Eyebrow>
+                <span className="mx-auto">Investimento</span>
+              </Eyebrow>
+              <h2 className="mt-8 font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-espresso text-balance">
+                Possibilidades de{" "}
+                <span className="font-display-italic">investimento</span>.
               </h2>
-              <p className="mt-6 text-base leading-8 text-cocoa/75 max-w-xl">
-                Cada opção entrega uma versão completa da proposta — muda apenas
-                a profundidade do refinamento e dos recursos.
+              <p className="mt-8 text-base md:text-lg leading-8 text-cocoa/75 max-w-2xl mx-auto">
+                Três caminhos possíveis para estruturar a nova presença digital
+                da Espaço WM, de forma mais enxuta ou mais completa, conforme a
+                necessidade.
               </p>
             </motion.div>
 
@@ -284,58 +293,95 @@ function Proposta() {
               initial="hidden"
               whileInView="show"
               viewport={VIEWPORT}
-              className="mt-16 grid md:grid-cols-3 gap-6 items-stretch"
+              className="mt-20 grid md:grid-cols-3 gap-6 lg:gap-7 items-stretch"
             >
               {planos.map((p) => (
                 <motion.article
                   key={p.nome}
                   variants={childFade}
                   className={[
-                    "relative flex flex-col p-8 lg:p-10 transition-all duration-700",
+                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-700 ease-out",
+                    "hover:-translate-y-1",
                     p.sugerida
-                      ? "bg-warm-white border border-accent/50 shadow-elegant md:-translate-y-3"
-                      : "bg-warm-white/60 border border-cocoa/15",
+                      ? "bg-warm-white border border-accent/40 shadow-elegant md:-translate-y-4 ring-1 ring-accent/15"
+                      : "bg-warm-white/70 border border-cocoa/15 hover:bg-warm-white hover:shadow-elegant",
                   ].join(" ")}
                 >
+                  {/* Recommended glow */}
                   {p.sugerida && (
-                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-espresso text-warm-white text-[10px] tracking-luxe uppercase px-4 py-1.5">
-                      Opção sugerida
+                    <div className="pointer-events-none absolute -inset-px bg-gradient-to-b from-accent/15 via-transparent to-transparent" />
+                  )}
+
+                  {p.sugerida && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-espresso text-warm-white text-[10px] tracking-luxe uppercase px-5 py-2 shadow-sm">
+                      Mais indicada
                     </span>
                   )}
 
-                  <p className="text-[11px] tracking-luxe uppercase text-cocoa/65">
-                    Opção · {p.nome}
-                  </p>
-                  <p className="mt-5 font-display text-4xl md:text-5xl text-espresso">
-                    {p.valor}
-                  </p>
-                  <p className="mt-5 text-sm leading-7 text-cocoa/80 min-h-[5rem]">
-                    {p.descricao}
-                  </p>
+                  <div className="relative">
+                    <div className="flex items-baseline justify-between">
+                      <p className="font-display text-2xl md:text-3xl text-espresso tracking-tight">
+                        {p.nome}
+                      </p>
+                      <span className="font-display-italic text-accent text-sm">
+                        ◆
+                      </span>
+                    </div>
 
-                  <ul className="mt-6 space-y-2 border-t border-cocoa/10 pt-6">
-                    {p.itens.map((i) => (
-                      <li
-                        key={i}
-                        className="flex items-baseline gap-3 text-sm text-cocoa/85"
+                    <p className="mt-8 font-display text-5xl md:text-[3.25rem] text-espresso leading-none">
+                      {p.valor}
+                    </p>
+                    <p className="mt-3 text-[10px] tracking-luxe uppercase text-cocoa/55">
+                      Projeto completo
+                    </p>
+
+                    <div className="mt-8 h-px w-full bg-gradient-to-r from-accent/40 via-cocoa/15 to-transparent" />
+
+                    <p className="mt-7 text-sm leading-7 text-cocoa/85 min-h-[5.5rem]">
+                      {p.descricao}
+                    </p>
+
+                    <ul className="mt-7 space-y-3">
+                      {p.itens.map((i) => (
+                        <li
+                          key={i}
+                          className="flex items-baseline gap-3 text-sm text-cocoa/85"
+                        >
+                          <span className="text-accent text-[9px] translate-y-[-1px]">
+                            ◆
+                          </span>
+                          <span className="leading-6">{i}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-10 pt-8 border-t border-cocoa/10">
+                      <button
+                        type="button"
+                        className={[
+                          "w-full text-[11px] tracking-luxe uppercase py-3.5 transition-all duration-500",
+                          p.sugerida
+                            ? "bg-espresso text-warm-white hover:bg-cocoa"
+                            : "border border-cocoa/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-warm-white",
+                        ].join(" ")}
                       >
-                        <span className="text-accent text-[10px]">◆</span>
-                        <span className="leading-6">{i}</span>
-                      </li>
-                    ))}
-                  </ul>
+                        {p.cta}
+                      </button>
+                    </div>
+                  </div>
                 </motion.article>
               ))}
             </motion.div>
 
             <motion.p
               {...fadeUp}
-              className="mt-10 text-xs tracking-luxe uppercase text-cocoa/55 text-center"
+              className="mt-12 text-xs tracking-luxe uppercase text-cocoa/55 text-center"
             >
-              Valores referentes ao projeto completo — condições de pagamento ajustadas em conversa.
+              Valores referentes ao projeto completo · condições de pagamento ajustadas em conversa
             </motion.p>
           </div>
         </section>
+
 
         {/* 6. PRÓXIMO PASSO LEVE */}
         <section className="px-6 lg:px-20 py-32 lg:py-40 bg-background">
