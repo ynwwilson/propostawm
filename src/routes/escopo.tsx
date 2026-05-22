@@ -59,20 +59,8 @@ const blocos = [
     ],
     naoInclui: ["Reserva online de prova (fase 2)"],
   },
-  {
-    icon: BarChart3,
-    titulo: "Gestão de Produtos e Acervo",
-    descricao:
-      "Toda a operação do catálogo passa pelo Portal WM: cadastro, edição, status, destaques e dados simples do acervo — sem depender de programador.",
-    inclui: [
-      "Cadastro e edição completa de cada vestido",
-      "Upload e organização de imagens",
-      "Controle de status (disponível, reservado, em prova, etc.)",
-      "Definição de destaques na home e no catálogo",
-      "Dados simples: vestidos mais acessados e mais favoritados",
-    ],
-    naoInclui: ["CRM, pipeline ou funil comercial (fora do escopo)"],
-  },
+
+
 
   {
     icon: LayoutDashboard,
