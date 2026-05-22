@@ -238,20 +238,15 @@ function Escopo() {
           <h2 className="font-display text-4xl md:text-5xl mt-5 leading-tight text-balance">
             Se fizer sentido, seguimos juntos.
           </h2>
-          <div className="mt-10 flex flex-wrap justify-center gap-6">
+          <div className="mt-10 flex justify-center">
             <Link
               to="/"
               className="bg-secondary text-secondary-foreground px-7 py-4 text-xs tracking-luxe uppercase hover:bg-secondary/85 transition-colors rounded-2xl"
             >
               Voltar para a proposta
             </Link>
-            <Link
-              to="/portal"
-              className="text-xs tracking-luxe uppercase border-b border-accent pb-1 self-center"
-            >
-              Ver prévia do Portal WM →
-            </Link>
           </div>
+
         </div>
       </section>
 
