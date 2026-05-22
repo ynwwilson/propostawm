@@ -478,7 +478,7 @@ function Proposta() {
                     </ul>
                     <div className="mt-10 pt-8 border-t border-cocoa/10">
                       <a
-                        href="https://wa.me/5534992761076?text=Ol%C3%A1%21%20Vi%20a%20proposta%20da%20nova%20plataforma%20digital%20da%20Espa%C3%A7o%20WM%20e%20gostaria%20de%20conversar%20sobre%20o%20projeto."
+                        href={p.ctaHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={[
