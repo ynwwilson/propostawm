@@ -422,11 +422,13 @@ function Proposta() {
                   className="group cursor-pointer"
                 >
                   <div className="relative aspect-[3/4] overflow-hidden bg-[var(--nude)] border border-accent/20">
-                    <img
+                    <AnimatedImage
                       src={v.img}
                       alt={v.n}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.06]"
+                      variant="veilReveal"
+                      hover={false}
+                      className="absolute inset-0 h-full w-full"
+                      imageClassName="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.6s] ease-out group-hover:scale-[1.06]"
                     />
                     {/* Hover wash dourado */}
                     <div className="absolute inset-0 bg-gradient-to-t from-espresso/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -595,7 +597,14 @@ function Proposta() {
         {/* 10. FECHAMENTO */}
         <section className="relative overflow-hidden bg-espresso text-warm-white">
           <div className="absolute inset-0 opacity-30">
-            <img src={detailLace} alt="" className="h-full w-full object-cover" />
+            <AnimatedImage
+              src={detailLace}
+              alt=""
+              variant="floatParallax"
+              hover={false}
+              className="h-full w-full"
+              imageClassName="h-full w-full object-cover"
+            />
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-espresso/85 via-espresso/95 to-espresso" />
           <div className="relative mx-auto max-w-4xl px-6 lg:px-20 py-40 lg:py-52 text-center">
