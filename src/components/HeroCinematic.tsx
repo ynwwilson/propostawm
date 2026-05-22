@@ -190,7 +190,7 @@ export function HeroCinematic() {
             <span className="hero-rule h-px w-20 bg-[#d8c7a8] block" />
           </div>
           {/* Title */}
-          <h1 className="hero-title-wrap mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(5rem,16vw,14rem)]">
+          <h1 className="hero-title-wrap mt-8 md:mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(6.5rem,22vw,14rem)]">
             <ShinyText
               text="WM Noivas"
               speed={4}
@@ -213,14 +213,13 @@ export function HeroCinematic() {
           </div>
 
           {/* Subtitle */}
-          <p className="hero-sub mt-8 lg:mt-10 max-w-[560px] text-lg lg:text-xl leading-[1.7] text-warm-white/85 font-light">
+          <p className="hero-sub mt-8 lg:mt-10 max-w-[560px] text-base md:text-lg lg:text-xl leading-[1.7] text-warm-white/85 font-light">
             Uma nova experiência digital para apresentar a marca com mais{" "}
-            <span className="font-display-italic text-[#e8d5b5]">refinamento</span>
-            {" "}— e dar mais autonomia na gestão do acervo.
+            <span className="font-display-italic text-[#e8d5b5]">refinamento</span>.
           </p>
 
-          {/* Chips */}
-          <ul className="mt-12 lg:mt-16 flex flex-wrap justify-center gap-x-8 gap-y-3 items-center">
+          {/* Chips — apenas desktop/tablet */}
+          <ul className="hidden md:flex mt-12 lg:mt-16 flex-wrap justify-center gap-x-8 gap-y-3 items-center">
             {chips.map((c, i) => (
               <li key={c} className="hero-chip flex items-center gap-8">
                 <span className="flex items-baseline gap-3 text-warm-white/85">
@@ -242,8 +241,8 @@ export function HeroCinematic() {
 
 
 
-      {/* Bottom meta line */}
-      <div className="hero-meta absolute bottom-10 lg:bottom-12 left-6 lg:left-16 right-6 lg:right-16 z-10 flex items-end justify-between gap-6 text-warm-white/65">
+      {/* Bottom meta line — oculto no mobile para limpar o hero */}
+      <div className="hero-meta absolute bottom-10 lg:bottom-12 left-6 lg:left-16 right-6 lg:right-16 z-10 hidden sm:flex items-end justify-between gap-6 text-warm-white/65">
         <p className="text-[10px] sm:text-[11px] tracking-luxe uppercase">
           03 entregas principais
           <span className="mx-3 text-[#d8c7a8]/70">·</span>
