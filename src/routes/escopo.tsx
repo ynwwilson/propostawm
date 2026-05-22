@@ -402,7 +402,7 @@ function Escopo() {
       </section>
 
       {/* PROCESSO */}
-      <section className="px-6 lg:px-16 py-24">
+      <section className="hidden md:block px-6 lg:px-16 py-24">
         <div className="mx-auto max-w-5xl">
           <motion.div {...fadeUp} className="flex items-center gap-3">
             <ShieldCheck className="h-5 w-5 text-accent" />
