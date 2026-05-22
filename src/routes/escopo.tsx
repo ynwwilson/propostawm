@@ -5,7 +5,7 @@ import {
   Store,
   LayoutDashboard,
   Heart,
-  BarChart3,
+  
   Sparkles,
   ShieldCheck,
 } from "lucide-react";
