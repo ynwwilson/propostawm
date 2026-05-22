@@ -54,13 +54,14 @@ export function HeroCinematic() {
         return;
       }
 
-      // Video reveal
+      // Video reveal — abertura lenta e progressiva
       gsap.to(video, {
         scale: 1.02,
         filter: "brightness(1)",
-        duration: 4,
-        ease: "power2.out",
+        duration: 5.5,
+        ease: "expo.out",
       });
+
 
       // Parallax + scrub
       if (video) {
@@ -77,30 +78,31 @@ export function HeroCinematic() {
         });
       }
 
-      // Choreographed entrance
+      // Choreographed entrance — cinematográfico, sem pressa
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.from(".hero-eyebrow", { opacity: 0, y: 14, duration: 0.9, delay: 0.2 })
-        .from(".hero-rule", { scaleX: 0, transformOrigin: "left center", duration: 0.9 }, "-=0.4")
+      tl.from(".hero-eyebrow", { opacity: 0, y: 18, duration: 1.2, delay: 0.3 })
+        .from(".hero-rule", { scaleX: 0, transformOrigin: "left center", duration: 1.4, ease: "expo.out" }, "-=0.6")
         .from(
           ".hero-title-wrap",
           {
             opacity: 0,
-            y: 60,
+            y: 80,
             clipPath: "inset(100% 0 0 0)",
-            duration: 1.4,
+            duration: 1.8,
             ease: "expo.out",
           },
-          "-=0.3"
-        )
-        .from(".hero-sub", { opacity: 0, y: 20, duration: 0.9 }, "-=0.7")
-        .from(
-          ".hero-chip",
-          { opacity: 0, y: 16, duration: 0.7, stagger: 0.12 },
           "-=0.5"
         )
-        .from(".hero-meta", { opacity: 0, y: 14, duration: 0.7 }, "-=0.3")
-        .from(".hero-scroll", { opacity: 0, y: 10, duration: 0.8 }, "-=0.3");
+        .from(".hero-sub", { opacity: 0, y: 24, filter: "blur(8px)", duration: 1.2 }, "-=0.9")
+        .from(
+          ".hero-chip",
+          { opacity: 0, y: 20, duration: 1.0, stagger: 0.18 },
+          "-=0.7"
+        )
+        .from(".hero-meta", { opacity: 0, y: 16, duration: 1.0 }, "-=0.5")
+        .from(".hero-scroll", { opacity: 0, y: 12, duration: 1.1 }, "-=0.5");
+
 
       // Parallax exit on scroll
       gsap.to(".hero-content", {
