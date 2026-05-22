@@ -9,38 +9,127 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as JornadaRouteImport } from './routes/jornada'
+import { Route as CatalogoRouteImport } from './routes/catalogo'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VestidoIdRouteImport } from './routes/vestido.$id'
+import { Route as PortalVestidoNovoRouteImport } from './routes/portal.vestido.novo'
 
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JornadaRoute = JornadaRouteImport.update({
+  id: '/jornada',
+  path: '/jornada',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogoRoute = CatalogoRouteImport.update({
+  id: '/catalogo',
+  path: '/catalogo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VestidoIdRoute = VestidoIdRouteImport.update({
+  id: '/vestido/$id',
+  path: '/vestido/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalVestidoNovoRoute = PortalVestidoNovoRouteImport.update({
+  id: '/vestido/novo',
+  path: '/vestido/novo',
+  getParentRoute: () => PortalRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalogo': typeof CatalogoRoute
+  '/jornada': typeof JornadaRoute
+  '/portal': typeof PortalRouteWithChildren
+  '/vestido/$id': typeof VestidoIdRoute
+  '/portal/vestido/novo': typeof PortalVestidoNovoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalogo': typeof CatalogoRoute
+  '/jornada': typeof JornadaRoute
+  '/portal': typeof PortalRouteWithChildren
+  '/vestido/$id': typeof VestidoIdRoute
+  '/portal/vestido/novo': typeof PortalVestidoNovoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/catalogo': typeof CatalogoRoute
+  '/jornada': typeof JornadaRoute
+  '/portal': typeof PortalRouteWithChildren
+  '/vestido/$id': typeof VestidoIdRoute
+  '/portal/vestido/novo': typeof PortalVestidoNovoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/catalogo'
+    | '/jornada'
+    | '/portal'
+    | '/vestido/$id'
+    | '/portal/vestido/novo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/catalogo'
+    | '/jornada'
+    | '/portal'
+    | '/vestido/$id'
+    | '/portal/vestido/novo'
+  id:
+    | '__root__'
+    | '/'
+    | '/catalogo'
+    | '/jornada'
+    | '/portal'
+    | '/vestido/$id'
+    | '/portal/vestido/novo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CatalogoRoute: typeof CatalogoRoute
+  JornadaRoute: typeof JornadaRoute
+  PortalRoute: typeof PortalRouteWithChildren
+  VestidoIdRoute: typeof VestidoIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jornada': {
+      id: '/jornada'
+      path: '/jornada'
+      fullPath: '/jornada'
+      preLoaderRoute: typeof JornadaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogo': {
+      id: '/catalogo'
+      path: '/catalogo'
+      fullPath: '/catalogo'
+      preLoaderRoute: typeof CatalogoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +137,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vestido/$id': {
+      id: '/vestido/$id'
+      path: '/vestido/$id'
+      fullPath: '/vestido/$id'
+      preLoaderRoute: typeof VestidoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal/vestido/novo': {
+      id: '/portal/vestido/novo'
+      path: '/vestido/novo'
+      fullPath: '/portal/vestido/novo'
+      preLoaderRoute: typeof PortalVestidoNovoRouteImport
+      parentRoute: typeof PortalRoute
+    }
   }
 }
 
+interface PortalRouteChildren {
+  PortalVestidoNovoRoute: typeof PortalVestidoNovoRoute
+}
+
+const PortalRouteChildren: PortalRouteChildren = {
+  PortalVestidoNovoRoute: PortalVestidoNovoRoute,
+}
+
+const PortalRouteWithChildren =
+  PortalRoute._addFileChildren(PortalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CatalogoRoute: CatalogoRoute,
+  JornadaRoute: JornadaRoute,
+  PortalRoute: PortalRouteWithChildren,
+  VestidoIdRoute: VestidoIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
