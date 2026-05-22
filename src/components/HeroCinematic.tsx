@@ -16,14 +16,15 @@ export function HeroCinematic() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const ctx = gsap.context(() => {
+      const scope = root.current!;
       const words = gsap.utils.toArray<HTMLElement>(".hero-word");
-      const eyebrow = root.current?.querySelectorAll(".hero-eyebrow");
-      const topLine = root.current?.querySelector(".hero-topline");
-      const underline = root.current?.querySelector(".hero-underline");
-      const subtitle = root.current?.querySelector(".hero-subtitle");
-      const corner = root.current?.querySelector(".hero-corner");
-      const hint = scrollHintRef.current;
-      const video = videoRef.current;
+      const eyebrow = scope.querySelector(".hero-eyebrow")!;
+      const topLine = scope.querySelector(".hero-topline")!;
+      const underline = scope.querySelector(".hero-underline")!;
+      const subtitle = scope.querySelector(".hero-subtitle")!;
+      const corner = scope.querySelector(".hero-corner")!;
+      const hint = scrollHintRef.current!;
+      const video = videoRef.current!;
 
       // estado inicial
       gsap.set(words, {
