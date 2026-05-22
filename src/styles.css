@@ -39,7 +39,12 @@
   --color-cream: var(--cream);
   --color-cocoa: var(--cocoa);
   --color-ink: var(--ink);
+  --color-rose: var(--rose);
+  --color-nude: var(--nude);
+  --color-espresso: var(--espresso);
+  --color-warm-white: var(--warm-white);
 }
+
 
 :root {
   --radius: 0.5rem;
