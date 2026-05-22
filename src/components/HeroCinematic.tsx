@@ -167,7 +167,7 @@ export function HeroCinematic() {
               <span className="h-px w-8 bg-accent" />
             </p>
 
-            <h1 className="mt-10 font-display text-[clamp(4rem,12vw,10rem)] font-light leading-[0.95] tracking-tight text-warm-white">
+            <h1 className="hero-title-wrap mt-10 font-display text-[clamp(4rem,12vw,10rem)] font-light leading-[0.95] tracking-tight text-warm-white">
               <BlurText
                 text="WM Noiva"
                 animateBy="words"
