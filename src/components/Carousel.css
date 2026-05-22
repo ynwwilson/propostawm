@@ -57,3 +57,34 @@
 .wm-carousel-indicator.inactive {
   background-color: rgba(64, 38, 23, 0.2);
 }
+
+.wm-carousel-next {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(64, 38, 23, 0.18);
+  background-color: rgba(250, 246, 240, 0.85);
+  backdrop-filter: blur(6px);
+  color: var(--espresso, #2a1a10);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(64, 38, 23, 0.08);
+  transition: background-color 200ms, transform 200ms, border-color 200ms;
+}
+
+.wm-carousel-next:hover {
+  background-color: var(--warm-white, #faf6f0);
+  border-color: var(--accent, #b89968);
+  transform: translateY(-50%) translateX(2px);
+}
+
+.wm-carousel-next:active {
+  transform: translateY(-50%) scale(0.94);
+}

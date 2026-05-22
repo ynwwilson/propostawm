@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { motion, useMotionValue } from "motion/react";
+import { ChevronRight } from "lucide-react";
 import "./Carousel.css";
+
 
 export type CarouselSlide = {
   id: string | number;
@@ -176,6 +178,21 @@ export default function Carousel({
         ))}
       </motion.div>
 
+      <button
+        type="button"
+        aria-label="Próximo slide"
+        className="wm-carousel-next"
+        onClick={() => {
+          const max = itemsForRender.length - 1;
+          setPosition((prev) => {
+            if (loop) return Math.min(prev + 1, max);
+            return prev >= items.length - 1 ? 0 : prev + 1;
+          });
+        }}
+      >
+        <ChevronRight size={18} strokeWidth={1.5} />
+      </button>
+
       <div className="wm-carousel-indicators-container">
         <div className="wm-carousel-indicators">
           {items.map((_, index) => (
@@ -191,6 +208,7 @@ export default function Carousel({
           ))}
         </div>
       </div>
+
     </div>
   );
 }
