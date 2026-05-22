@@ -179,14 +179,15 @@ export function HeroCinematic() {
 
 
       {/* Content */}
-      <div className="hero-content relative z-10 h-full px-8 lg:px-24 xl:px-32 flex items-center">
-        <div className="w-full max-w-[1100px]">
+      <div className="hero-content relative z-10 h-full px-8 lg:px-24 xl:px-32 flex items-center justify-center text-center">
+        <div className="w-full max-w-[1100px] mx-auto flex flex-col items-center">
           {/* Eyebrow */}
           <div className="hero-eyebrow flex items-center gap-5 text-warm-white/80">
             <span className="hero-rule h-px w-20 bg-[#d8c7a8] block" />
             <p className="text-[11px] sm:text-xs tracking-[0.4em] uppercase font-light">
               Espaço WM · Proposta Visual
             </p>
+            <span className="hero-rule h-px w-20 bg-[#d8c7a8] block" />
           </div>
           {/* Title */}
           <h1 className="hero-title-wrap mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(5rem,16vw,14rem)]">
@@ -203,14 +204,12 @@ export function HeroCinematic() {
 
 
           {/* Decorative line */}
-          <div className="mt-10 lg:mt-12 flex items-center gap-5">
-            <span className="hero-rule block h-px w-24 lg:w-40 bg-gradient-to-r from-[#d8c7a8] via-[#d8c7a8]/60 to-transparent" />
+          <div className="mt-10 lg:mt-12 flex items-center justify-center gap-5">
+            <span className="hero-rule block h-px w-24 lg:w-40 bg-gradient-to-r from-transparent via-[#d8c7a8]/60 to-[#d8c7a8]" />
             <span className="hero-eyebrow text-xs tracking-luxe text-[#d8c7a8]/80">
               ✦
             </span>
-            <span className="hero-eyebrow text-[10px] tracking-luxe uppercase text-warm-white/45 hidden md:inline">
-              Uma abertura editorial
-            </span>
+            <span className="hero-rule block h-px w-24 lg:w-40 bg-gradient-to-l from-transparent via-[#d8c7a8]/60 to-[#d8c7a8]" />
           </div>
 
           {/* Subtitle */}
@@ -221,7 +220,7 @@ export function HeroCinematic() {
           </p>
 
           {/* Chips */}
-          <ul className="mt-12 lg:mt-16 flex flex-wrap gap-x-8 gap-y-3 items-center">
+          <ul className="mt-12 lg:mt-16 flex flex-wrap justify-center gap-x-8 gap-y-3 items-center">
             {chips.map((c, i) => (
               <li key={c} className="hero-chip flex items-center gap-8">
                 <span className="flex items-baseline gap-3 text-warm-white/85">
