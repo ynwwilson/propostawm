@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { VeilOverlay } from "@/components/VeilOverlay";
 import heroBridal from "@/assets/hero-bridal.jpg";
 import detailLace from "@/assets/detail-lace.jpg";
 import boutique from "@/assets/boutique.jpg";
@@ -29,17 +30,54 @@ export const Route = createFileRoute("/")({
 });
 
 const EASE = [0.2, 0.7, 0.2, 1] as [number, number, number, number];
+const VIEWPORT = { once: true, margin: "-80px" } as const;
+
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
+  viewport: VIEWPORT,
   transition: { duration: 0.9, ease: EASE },
 } as const;
+
+const staggerParent: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const childFade: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+};
+
+const imgReveal: Variants = {
+  hidden: { opacity: 0, scale: 1.08 },
+  show: { opacity: 1, scale: 1, transition: { duration: 1.4, ease: EASE } },
+};
+
+function GrowLine({ className = "" }: { className?: string }) {
+  return (
+    <motion.span
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      viewport={VIEWPORT}
+      transition={{ duration: 1.1, ease: EASE }}
+      style={{ transformOrigin: "left" }}
+      className={`block h-px bg-accent/70 origin-left ${className}`}
+    />
+  );
+}
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-[11px] tracking-luxe uppercase text-cocoa/70 flex items-center gap-3">
-      <span className="h-px w-8 bg-accent" />
+      <motion.span
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={VIEWPORT}
+        transition={{ duration: 0.9, ease: EASE }}
+        style={{ transformOrigin: "left" }}
+        className="h-px w-8 bg-accent block"
+      />
       {children}
     </p>
   );
