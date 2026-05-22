@@ -537,7 +537,7 @@ function Proposta() {
 
 
         {/* 6. PRÓXIMO PASSO LEVE */}
-        <section className="px-6 lg:px-20 py-32 lg:py-40 bg-background">
+        <section className="px-6 lg:px-20 py-20 md:py-32 lg:py-40 bg-background">
           <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
             <Eyebrow>
               <span className="mx-auto">Próximo passo</span>
@@ -546,10 +546,20 @@ function Proposta() {
               Pensado para <span className="font-display-italic">durar</span>.
             </h2>
             <p className="mt-8 text-base leading-8 text-cocoa/75">
-              A proposta fica registrada aqui para consulta. Qualquer dúvida ou
-              ajuste, é só nos chamar quando preferirem.
+              Podemos ajustar o escopo conforme fizer mais sentido para a rotina
+              da Espaço WM.
             </p>
-            <div className="mt-12 flex justify-center">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a
+                href={waHref(
+                  "Olá! Vi a proposta da nova plataforma digital da Espaço WM e gostaria de conversar sobre o projeto."
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs tracking-luxe uppercase text-warm-white bg-espresso px-7 py-3 hover:bg-cocoa transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              >
+                Conversar no WhatsApp
+              </a>
               <Link
                 to="/escopo"
                 className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -558,7 +568,7 @@ function Proposta() {
               </Link>
             </div>
 
-            <p className="mt-16 font-display-italic text-accent text-lg">
+            <p className="mt-14 md:mt-16 font-display-italic text-accent text-lg">
               ForYouCode · para Espaço WM
             </p>
           </motion.div>
