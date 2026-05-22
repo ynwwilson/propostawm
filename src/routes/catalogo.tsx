@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { dresses, ESTILOS, MARCAS, UNIDADES } from "@/lib/dresses";
 import { Heart, MessageCircle } from "lucide-react";

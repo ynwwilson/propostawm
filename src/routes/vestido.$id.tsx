@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { SiteFooter } from "@/components/SiteFooter";
 import { getDress, dresses } from "@/lib/dresses";
 import { Heart, Send, ArrowLeft } from "lucide-react";

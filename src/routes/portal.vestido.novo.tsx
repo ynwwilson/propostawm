@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { ESTILOS, MARCAS, UNIDADES } from "@/lib/dresses";
 import { ArrowLeft, Upload, Check } from "lucide-react";
 

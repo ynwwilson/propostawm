@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PreviewBanner } from "@/components/PreviewBanner";
 import { dresses } from "@/lib/dresses";
 import { Plus, TrendingUp, Users, Calendar, Heart } from "lucide-react";
 
