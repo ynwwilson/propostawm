@@ -433,11 +433,13 @@ function Proposta() {
             </motion.div>
 
             {(() => {
-              const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => (
+              const renderPlano = (p: typeof planos[number], opts?: { inCarousel?: boolean }) => {
+                const itensVisiveis = opts?.inCarousel ? p.itens.slice(0, 4) : p.itens;
+                return (
                 <div
                   className={[
-                    "group relative flex flex-col p-9 lg:p-11 transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full w-full",
-                    opts?.inCarousel ? "" : "hover:-translate-y-1",
+                    "group relative flex flex-col transition-all duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full w-full",
+                    opts?.inCarousel ? "p-7" : "p-9 lg:p-11 hover:-translate-y-1",
                     p.sugerida
                       ? `bg-warm-white border border-accent/40 shadow-elegant ring-1 ring-accent/15 ${opts?.inCarousel ? "" : "md:-translate-y-4"}`
                       : "bg-warm-white/70 border border-cocoa/15 hover:bg-warm-white hover:shadow-elegant",
@@ -451,36 +453,45 @@ function Proposta() {
                       Mais indicada
                     </span>
                   )}
-                  <div className="relative">
+                  <div className="relative flex flex-col h-full">
                     <div className="flex items-baseline justify-between">
                       <p className="font-display text-2xl md:text-3xl text-espresso tracking-tight">
                         {p.nome}
                       </p>
                       <span className="font-display-italic text-accent text-sm">◆</span>
                     </div>
-                    <p className="mt-8 font-display text-5xl md:text-[3.25rem] text-espresso leading-none">
+                    <p className={`${opts?.inCarousel ? "mt-5" : "mt-8"} font-display text-4xl md:text-[3.25rem] text-espresso leading-none`}>
                       {p.valor}
                     </p>
                     <p className="mt-3 text-[10px] tracking-luxe uppercase text-cocoa/55">
                       Projeto completo
                     </p>
-                    <div className="mt-8 h-px w-full bg-gradient-to-r from-accent/40 via-cocoa/15 to-transparent" />
-                    <p className="mt-7 text-sm leading-7 text-cocoa/85 min-h-[5.5rem]">
+                    <div className={`${opts?.inCarousel ? "mt-5" : "mt-8"} h-px w-full bg-gradient-to-r from-accent/40 via-cocoa/15 to-transparent`} />
+                    <p className={`${opts?.inCarousel ? "mt-4 text-[13px] leading-6" : "mt-7 text-sm leading-7 min-h-[5.5rem]"} text-cocoa/85`}>
                       {p.descricao}
                     </p>
-                    <ul className="mt-7 space-y-3">
-                      {p.itens.map((i) => (
+                    <ul className={`${opts?.inCarousel ? "mt-5 space-y-2" : "mt-7 space-y-3"}`}>
+                      {itensVisiveis.map((i) => (
                         <li key={i} className="flex items-baseline gap-3 text-sm text-cocoa/85">
                           <span className="text-accent text-[9px] translate-y-[-1px]">◆</span>
                           <span className="leading-6">{i}</span>
                         </li>
                       ))}
                     </ul>
-
-
+                    {opts?.inCarousel && (
+                      <a
+                        href={p.ctaHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 self-start text-[11px] tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors"
+                      >
+                        {p.cta} →
+                      </a>
+                    )}
                   </div>
                 </div>
-              );
+                );
+              };
               return (
                 <>
                   {/* Desktop / tablet grid */}
