@@ -43,7 +43,7 @@ export function SiteHeader() {
   return (
     <div
       className={`relative z-50 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        hidden ? "-translate-y-[140%] opacity-0 pointer-events-none" : "translate-y-0 opacity-100"
+        hidden ? "-translate-y-[140%] opacity-0 pointer-events-none" : "translate-y-0 opacity-100 md:[translate:none] md:[transform:none]"
       }`}
       onClickCapture={(e) => {
         const target = e.target as HTMLElement;
