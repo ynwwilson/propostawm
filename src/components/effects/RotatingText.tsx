@@ -2,6 +2,7 @@ import {
   AnimatePresence,
   motion,
   type Transition,
+  type TargetAndTransition,
 } from "motion/react";
 import {
   forwardRef,
@@ -15,9 +16,9 @@ import {
 interface RotatingTextProps {
   texts: string[];
   transition?: Transition;
-  initial?: Record<string, unknown>;
-  animate?: Record<string, unknown>;
-  exit?: Record<string, unknown>;
+  initial?: TargetAndTransition;
+  animate?: TargetAndTransition;
+  exit?: TargetAndTransition;
   animatePresenceMode?: "sync" | "wait";
   animatePresenceInitial?: boolean;
   rotationInterval?: number;
@@ -42,8 +43,8 @@ export interface RotatingTextRef {
 
 const splitIntoCharacters = (text: string): string[] => {
   if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
-    // @ts-expect-error Segmenter typing
-    const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
+    const SegmenterCtor = (Intl as unknown as { Segmenter: new (l: string, o: { granularity: string }) => { segment: (t: string) => Iterable<{ segment: string }> } }).Segmenter;
+    const segmenter = new SegmenterCtor("en", { granularity: "grapheme" });
     return Array.from(segmenter.segment(text), (s: { segment: string }) => s.segment);
   }
   return Array.from(text);
