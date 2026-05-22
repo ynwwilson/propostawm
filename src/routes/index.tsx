@@ -117,54 +117,58 @@ const planos = [
     nome: "Essencial",
     valor: "R$ 7.000",
     sugerida: false,
+    cta: "Ver escopo",
     descricao:
-      "Para uma primeira versão mais enxuta, com novo site premium, catálogo e Portal WM básico.",
+      "Uma versão mais enxuta para criar o novo site e iniciar a estrutura com um painel básico.",
     itens: [
-      "Novo site",
+      "Novo site separado",
       "Home premium",
-      "Coleções",
-      "Catálogo",
-      "Página de vestido",
-      "Responsivo",
+      "Página de coleções",
+      "Página individual dos vestidos",
+      "Catálogo inicial",
       "WhatsApp simples",
-      "Portal WM básico para editar produtos",
+      "Portal WM básico",
+      "Edição de produtos",
     ],
   },
   {
     nome: "Completa",
     valor: "R$ 10.000",
     sugerida: true,
+    cta: "Opção sugerida",
     descricao:
-      "A estrutura ideal: site premium, catálogo gerenciável e Portal WM completo para controle do acervo.",
+      "A estrutura ideal para unir novo site, catálogo gerenciável e Portal WM mais completo.",
     itens: [
       "Tudo da Essencial",
       "Upload e troca de imagens",
       "Gestão de status / disponibilidade",
-      "Produtos em destaque",
-      "Publicar / ocultar vestidos",
+      "Destaques no site",
+      "Publicar ou ocultar vestidos",
+      "Organização por coleção, marca, estilo e unidade",
       "Vestidos mais acessados",
       "Vestidos mais favoritados",
-      "Organização por coleção, estilo, marca e unidade",
     ],
   },
   {
     nome: "Premium",
     valor: "R$ 14.000",
     sugerida: false,
+    cta: "Ver detalhes",
     descricao:
-      "Versão com mais refinamento visual, animações premium e suporte inicial mais completo.",
+      "Uma versão mais refinada, com maior nível de personalização visual e suporte inicial ampliado.",
     itens: [
       "Tudo da Completa",
-      "Mais refinamento visual",
+      "Refinamento visual adicional",
       "Animações premium",
       "Mais seções personalizadas",
       "Dashboard visual mais completo",
       "SEO inicial mais estruturado",
-      "Treinamento gravado do Portal WM",
+      "Treinamento gravado",
       "Suporte inicial estendido",
     ],
   },
 ];
+
 
 function Proposta() {
   return (
