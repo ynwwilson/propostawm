@@ -190,7 +190,7 @@ export function HeroCinematic() {
             <span className="hero-rule h-px w-20 bg-[#d8c7a8] block" />
           </div>
           {/* Title */}
-          <h1 className="hero-title-wrap mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(5rem,16vw,14rem)]">
+          <h1 className="hero-title-wrap mt-8 md:mt-10 lg:mt-14 font-display font-light leading-[0.88] tracking-[-0.02em] text-[clamp(6.5rem,22vw,14rem)]">
             <ShinyText
               text="WM Noivas"
               speed={4}
