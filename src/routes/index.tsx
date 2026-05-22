@@ -141,12 +141,19 @@ const escopo = [
   "Responsivo em celular e desktop",
 ];
 
+const WA_PHONE = "5534992761076";
+const waHref = (msg: string) =>
+  `https://web.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(msg)}`;
+
 const planos = [
   {
     nome: "Essencial",
     valor: "R$ 7.000",
     sugerida: false,
-    cta: "Ver escopo",
+    cta: "Entre em contato",
+    ctaHref: waHref(
+      "Olá! Tenho interesse na proposta Essencial da nova plataforma digital da Espaço WM e gostaria de conversar."
+    ),
     descricao:
       "Uma versão mais enxuta para criar o novo site e iniciar a estrutura com um painel básico.",
     itens: [
@@ -164,7 +171,10 @@ const planos = [
     nome: "Completa",
     valor: "R$ 10.000",
     sugerida: true,
-    cta: "Opção sugerida",
+    cta: "Fale com a gente",
+    ctaHref: waHref(
+      "Olá! Quero seguir com a proposta Completa da Espaço WM. Podemos conversar sobre os próximos passos?"
+    ),
     descricao:
       "A estrutura ideal para unir novo site, catálogo gerenciável e Portal WM mais completo.",
     itens: [
@@ -182,7 +192,10 @@ const planos = [
     nome: "Premium",
     valor: "R$ 14.000",
     sugerida: false,
-    cta: "Ver detalhes",
+    cta: "Vamos conversar",
+    ctaHref: waHref(
+      "Olá! Gostaria de entender melhor a proposta Premium da Espaço WM e alinhar os detalhes do projeto."
+    ),
     descricao:
       "Uma versão mais refinada, com maior nível de personalização visual e suporte inicial ampliado.",
     itens: [
@@ -197,6 +210,7 @@ const planos = [
     ],
   },
 ];
+
 
 
 function Proposta() {
@@ -464,7 +478,7 @@ function Proposta() {
                     </ul>
                     <div className="mt-10 pt-8 border-t border-cocoa/10">
                       <a
-                        href="https://wa.me/5534992761076?text=Ol%C3%A1%21%20Vi%20a%20proposta%20da%20nova%20plataforma%20digital%20da%20Espa%C3%A7o%20WM%20e%20gostaria%20de%20conversar%20sobre%20o%20projeto."
+                        href={p.ctaHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={[
