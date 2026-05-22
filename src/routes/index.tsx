@@ -207,10 +207,10 @@ function Proposta() {
               </motion.div>
 
               <motion.h2
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={VIEWPORT}
-                transition={{ duration: 1, ease: EASE, delay: 0.15 }}
+                transition={{ duration: 1.6, ease: EASE_DEEP, delay: 0.2 }}
                 className="mt-10 font-display text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-espresso text-balance"
               >
                 Um novo site, um <span className="font-display-italic text-accent">catálogo vivo</span>
@@ -222,7 +222,7 @@ function Proposta() {
                 initial={{ opacity: 0, scaleX: 0 }}
                 whileInView={{ opacity: 1, scaleX: 1 }}
                 viewport={VIEWPORT}
-                transition={{ duration: 0.9, ease: EASE, delay: 0.35 }}
+                transition={{ duration: 1.3, ease: EASE, delay: 0.55 }}
                 className="mt-10 flex items-center justify-center gap-4"
               >
                 <span className="h-px w-12 bg-cocoa/25" />
@@ -231,15 +231,16 @@ function Proposta() {
               </motion.div>
 
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={VIEWPORT}
-                transition={{ duration: 0.9, ease: EASE, delay: 0.5 }}
+                transition={{ duration: 1.1, ease: EASE, delay: 0.75 }}
                 className="mt-8 text-base md:text-lg leading-8 text-cocoa/80 max-w-xl mx-auto"
               >
                 Três entregas conectadas para apresentar melhor a Espaço WM
                 e dar autonomia para manter tudo sempre atualizado.
               </motion.p>
+
             </div>
 
             {(() => {
