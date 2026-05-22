@@ -376,8 +376,8 @@ function Proposta() {
           </div>
         </section>
 
-        {/* 4. ESCOPO INCLUSO */}
-        <section className="px-6 lg:px-20 py-28 lg:py-36 bg-background">
+        {/* 4. ESCOPO INCLUSO — oculto no mobile para enxugar a leitura */}
+        <section className="hidden md:block px-6 lg:px-20 py-28 lg:py-36 bg-background">
           <div className="mx-auto max-w-5xl grid lg:grid-cols-[0.4fr_0.6fr] gap-12 lg:gap-20">
             <motion.div {...fadeUp}>
               <Eyebrow>Escopo incluso</Eyebrow>
