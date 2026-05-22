@@ -164,9 +164,10 @@ function Escopo() {
             initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.6, ease: EASE_DEEP, delay: 0.4 }}
-            className="mt-6 font-display text-5xl md:text-6xl leading-[1.05] tracking-tight text-balance"
+            className="mt-6 font-display text-4xl md:text-6xl leading-[1.05] tracking-tight text-balance"
           >
-            O que está incluso, o que vem depois.
+            <span className="md:hidden">Escopo da primeira versão</span>
+            <span className="hidden md:inline">O que está incluso, o que vem depois.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
@@ -174,13 +175,103 @@ function Escopo() {
             transition={{ duration: 1.2, ease: EASE, delay: 0.85 }}
             className="mt-6 text-base text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Um detalhamento honesto do que entra na primeira entrega — e do que faz mais sentido
-            evoluir numa segunda fase, depois que o site e o portal estiverem no ar.
+            <span className="md:hidden">
+              O foco desta primeira entrega é criar um novo site para a Espaço WM, com catálogo
+              editável e Portal WM para a equipe manter o acervo atualizado.
+            </span>
+            <span className="hidden md:inline">
+              Um detalhamento honesto do que entra na primeira entrega — e do que faz mais sentido
+              evoluir numa segunda fase, depois que o site e o portal estiverem no ar.
+            </span>
           </motion.p>
         </div>
       </section>
 
-      <section className="px-6 lg:px-16 py-16">
+      {/* MOBILE: versão compacta */}
+      <section className="md:hidden px-6 py-10">
+        <div className="space-y-5">
+          {[
+            {
+              n: "01",
+              t: "Novo site premium",
+              d: "Uma nova presença digital para apresentar a marca, coleções, vestidos e unidades com mais refinamento.",
+              b: ["Home premium", "Coleções", "Páginas de vestidos", "Responsivo"],
+            },
+            {
+              n: "02",
+              t: "Catálogo gerenciável",
+              d: "Um catálogo conectado ao painel, permitindo organizar e atualizar os vestidos com mais autonomia.",
+              b: [
+                "Filtros por estilo, marca e unidade",
+                "Status e disponibilidade",
+                "Destaques no site",
+                "Favoritos e acessos",
+              ],
+            },
+            {
+              n: "03",
+              t: "Portal WM",
+              d: "Área administrativa para cadastrar, editar, ocultar, destacar e organizar os produtos do site.",
+              b: [
+                "Cadastro de vestidos",
+                "Edição de fotos e informações",
+                "Publicar e ocultar produtos",
+                "Controle do acervo",
+              ],
+            },
+          ].map((c) => (
+            <motion.article
+              key={c.n}
+              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={VIEWPORT}
+              transition={{ duration: 0.9, ease: EASE }}
+              className="border border-border/70 bg-background p-6"
+            >
+              <p className="text-[10px] tracking-luxe uppercase text-muted-foreground">
+                Entrega {c.n}
+              </p>
+              <h2 className="font-display text-2xl mt-2">{c.t}</h2>
+              <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{c.d}</p>
+              <ul className="mt-5 space-y-2">
+                {c.b.map((i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                    <span>{i}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.article>
+          ))}
+        </div>
+
+        <div className="mt-10 border-t border-border/60 pt-8">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-accent" />
+            <p className="text-[10px] tracking-luxe uppercase text-accent">Para uma segunda etapa</p>
+          </div>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {["CRM", "Pagamento online", "App nativo", "ERP", "IA", "Automação avançada"].map(
+              (i) => (
+                <li
+                  key={i}
+                  className="text-xs tracking-wide border border-border/70 bg-background px-3 py-1.5 text-muted-foreground"
+                >
+                  {i}
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
+
+        <p className="mt-8 text-sm text-muted-foreground leading-relaxed">
+          O escopo pode ser ajustado conforme a rotina da Espaço WM e o nível de profundidade
+          escolhido.
+        </p>
+      </section>
+
+      <section className="hidden md:block px-6 lg:px-16 py-16">
+
         <motion.div
           variants={staggerParent}
           initial="hidden"
