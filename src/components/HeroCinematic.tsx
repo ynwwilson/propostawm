@@ -54,13 +54,33 @@ export function HeroCinematic() {
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // 1. Tensão — só vídeo + linha champagne lenta
-      tl.to(video, { scale: 1, filter: "brightness(1)", duration: 2.4, ease: "power2.out" }, 0)
-        .to(topLine, { scaleX: 1, duration: 1.6, ease: "power2.inOut" }, 0.2)
-        .to(eyebrow, { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2 }, 0.6)
-        // 2. Pausa antes do reveal
-        .addLabel("reveal", "+=0.9")
-        // 3. Título palavra por palavra com máscara
+      // 1. Tensão — só vídeo respirando, tela limpa por ~2.4s
+      tl.to(
+        video,
+        { scale: 1.02, filter: "brightness(1)", duration: 3.4, ease: "power2.out" },
+        0,
+      )
+        // 2. Pausa silenciosa
+        .addLabel("line", "+=1.4")
+        // 3. Linha champagne expande lentamente do centro
+        .to(
+          underline,
+          { scaleX: 1, duration: 1.8, ease: "power4.out" },
+          "line",
+        )
+        .to(
+          topLine,
+          { scaleX: 1, duration: 1.8, ease: "power2.inOut" },
+          "line+=0.2",
+        )
+        .to(
+          eyebrow,
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2 },
+          "line+=0.6",
+        )
+        // 4. Pausa antes do título
+        .addLabel("title", "line+=1.5")
+        // 5. "WM" → 6. "Noiva" — palavra por palavra, lentas
         .to(
           words,
           {
@@ -68,26 +88,25 @@ export function HeroCinematic() {
             opacity: 1,
             filter: "blur(0px)",
             letterSpacing: "normal",
-            duration: 1.4,
+            duration: 1.6,
             ease: "expo.out",
-            stagger: 0.22,
+            stagger: 0.55,
           },
-          "reveal",
+          "title",
         )
-        // 4. Linha decorativa expande
-        .to(
-          underline,
-          { scaleX: 1, duration: 1.4, ease: "power2.inOut" },
-          "reveal+=0.6",
-        )
-        // 5. Subtítulo
+        // 7. Subtítulo
         .to(
           subtitle,
           { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.4 },
-          "reveal+=0.9",
+          "title+=1.4",
         )
-        .to(corner, { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2 }, "reveal+=1.1")
-        .to(hint, { opacity: 1, y: 0, duration: 1.0 }, "reveal+=1.3");
+        .to(
+          corner,
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.2 },
+          "title+=1.7",
+        )
+        // 8. Scroll indicator por último
+        .to(hint, { opacity: 1, y: 0, duration: 1.0 }, "title+=2.0");
 
       // hint flutuando sutil
       gsap.to(".hero-hint-line", {
