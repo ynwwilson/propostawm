@@ -396,20 +396,15 @@ function Proposta() {
               Sem pressa. A proposta fica aqui para vocês revisitarem com calma —
               quando quiserem conversar, é só responder.
             </p>
-            <div className="mt-12 flex flex-wrap justify-center gap-8">
+            <div className="mt-12 flex justify-center">
               <Link
-                to="/catalogo"
+                to="/escopo"
                 className="text-xs tracking-luxe uppercase text-espresso border-b border-accent pb-1 hover:border-espresso transition-colors"
               >
-                Ver prévia do catálogo →
-              </Link>
-              <Link
-                to="/portal"
-                className="text-xs tracking-luxe uppercase text-cocoa/70 border-b border-cocoa/30 pb-1 hover:text-espresso hover:border-espresso transition-colors"
-              >
-                Prévia do Portal WM →
+                Ver escopo completo →
               </Link>
             </div>
+
             <p className="mt-16 font-display-italic text-accent text-lg">
               ForYouCode · para Espaço WM
             </p>
